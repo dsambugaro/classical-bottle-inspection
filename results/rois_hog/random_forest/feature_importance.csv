@@ -1,0 +1,4 @@
+feature_group,importance
+cap_hog,0.4573
+label_hog,0.1879
+body_hog,0.3548

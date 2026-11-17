@@ -1,0 +1,16 @@
+feature,svm,knn,random_forest
+rois_hog,1.0000,0.9967,1.0000
+auto_rois_hog,1.0000,0.9967,1.0000
+bottle_hog,1.0000,0.9967,1.0000
+wide_hog,1.0000,0.9600,1.0000
+image_hog,0.9967,0.9867,0.9967
+rois_lbp,1.0000,0.9933,0.9900
+auto_rois_lbp,1.0000,0.9867,0.9900
+bottle_lbp,1.0000,0.9800,0.9900
+wide_lbp,1.0000,0.9633,0.9767
+image_lbp,0.9900,0.9933,0.9667
+rois_color,1.0000,1.0000,1.0000
+auto_rois_color,1.0000,1.0000,1.0000
+bottle_color,1.0000,1.0000,0.9967
+wide_color,1.0000,0.9967,0.9967
+image_color,1.0000,0.9967,1.0000

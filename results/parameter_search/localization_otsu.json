@@ -1,0 +1,7 @@
+{
+  "training_images": 1200,
+  "min": 44.0,
+  "median": 56.0,
+  "max": 115.0,
+  "noise_floor": 20
+}

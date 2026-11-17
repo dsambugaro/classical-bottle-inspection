@@ -1,0 +1,1263 @@
+{
+  "app": {
+    "name": "Inspeção de garrafas"
+  },
+  "nav": {
+    "inspect": "Inspecionar",
+    "profiles": "Perfis",
+    "reports": "Relatórios",
+    "integrations": "Integrações",
+    "system": "Sistema",
+    "debug": "Depuração"
+  },
+  "common": {
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "more": "Mais ações",
+    "on": "Ligado",
+    "off": "Desligado",
+    "close": "Fechar"
+  },
+  "classes": {
+    "bottle_no_defect": "Garrafa boa",
+    "bottle_other_brand": "Garrafa de outra marca",
+    "defect_low_fill": "Nível de líquido baixo",
+    "defect_no_cap": "Tampa ausente",
+    "defect_loose_cap": "Tampa solta ou levantada",
+    "defect_debris": "Detritos no líquido",
+    "defect_label_damage": "Rótulo danificado"
+  },
+  "verdict": {
+    "pass": "APROVADO",
+    "reject": "REPROVADO",
+    "review": "REVISÃO"
+  },
+  "profileStatus": {
+    "ready": "Pronto",
+    "modified": "Parâmetros modificados",
+    "model_missing": "Modelo ausente",
+    "incompatible": "Incompatível",
+    "reason": {
+      "ready": "Pronto",
+      "modified": "Os parâmetros diferem do treinamento",
+      "model_missing": "O modelo treinado não foi encontrado",
+      "incompatible": "O modelo treinado mudou; vincule-o novamente em Perfis"
+    }
+  },
+  "profile": {
+    "reason": {
+      "model_missing": "O modelo treinado deste perfil não foi encontrado. Verifique as pastas de modelos em Sistema ou execute make run.",
+      "model_error": "O modelo treinado deste perfil não pôde ser carregado. Execute make run para treiná-lo novamente.",
+      "incompatible": "O modelo treinado foi treinado com outros parâmetros travados. Vincule-o novamente para copiar os parâmetros."
+    }
+  },
+  "shell": {
+    "navigation": "Navegação principal",
+    "language": "Idioma",
+    "notifications": "Notificações, {count} não lidas",
+    "notificationsTitle": "Notificações",
+    "markAllRead": "Marcar todas como lidas",
+    "noNotifications": "Nenhuma notificação ainda.",
+    "activeSessions": "{count, plural, one {# sessão de câmera} other {# sessões de câmera}}",
+    "queueBacklog": "{count} ações aguardando",
+    "brokenProfiles": "{count, plural, one {# perfil não pode ser analisado} other {# perfis não podem ser analisados}}"
+  },
+  "empty": {
+    "noModelsTitle": "Nenhum modelo treinado encontrado",
+    "noModelsBody1": "Execute",
+    "noModelsBody2": "em code/ para treiná-los e validá-los e, em seguida, clique em Atualizar.",
+    "refresh": "Atualizar modelos",
+    "dropTitle": "Solte as imagens das garrafas aqui",
+    "dropBody": "Ou use imagens da divisão de validação da base.",
+    "connectCamera": "Conectar uma câmera",
+    "cameraHint": "As câmeras do servidor são configuradas em"
+  },
+  "inspect": {
+    "sourceLabel": "Origem",
+    "source": {
+      "upload": "Envio",
+      "dataset": "Base",
+      "browser": "Câmera do navegador"
+    },
+    "profiles": "Perfis",
+    "addProfile": "Adicionar perfil",
+    "removeProfile": "Remover {name}",
+    "profileChip": "{name}, posição {position}. Arraste ou pressione Alt e uma seta para reordenar.",
+    "maxProfiles": "Até {max} perfis. Cada um é analisado e exibido separadamente.",
+    "selectProfileFirst": "Selecione pelo menos um perfil primeiro.",
+    "chooseFiles": "Escolher imagens",
+    "uploadHint": "JPEG, PNG, BMP ou WebP, até {mb} MB cada e {n} por lote.",
+    "filterClass": "Classe",
+    "allClasses": "Todas as classes",
+    "randomSample": "Amostra aleatória",
+    "trySample": "Testar amostras da base",
+    "browseDataset": "Procurar",
+    "datasetCount": "{count, plural, one {# imagem} other {# imagens}} na divisão de validação",
+    "rerun": "Analisar novamente",
+    "batchStarted": "Analisando {total} imagens. Os resultados aparecem conforme terminam.",
+    "batchDone": "{total} imagens concluídas.",
+    "overlays": "Sobreposições",
+    "overlay": {
+      "rois": "Regiões",
+      "bottle": "Garrafa",
+      "patch": "Região de referência",
+      "mask": "Máscara de primeiro plano"
+    },
+    "compareNormalized": "Comparar bruta | normalizada",
+    "syncView": "Sincronizar zoom e deslocamento",
+    "comparison": "Comparação dos perfis selecionados",
+    "col": {
+      "profile": "Perfil",
+      "verdict": "Veredito",
+      "class": "Classe",
+      "confidence": "Confiança",
+      "total": "Total",
+      "params": "Parâmetros"
+    },
+    "paramsModified": "Modificados",
+    "paramsTraining": "Treinamento",
+    "noCombined": "Cada perfil é avaliado isoladamente. Não há veredito combinado.",
+    "history": "Histórico",
+    "historyItem": "{name}: {verdicts}",
+    "sessionCounters": "Contadores desta sessão",
+    "shortcuts": "Atalhos de teclado"
+  },
+  "shortcuts": {
+    "run": "Analisar ou capturar",
+    "history": "Anterior ou próximo no histórico",
+    "overlays": "Alternar todas as sobreposições",
+    "focus": "Focar o resultado do perfil n",
+    "fit": "Ajustar imagem",
+    "stop": "Encerrar a sessão",
+    "sheet": "Mostrar esta lista"
+  },
+  "viewer": {
+    "label": "Imagem com sobreposições",
+    "noImage": "Sem imagem",
+    "zoomIn": "Aumentar zoom",
+    "zoomOut": "Diminuir zoom",
+    "fit": "Ajustar",
+    "actualSize": "Tamanho real (1:1)",
+    "raw": "Bruta",
+    "normalized": "Normalizada",
+    "patch": "região de referência",
+    "dragEdge": "Arraste para mover a borda: {roi}"
+  },
+  "result": {
+    "confidence": "Confiança",
+    "confidenceHelp": "Como a confiança é calculada",
+    "scores": "Pontuações das 7 classes",
+    "timings": "Tempos",
+    "timingBreakdown": "Tempo de cada etapa",
+    "lowerIsBetter": "Quanto menor, melhor: vence a classe mais próxima.",
+    "svmVotes": "Votos das 21 SVMs um contra um:",
+    "nearest": "Imagens de treinamento mais próximas (k = {k})",
+    "matchesTruth": "Coincide com o rótulo real",
+    "expected": "Esperado",
+    "modifiedHelp": "Este perfil usa parâmetros diferentes do treinamento. Sua acurácia foi validada apenas com os valores de treinamento."
+  },
+  "confidence": {
+    "svm": "SVM: (pontuação do vencedor − pontuação do segundo colocado) ÷ max(1, |pontuação do vencedor|), limitado a 0–1.",
+    "knn": "KNN: 1 − distância do vencedor ÷ distância do segundo colocado (imagem de treinamento mais próxima de cada classe).",
+    "random_forest": "Random Forest: a maior probabilidade média das árvores.",
+    "generic": "Confiança da classe vencedora, a partir dos valores de decisão do modelo.",
+    "notComparable": "As confianças não são comparáveis entre algoritmos."
+  },
+  "scoreKind": {
+    "svm_ovr_score": "Pontuação um contra o resto: votos mais confiança (vence a maior).",
+    "knn_class_distance": "Distância até a imagem de treinamento mais próxima de cada classe.",
+    "rf_probability": "Probabilidade média das árvores (vence a maior).",
+    "probability": "Probabilidade da classe (vence a maior).",
+    "decision": "Valor de decisão (vence o maior).",
+    "one_hot": "O modelo não fornece pontuação por classe."
+  },
+  "steps": {
+    "decode": "Decodificação",
+    "normalize": "Normalizar iluminação",
+    "foreground_mask": "Máscara de primeiro plano",
+    "localize": "Localizar garrafa",
+    "crop_regions": "Recortar regiões",
+    "cap_hog": "HOG da tampa",
+    "cap_lbp": "LBP da tampa",
+    "cap_color": "Cor da tampa",
+    "label_hog": "HOG do rótulo",
+    "label_lbp": "LBP do rótulo",
+    "label_color": "Cor do rótulo",
+    "body_hog": "HOG do corpo",
+    "body_lbp": "LBP do corpo",
+    "body_color": "Cor do corpo",
+    "auto_1_hog": "HOG Auto 1",
+    "auto_1_lbp": "LBP Auto 1",
+    "auto_1_color": "Cor Auto 1",
+    "auto_2_hog": "HOG Auto 2",
+    "auto_2_lbp": "LBP Auto 2",
+    "auto_2_color": "Cor Auto 2",
+    "auto_3_hog": "HOG Auto 3",
+    "auto_3_lbp": "LBP Auto 3",
+    "auto_3_color": "Cor Auto 3",
+    "bottle_hog": "HOG da garrafa",
+    "bottle_lbp": "LBP da garrafa",
+    "bottle_color": "Cor da garrafa",
+    "predict": "Predição"
+  },
+  "warnings": {
+    "low_foreground": "Garrafa possivelmente ausente",
+    "resolution_mismatch": "Resolução diferente da do fundo",
+    "modified_parameters": "Parâmetros modificados, não validados",
+    "low_confidence": "Confiança baixa"
+  },
+  "groups": {
+    "localization": "Localização",
+    "normalization": "Normalização fotométrica",
+    "bottle": "Recorte da garrafa",
+    "rois": "Regiões de interesse",
+    "auto_rois": "Regiões automáticas",
+    "hog": "HOG",
+    "lbp": "LBP",
+    "color": "Cor",
+    "features": "Grupos de atributos",
+    "verdict": "Veredito"
+  },
+  "units": {
+    "px": "px",
+    "bins": "bins",
+    "cells": "células",
+    "points": "pontos"
+  },
+  "params": {
+    "lockedShort": "Travado",
+    "definedByTraining": "Definido pelo treinamento",
+    "lockedHelp": "Definido pelo treinamento. Altere-o em config.py e execute make run.",
+    "allLocked": "Definido pelo treinamento",
+    "training": "treinamento",
+    "resetField": "Restaurar valor do treinamento",
+    "resetFieldNamed": "Restaurar {name} para o valor do treinamento",
+    "help": "Sobre {name}",
+    "start": "início",
+    "end": "fim",
+    "enable": "Usar {name}",
+    "off": "Desligado",
+    "option": {
+      "reject": "Reprovar",
+      "review": "Revisar"
+    },
+    "localization": {
+      "size": {
+        "label": "Tamanho da localização",
+        "help": "Resolução usada para localizar a garrafa. Deve coincidir com o fundo salvo. O limiar de primeiro plano é encontrado em cada imagem (método de Otsu)."
+      },
+      "close_size": {
+        "label": "Tamanho do fechamento",
+        "help": "Diâmetro do fechamento morfológico da máscara de primeiro plano. A garrafa é transparente, então sua máscara tem buracos; o fechamento os une."
+      },
+      "open_size": {
+        "label": "Tamanho da abertura",
+        "help": "Diâmetro da abertura morfológica aplicada após o fechamento. Remove linhas finas e pontos isolados."
+      },
+      "profile_smoothing": {
+        "label": "Suavização do perfil",
+        "help": "Largura da média móvel aplicada ao perfil de colunas da máscara antes de achar as colunas da garrafa."
+      },
+      "column_fraction": {
+        "label": "Fração de colunas",
+        "help": "A garrafa é procurada nas colunas ao redor do pico do perfil de colunas que ficam acima desta fração do pico; o centro dela é o meio desse trecho."
+      },
+      "bottle_width": {
+        "label": "Largura da garrafa",
+        "help": "Largura da caixa da garrafa, como fração da largura da imagem, centrada na garrafa encontrada no perfil de colunas."
+      },
+      "top_fraction": {
+        "label": "Fração do topo",
+        "help": "Dentro dessas colunas, o topo da garrafa é a primeira linha que atinge esta fração da linha mais densa."
+      },
+      "row_fraction": {
+        "label": "Fração da base",
+        "help": "Dentro dessas colunas, a base da garrafa é a última linha que atinge esta fração da linha mais densa."
+      }
+    },
+    "normalization": {
+      "enabled": {
+        "label": "Normalizar iluminação",
+        "help": "Reescala cada canal para que a região de referência corresponda ao fundo."
+      },
+      "reference_patch": {
+        "label": "Região de referência",
+        "help": "Região da parede que nunca é coberta por uma garrafa. Arraste-a na pré-visualização."
+      }
+    },
+    "bottle": {
+      "crop_size": {
+        "label": "Redimensionamento da garrafa",
+        "help": "Tamanho para o qual a caixa da garrafa detectada é redimensionada antes do HOG e do LBP. As regiões automáticas são fatias dela."
+      }
+    },
+    "rois": {
+      "cap": {
+        "label": "Faixa da tampa",
+        "help": "Faixa vertical da ROI da tampa dentro da caixa da garrafa detectada (0% = topo da garrafa, 100% = base). Arraste suas bordas na pré-visualização."
+      },
+      "label": {
+        "label": "Faixa do rótulo",
+        "help": "Faixa vertical da ROI do rótulo dentro da caixa da garrafa detectada (0% = topo da garrafa, 100% = base). Arraste suas bordas na pré-visualização."
+      },
+      "body": {
+        "label": "Faixa do corpo",
+        "help": "Faixa vertical da ROI do corpo dentro da caixa da garrafa detectada (0% = topo da garrafa, 100% = base). Arraste suas bordas na pré-visualização."
+      },
+      "cap_size": {
+        "label": "Redimensionamento da tampa",
+        "help": "Tamanho para o qual a ROI da tampa é redimensionada antes do HOG."
+      },
+      "label_size": {
+        "label": "Redimensionamento do rótulo",
+        "help": "Tamanho para o qual a ROI do rótulo é redimensionada antes do HOG."
+      },
+      "body_size": {
+        "label": "Redimensionamento do corpo",
+        "help": "Tamanho para o qual a ROI do corpo é redimensionada antes do HOG."
+      }
+    },
+    "auto_rois": {
+      "bands": {
+        "label": "Faixas aprendidas",
+        "help": "Faixas verticais das três regiões automáticas dentro da caixa da garrafa, aprendidas das imagens de treino. Nunca são editadas: vêm do treino, como o fundo."
+      }
+    },
+    "hog": {
+      "orientations": {
+        "label": "Orientações",
+        "help": "Intervalos de orientação do gradiente do HOG (0–180°)."
+      },
+      "cell_cap": {
+        "label": "Célula da tampa",
+        "help": "Tamanho da célula HOG da ROI da tampa."
+      },
+      "cell_label": {
+        "label": "Célula do rótulo",
+        "help": "Tamanho da célula HOG da ROI do rótulo."
+      },
+      "cell_body": {
+        "label": "Célula do corpo",
+        "help": "Tamanho da célula HOG da ROI do corpo."
+      },
+      "cell_auto": {
+        "label": "Célula das regiões automáticas",
+        "help": "Tamanho da célula HOG compartilhado pelas três regiões automáticas."
+      },
+      "cell_bottle": {
+        "label": "Célula da garrafa",
+        "help": "Tamanho da célula HOG da garrafa inteira."
+      },
+      "block": {
+        "label": "Bloco",
+        "help": "Tamanho do bloco HOG, em células."
+      }
+    },
+    "lbp": {
+      "points": {
+        "label": "Pontos do LBP",
+        "help": "Vizinhos comparados com cada pixel pelo operador LBP."
+      },
+      "radius": {
+        "label": "Raio do LBP",
+        "help": "Raio, em pixels, do círculo de vizinhos do LBP."
+      },
+      "cell_cap": {
+        "label": "Célula da tampa",
+        "help": "Tamanho da célula LBP da ROI da tampa."
+      },
+      "cell_label": {
+        "label": "Célula do rótulo",
+        "help": "Tamanho da célula LBP da ROI do rótulo."
+      },
+      "cell_body": {
+        "label": "Célula do corpo",
+        "help": "Tamanho da célula LBP da ROI do corpo."
+      },
+      "cell_auto": {
+        "label": "Célula das regiões automáticas",
+        "help": "Tamanho da célula LBP compartilhado pelas três regiões automáticas."
+      },
+      "cell_bottle": {
+        "label": "Célula da garrafa",
+        "help": "Tamanho da célula LBP da garrafa inteira."
+      }
+    },
+    "color": {
+      "hsv_bins": {
+        "label": "Intervalos do histograma HSV",
+        "help": "Intervalos do histograma dos canais H, S e V."
+      }
+    },
+    "features": {
+      "groups": {
+        "label": "Grupos de atributos",
+        "help": "Grupos de atributos concatenados no vetor usado pelo modelo (um descritor por modelo)."
+      }
+    },
+    "verdict": {
+      "reject_classes": {
+        "label": "Classes que reprovam",
+        "help": "Uma predição de qualquer uma dessas classes resulta em REPROVADO."
+      },
+      "min_confidence": {
+        "label": "Confiança mínima",
+        "help": "Abaixo desta confiança, o veredito passa a ser o de baixa confiança."
+      },
+      "low_confidence_verdict": {
+        "label": "Veredito de baixa confiança",
+        "help": "Veredito usado quando a confiança está abaixo do mínimo. REVISÃO é exibido em âmbar."
+      }
+    }
+  },
+  "profiles": {
+    "new": "Novo",
+    "import": "Importar",
+    "refreshModels": "Atualizar modelos",
+    "refreshed": "{count, plural, =0 {Modelos atualizados.} one {Modelos atualizados. # perfil criado.} other {Modelos atualizados. # perfis criados.}}",
+    "search": "Pesquisar perfis",
+    "builtin": "Integrado",
+    "tab": {
+      "overview": "Visão geral",
+      "parameters": "Parâmetros",
+      "model": "Modelo",
+      "history": "Histórico"
+    },
+    "name": "Nome",
+    "description": "Descrição",
+    "color": "Cor",
+    "trainedModel": "Modelo treinado",
+    "modelHint": "O modelo define o algoritmo e os parâmetros travados. Os modelos são treinados pelo make run.",
+    "modelUpdated": "Modelo atualizado em {date}.",
+    "background": "Fundo",
+    "bg": {
+      "model": "Do modelo treinado",
+      "captured": "Capturado de uma câmera",
+      "uploaded": "Imagem enviada"
+    },
+    "uploadBackground": "Enviar fundo",
+    "viewBackground": "Ver fundo",
+    "backgroundSaved": "Fundo salvo.",
+    "backgroundHint": "Use uma imagem da cena vazia. Outro fundo torna o perfil modificado; a acurácia validada vale apenas para a configuração de treinamento.",
+    "duplicate": "Duplicar",
+    "duplicated": "Perfil duplicado.",
+    "export": "Exportar",
+    "delete": "Excluir perfil",
+    "deleted": "Perfil excluído. Suas análises permanecem nos relatórios.",
+    "deleteConfirm": "Excluir \"{name}\"? Suas análises permanecem nos relatórios.",
+    "builtinNoDelete": "Perfis integrados não podem ser excluídos",
+    "relink": "Vincular novamente aos parâmetros deste modelo",
+    "relinked": "Perfil vinculado novamente aos parâmetros do modelo.",
+    "searchParams": "Pesquisar parâmetros",
+    "onlyChanged": "Somente alterados",
+    "resetAll": "Restaurar tudo para o treinamento",
+    "resetGroup": "Restaurar grupo",
+    "changedCount": "{count} alterados",
+    "compareWith": "Comparar com…",
+    "compareTitle": "Comparar {name}",
+    "compareVersion": "Versão {version} deste perfil",
+    "compareHint": "Valores riscados são do outro lado; valores em verde são deste perfil.",
+    "unsaved": "{count, plural, one {# alteração não salva} other {# alterações não salvas}}",
+    "fixErrors": "{count, plural, one {Corrija # valor inválido para salvar.} other {Corrija # valores inválidos para salvar.}}",
+    "discard": "Descartar",
+    "save": "Salvar",
+    "saved": "Salvo como versão {version}.",
+    "leaveConfirm": "Há alterações não salvas. Sair e descartá-las?",
+    "newTitle": "Novo perfil",
+    "newBody": "Escolha um modelo treinado. Os parâmetros começam com os valores do treinamento.",
+    "create": "Criar perfil",
+    "created": "Perfil \"{name}\" criado.",
+    "importTitle": "Importar perfil",
+    "importBody": "Cole ou escolha um JSON de perfil exportado. Confira a pré-visualização antes de aplicar.",
+    "importFile": "Arquivo JSON do perfil",
+    "importJson": "JSON do perfil",
+    "importPreview": "Pré-visualização",
+    "importApply": "Importar",
+    "importDiff": "{count, plural, =0 {Mesmos valores do treinamento.} one {# valor difere do treinamento:} other {# valores diferem do treinamento:}}",
+    "imported": "Perfil \"{name}\" importado.",
+    "preview": "Pré-visualização",
+    "sampleImage": "Imagem de exemplo",
+    "randomSample": "Imagem de exemplo aleatória",
+    "uploadSample": "Enviar uma imagem de exemplo",
+    "dragHint": "Arraste as bordas das ROIs e a região de referência, ou digite os valores.",
+    "maskOverlay": "Máscara",
+    "mask": {
+      "none": "Sem máscara",
+      "foreground": "Máscara de primeiro plano"
+    },
+    "differFromTraining": "{count, plural, one {# valor difere do treinamento (não validado).} other {# valores diferem do treinamento (não validados).}}",
+    "classifyDryRun": "Classificar esta imagem",
+    "dryRunNote": "Um teste com os valores não salvos. Nada é armazenado.",
+    "groundTruth": "rótulo real",
+    "captureCamera": "Câmera",
+    "captureBackground": "Capturar fundo",
+    "captureHint": "Esvazie a cena antes. É usada a mediana do número de quadros configurado."
+  },
+  "model": {
+    "notFound": "Modelo treinado não encontrado.",
+    "trainedByCli": "Os modelos são treinados e validados por",
+    "notHere": "Este aplicativo apenas os utiliza; nunca faz treinamento.",
+    "versionWarning": "Este modelo foi salvo com outras versões de bibliotecas. Treine-o novamente com make run.",
+    "algorithm": "Algoritmo",
+    "accuracy": "Acurácia",
+    "f1Macro": "F1 macro",
+    "cvScore": "F1 CV (macro)",
+    "trainedAt": "Treinado em",
+    "featureLength": "Tamanho do vetor de atributos",
+    "extractTime": "Extração por imagem",
+    "predictTime": "Predição por imagem",
+    "bestParams": "Melhores hiperparâmetros",
+    "perClass": "Validação por classe",
+    "class": "Classe",
+    "precision": "Precisão",
+    "recall": "Revocação",
+    "support": "Imagens",
+    "confusion": "Matriz de confusão",
+    "confusionCaption": "Divisão de validação; as linhas são a classe real e as colunas a classe prevista (ids de classe 0–6).",
+    "trueLabel": "real",
+    "predictedLabel": "prevista",
+    "trainingParams": "Parâmetros de treinamento",
+    "libraries": "Versões das bibliotecas",
+    "noLibraries": "Não registrado.",
+    "featureVector": "Vetor de atributos"
+  },
+  "history": {
+    "current": "Atual",
+    "restore": "Restaurar esta versão",
+    "restored": "Versão {version} restaurada como nova versão.",
+    "created": "Perfil criado.",
+    "noChanges": "Nenhuma alteração de parâmetros."
+  },
+  "system": {
+    "saved": "Configurações salvas.",
+    "models": "Modelos treinados",
+    "modelsBody": "Os modelos treinados pelo make run são lidos destas pastas, relativas a code/: <pasta>/<vetor de atributos>/<algoritmo>/model.joblib.",
+    "modelsRefreshed": "Modelos atualizados.",
+    "modelFolders": "Pastas de modelos",
+    "modelFoldersHint": "Uma pasta por linha.",
+    "modelRef": "Modelo",
+    "status": "Situação",
+    "modelStatus": {
+      "ok": "Pronto",
+      "missing": "Ausente",
+      "error": "Não é possível carregar"
+    },
+    "retrain": "treinar novamente com make run",
+    "noTraining": "O treinamento e a validação ocorrem somente na linha de comando (make run).",
+    "storage": "Armazenamento",
+    "storageBody": "As imagens das câmeras são armazenadas de acordo com a política. As análises são mantidas mesmo depois que suas imagens são excluídas.",
+    "storagePolicy": "Política de imagens das câmeras",
+    "storagePolicyHint": "Envios e amostras da base são sempre armazenados.",
+    "policy": {
+      "all": "Manter todas as imagens",
+      "rejects_only": "Manter apenas reprovadas e revisões",
+      "none": "Não manter imagens"
+    },
+    "retention": "Manter imagens por",
+    "days": "dias",
+    "imageFiles": "Arquivos de imagem",
+    "inspections": "Inspeções",
+    "analyses": "Análises",
+    "database": "Banco de dados",
+    "dataDir": "Pasta de dados",
+    "deleteImages": "Excluir todas as imagens",
+    "deleteImagesTitle": "Excluir todas as imagens?",
+    "deleteImagesBody": "{count, plural, one {# arquivo} other {# arquivos}} ({size}) serão excluídos. As análises e os relatórios são mantidos; apenas as fotos desaparecem.",
+    "imagesDeleted": "{count, plural, one {# arquivo excluído} other {# arquivos excluídos}}, {size} liberados.",
+    "deleteAnalyses": "Excluir todas as análises",
+    "deleteAnalysesTitle": "Excluir todas as análises?",
+    "deleteAnalysesBody": "{count, plural, one {# análise} other {# análises}} e suas inspeções serão excluídas. Os relatórios ficarão vazios. Esta ação não pode ser desfeita.",
+    "typeDelete": "Digite DELETE para confirmar",
+    "analysesDeleted": "{count, plural, one {# análise excluída.} other {# análises excluídas.}}",
+    "dataset": "Base",
+    "datasetBody": "Usada para as amostras da base, com a divisão original treino/validação do Kaggle.",
+    "datasetPath": "Caminho da base",
+    "check": "Verificar",
+    "datasetFound": "Encontrada em {path}",
+    "datasetMissing": "Não encontrada",
+    "defaults": "Padrões e limites",
+    "setting": {
+      "max_profiles": "Perfis simultâneos",
+      "default_fps": "FPS padrão da câmera",
+      "min_fps": "FPS mínimo",
+      "max_fps": "FPS máximo",
+      "max_upload_mb": "Limite de envio (MB)",
+      "max_batch_files": "Arquivos por lote",
+      "background_capture_frames": "Quadros para capturar o fundo",
+      "motion_threshold": "Limiar de disparo por movimento"
+    },
+    "about": "Sobre",
+    "apiDocs": "Documentação da API",
+    "exportSettings": "Exportar configurações",
+    "importSettings": "Importar configurações"
+  },
+  "notifications": {
+    "action": {
+      "disabled_410": "Uma ação foi desativada: o destino respondeu 410 Gone",
+      "failed": "Uma ação falhou",
+      "dropped": "Fila de ações cheia; uma ação foi descartada"
+    },
+    "camera": {
+      "error": "Erro de câmera"
+    },
+    "rule": {
+      "fired": "Regra disparada: {rule}"
+    }
+  },
+  "errors": {
+    "unexpected": "Algo deu errado. Verifique o log do servidor em webdata/logs.",
+    "param": {
+      "required": "Obrigatório",
+      "invalid_type": "Valor inválido",
+      "below_min": "Deve ser no mínimo {min}",
+      "above_max": "Deve ser no máximo {max}",
+      "invalid_option": "Opção não permitida",
+      "duplicate_option": "Opção repetida",
+      "invalid_length": "Quantidade de valores incorreta",
+      "range_order": "O início deve ser menor que o fim",
+      "rect_order": "x0 deve ser menor que x1 e y0 menor que y1",
+      "unknown": "Parâmetro desconhecido",
+      "locked": "Definido pelo treinamento",
+      "hog_block_fit": "O bloco HOG não cabe na ROI"
+    },
+    "profile": {
+      "not_found": "Perfil não encontrado.",
+      "model_not_found": "Esse modelo treinado não foi encontrado. Execute make run ou verifique as pastas de modelos.",
+      "name_taken": "Já existe um perfil com este nome.",
+      "invalid_color": "Escolha uma das cores predefinidas.",
+      "invalid_params": "Alguns parâmetros são inválidos.",
+      "builtin": "Perfis integrados não podem ser excluídos.",
+      "background_missing": "Capture ou envie um fundo primeiro.",
+      "model_missing": "O modelo treinado deste perfil está ausente.",
+      "incompatible": "Este perfil é incompatível com seu modelo treinado. Vincule-o novamente em Perfis.",
+      "import_format": "Este arquivo não é um perfil exportado.",
+      "version_not_found": "Versão não encontrada."
+    },
+    "inspection": {
+      "no_profiles": "Selecione pelo menos um perfil.",
+      "too_many_profiles": "Perfis demais selecionados (no máximo {max}).",
+      "no_images": "Escolha pelo menos uma imagem.",
+      "not_found": "Inspeção não encontrada.",
+      "failed": "A análise falhou."
+    },
+    "upload": {
+      "unsupported_type": "Tipo de arquivo não suportado. Use JPEG, PNG, BMP ou WebP.",
+      "too_large": "O arquivo é maior que {max_mb} MB.",
+      "not_an_image": "O arquivo não é uma imagem válida.",
+      "too_many_files": "Arquivos demais (no máximo {max})."
+    },
+    "dataset": {
+      "not_found": "Base não encontrada. Defina seu caminho em Sistema.",
+      "invalid_split": "Divisão inválida.",
+      "sample_not_found": "Imagem da base não encontrada."
+    },
+    "image": {
+      "not_found": "Imagem não encontrada (pode ter sido excluída).",
+      "source_required": "Escolha uma imagem."
+    },
+    "analysis": {
+      "not_found": "Análise não encontrada."
+    },
+    "session": {
+      "not_found": "Sessão não encontrada.",
+      "not_running": "A sessão não está em andamento."
+    },
+    "notification": {
+      "not_found": "Notificação não encontrada."
+    },
+    "storage": {
+      "confirm_required": "Confirmação necessária."
+    },
+    "model": {
+      "not_found": "Modelo treinado não encontrado.",
+      "figure_not_found": "Figura não encontrada."
+    },
+    "request": {
+      "invalid": "Requisição inválida.",
+      "invalid_json": "JSON inválido."
+    },
+    "http": {
+      "not_found": "Não encontrado.",
+      "method_not_allowed": "Não permitido.",
+      "error": "A requisição falhou."
+    },
+    "server": {
+      "error": "Erro no servidor. Verifique o log do servidor em webdata/logs."
+    },
+    "settings": {
+      "unknown": "Configuração desconhecida.",
+      "invalid_option": "Opção não permitida.",
+      "invalid_type": "Valor inválido.",
+      "fps_order": "FPS mínimo ≤ FPS padrão ≤ FPS máximo."
+    },
+    "filters": {
+      "invalid_date": "Data inválida.",
+      "invalid_profile": "Filtro de perfil inválido."
+    },
+    "camera": {
+      "unavailable": "Câmeras indisponíveis.",
+      "not_found": "Câmera não encontrada.",
+      "open_failed": "Não foi possível abrir a câmera.",
+      "timeout": "A câmera não respondeu.",
+      "no_frames": "A câmera parou de enviar quadros.",
+      "session_failed": "A sessão da câmera falhou.",
+      "required": "Escolha uma câmera.",
+      "busy": "Esta câmera já tem uma sessão em andamento.",
+      "index_required": "Uma câmera USB precisa de um índice de dispositivo.",
+      "url_required": "Informe uma URL que comece com rtsp:// ou http://.",
+      "name_taken": "Já existe uma câmera com este nome."
+    },
+    "rule": {
+      "not_found": "Regra não encontrada.",
+      "unknown_condition": "Condição desconhecida.",
+      "invalid_condition": "Parâmetros de condição inválidos.",
+      "unknown_action": "Ação desconhecida.",
+      "invalid_action": "Parâmetros de ação inválidos.",
+      "target_required": "Escolha um destino do tipo certo para esta ação.",
+      "invalid_scope": "Escopo de perfis inválido."
+    },
+    "target": {
+      "not_found": "Destino não encontrado.",
+      "name_taken": "Já existe um destino com este nome.",
+      "invalid_config": "Configuração de destino inválida.",
+      "secret_in_config": "Segredos devem ser enviados como segredos.",
+      "invalid_secret": "Campo secreto desconhecido."
+    },
+    "debug": {
+      "session_not_found": "A sessão de depuração terminou. Escolha a imagem novamente."
+    }
+  },
+  "camera": {
+    "title": "Câmeras",
+    "body": "Câmeras ligadas ao servidor (USB ou fluxos RTSP/HTTP). A câmera do navegador não precisa de configuração.",
+    "add": "Adicionar câmera",
+    "addTitle": "Adicionar câmera",
+    "editTitle": "Editar câmera",
+    "none": "Nenhuma câmera do servidor ainda.",
+    "name": "Nome",
+    "kind": "Tipo",
+    "kinds": {
+      "usb": "USB (índice do dispositivo)"
+    },
+    "deviceIndex": "Índice do dispositivo",
+    "urlHint": "Começa com {kind}://",
+    "width": "Largura",
+    "height": "Altura",
+    "fpsCap": "fps máximo",
+    "test": "Testar",
+    "testOk": "Imagem recebida ({width}×{height}).",
+    "snapshot": "Imagem de {name}",
+    "edit": "Editar {name}",
+    "delete": "Excluir {name}",
+    "deleteConfirm": "Excluir a câmera \"{name}\"?",
+    "saved": "Câmera salva.",
+    "inSession": "Em uma sessão",
+    "wslHint": "No WSL2, conecte câmeras USB com o usbipd antes.",
+    "device": "Câmera",
+    "mode": "Modo",
+    "modes": {
+      "single": "Única",
+      "continuous": "Contínuo",
+      "motion": "Movimento"
+    },
+    "modeHelp": {
+      "single": "Pressione Espaço ou Capturar para analisar um quadro.",
+      "continuous": "Analisa quadros na taxa escolhida.",
+      "motion": "Analisa quando uma garrafa chega na frente da câmera."
+    },
+    "fps": "Quadros por segundo",
+    "start": "Iniciar",
+    "stop": "Parar",
+    "capture": "Capturar",
+    "running": "{count, plural, one {# quadro analisado} other {# quadros analisados}}",
+    "livePreview": "Câmera ao vivo",
+    "errors": {
+      "denied": "Permissão de câmera negada. Permita o acesso à câmera no navegador e tente de novo.",
+      "notFound": "Nenhuma câmera encontrada. Conecte uma câmera e tente de novo.",
+      "busy": "A câmera está em uso por outro aplicativo. Feche-o e tente de novo.",
+      "noAnswer": "Aguardando a permissão da câmera. Responda ao pedido do navegador para continuar.",
+      "unknown": "Não foi possível iniciar a câmera."
+    }
+  },
+  "reports": {
+    "filters": "Filtros do relatório",
+    "range": "Período",
+    "start": "De",
+    "end": "Até",
+    "all": "todos",
+    "noOptions": "Nada para filtrar ainda.",
+    "preset": {
+      "last_hour": "Última hora",
+      "today": "Hoje",
+      "7d": "Últimos 7 dias",
+      "30d": "Últimos 30 dias",
+      "all": "Todo o período",
+      "custom": "Período personalizado"
+    },
+    "profiles": "Perfis",
+    "versions": "Versões",
+    "source": "Origem",
+    "camera": "Câmera",
+    "session": "Sessão",
+    "allSessions": "Todas as sessões",
+    "sources": {
+      "upload": "Envio",
+      "dataset": "Amostra da base",
+      "browser_camera": "Câmera do navegador",
+      "server_camera": "Câmera do servidor"
+    },
+    "verdict": "Veredito",
+    "class": "Classe",
+    "clear": "Limpar filtros",
+    "exportCsv": "Exportar CSV",
+    "kpis": "Indicadores",
+    "noChange": "sem mudança",
+    "vsPrevious": "em relação ao período anterior",
+    "kpi": {
+      "inspected": "Garrafas inspecionadas",
+      "analyses": "{count, plural, one {# análise} other {# análises}}",
+      "pass": "Aprovadas",
+      "reject": "Reprovadas",
+      "review": "Revisão",
+      "fpy": "Rendimento de primeira passagem",
+      "time": "Tempo médio de análise",
+      "throughput": "Vazão",
+      "perMinute": "garrafas por minuto",
+      "rules": "Regras disparadas"
+    },
+    "emptyTitle": "Nenhuma análise neste período",
+    "emptyBody": "Inspecione imagens ou inicie uma sessão de câmera, ou escolha um período maior.",
+    "noData": "Nenhuma análise neste período.",
+    "exportPng": "Baixar como PNG",
+    "exportPngNamed": "Baixar {name} como PNG",
+    "viewTable": "Ver como tabela",
+    "viewChart": "Ver como gráfico",
+    "viewTableNamed": "Mostrar {name} como tabela",
+    "goodVsDefective": "Boas vs defeituosas ao longo do tempo",
+    "bucket": {
+      "minute": "Por minuto",
+      "hour": "Por hora",
+      "day": "Por dia"
+    },
+    "defective": "Defeituosas",
+    "pareto": "Pareto de defeitos",
+    "paretoHint": "{count, plural, one {# reprovação} other {# reprovações}}; as barras são a participação de cada classe e a linha é o acumulado. Clique em uma barra para filtrar.",
+    "rejects": "Reprovações",
+    "share": "Participação",
+    "shareOfRejects": "Participação nas reprovações",
+    "cumulative": "Acumulado",
+    "count": "Quantidade",
+    "time": "Horário",
+    "classDistribution": "Distribuição por classe",
+    "clickToFilter": "Clique em uma barra para filtrar pela classe.",
+    "rejectsByClass": "Reprovações por classe ao longo do tempo",
+    "profilesTable": "Perfis × classes",
+    "profile": "Perfil",
+    "total": "Total",
+    "agreement": "Concordância entre perfis (mesmas inspeções)",
+    "pair": "Perfis",
+    "sharedInspections": "Inspeções em comum",
+    "verdictAgreement": "Mesmo veredito",
+    "classAgreement": "Mesma classe",
+    "confidence": "Confiança por perfil",
+    "minConfidence": "mínimo",
+    "bin": "Confiança",
+    "timings": "Tempo médio de cada etapa",
+    "step": "Etapa",
+    "totalTime": "Total",
+    "groundTruth": "Acurácia nas amostras da base",
+    "groundTruthHint": "Somente análises de imagens da base, que têm rótulo real.",
+    "samples": "{count, plural, one {# imagem} other {# imagens}}",
+    "analyses": "Análises",
+    "analysesCount": "{count, plural, one {# análise} other {# análises}}",
+    "col": {
+      "image": "Imagem",
+      "created_at": "Horário",
+      "profile_id": "Perfil",
+      "predicted_class": "Classe",
+      "verdict": "Veredito",
+      "confidence": "Confiança",
+      "total_ms": "Tempo"
+    },
+    "previous": "Anterior",
+    "next": "Próxima",
+    "analysisDetail": "Análise",
+    "imageDeleted": "A imagem desta análise foi excluída; o resultado é mantido."
+  },
+  "historyView": {
+    "title": "Histórico de inspeções",
+    "view": "Visualização",
+    "viewTable": "Tabela",
+    "viewCards": "Cartões",
+    "loaded": "{count, plural, one {# garrafa carregada} other {# garrafas carregadas}}",
+    "truth": "Classe real",
+    "onlyWrong": "Só os erros",
+    "onlyWrongHint": "A classe real é conhecida e diferente da classe prevista.",
+    "disagree": "Perfis divergem",
+    "disagreeHint": "Os perfis da garrafa não previram todos a mesma classe.",
+    "search": "Nome do arquivo",
+    "emptyTitle": "Nenhuma garrafa corresponde a estes filtros",
+    "emptyBody": "Limpe um filtro, escolha um período maior ou inspecione mais imagens.",
+    "error": "Não foi possível carregar o histórico.",
+    "retry": "Tentar novamente",
+    "end": "Fim do histórico."
+  },
+  "integrations": {
+    "tab": {
+      "rules": "Regras",
+      "targets": "Destinos",
+      "log": "Registro"
+    },
+    "newRule": "Nova regra",
+    "editRule": "Editar regra",
+    "editRuleNamed": "Editar {name}",
+    "deleteRuleNamed": "Excluir {name}",
+    "deleteRuleConfirm": "Excluir a regra \"{name}\"? Os registros dela são mantidos.",
+    "enableRule": "Ativar {name}",
+    "noRules": "Nenhuma regra ainda. Uma regra executa ações, como um e-mail ou um webhook, quando as condições dela são atendidas.",
+    "ruleSaved": "Regra salva.",
+    "name": "Nome",
+    "description": "Descrição",
+    "severityLabel": "Severidade",
+    "severity": {
+      "info": "Informação",
+      "warning": "Alerta",
+      "critical": "Crítica"
+    },
+    "when": "Quando",
+    "not": "não",
+    "noConditions": "(sem condições)",
+    "noActions": "(sem ações)",
+    "anyDefect": "qualquer defeito",
+    "whenTitle": "Quando",
+    "trigger": "Depois de cada análise (cada imagem × perfil é avaliada isoladamente).",
+    "allProfiles": "Todos os perfis",
+    "ifTitle": "Se",
+    "logicLabel": "Combinar condições",
+    "logic": {
+      "all": "Todas as condições",
+      "any": "Qualquer condição",
+      "allJoin": "e",
+      "anyJoin": "ou"
+    },
+    "conditionType": "Condição",
+    "negate": "Não (negar)",
+    "removeCondition": "Remover condição",
+    "addCondition": "Adicionar condição",
+    "cond": {
+      "class_is": "Classe é",
+      "verdict_is": "Veredito é",
+      "any_defect": "Qualquer defeito (reprovação)",
+      "repeated_class": "Defeito repetido nas últimas garrafas",
+      "consecutive_rejects": "Reprovações consecutivas",
+      "confidence_below": "Confiança abaixo de",
+      "processing_time_above": "Tempo de processamento acima de",
+      "reject_rate_above": "Taxa de reprovação acima de",
+      "warning_present": "Aviso presente",
+      "summary": {
+        "class_is": "a classe é {classes}",
+        "verdict_is": "o veredito é {verdict}",
+        "any_defect": "uma garrafa é reprovada",
+        "repeated_class": "{class} aparece {n} vezes nas últimas {m} garrafas",
+        "consecutive_rejects": "{n} garrafas seguidas são reprovadas",
+        "confidence_below": "a confiança fica abaixo de {value}",
+        "processing_time_above": "uma análise leva mais de {ms} ms",
+        "reject_rate_above": "a taxa de reprovação passa de {percent}% em {window_minutes} min",
+        "warning_present": "aparece um aviso ({codes})"
+      }
+    },
+    "condHelp": {
+      "class_is": "Atende quando a classe prevista é uma das escolhidas.",
+      "verdict_is": "Compara o veredito do perfil.",
+      "any_defect": "Atende a toda reprovação.",
+      "repeated_class": "Conta a classe nas últimas m análises do mesmo perfil (o alerta da linha de comando usa 4 em 10).",
+      "consecutive_rejects": "As últimas n análises do perfil são todas reprovações.",
+      "confidence_below": "A confiança é definida por algoritmo e não é comparável entre eles.",
+      "processing_time_above": "Tempo total da análise em milissegundos.",
+      "reject_rate_above": "Exige o mínimo de amostras. Depois de disparar, só rearma quando a taxa volta a ficar abaixo do limiar.",
+      "warning_present": "Atende quando a análise tem um dos avisos escolhidos."
+    },
+    "param": {
+      "class": "Classe",
+      "verdict": "Veredito",
+      "n": "n",
+      "m": "nas últimas",
+      "value": "Valor",
+      "ms": "ms",
+      "percent": "%",
+      "window_minutes": "janela (min)",
+      "min_samples": "mín. amostras",
+      "title": "Título",
+      "message": "Mensagem",
+      "level": "Nível",
+      "sound": "Som",
+      "to": "Para (separados por vírgula)",
+      "subject": "Assunto",
+      "body": "Corpo",
+      "html": "Corpo HTML (opcional)",
+      "attach_image": "Anexar a imagem",
+      "method": "Método",
+      "path": "Caminho",
+      "headers": "Cabeçalhos (JSON)",
+      "topic": "Tópico",
+      "payload": "Conteúdo",
+      "qos": "QoS",
+      "retain": "Reter",
+      "fields": "Campos (separados por vírgula)"
+    },
+    "thenTitle": "Então",
+    "actionType": "Ação",
+    "target": "Destino",
+    "actionEnabled": "Ativa",
+    "removeAction": "Remover ação",
+    "addAction": "Adicionar ação",
+    "createTargetFirst": "Crie antes um destino {type}.",
+    "insertVariable": "Inserir variável",
+    "preview": "Pré-visualização",
+    "previewSource": {
+      "analysis": "Gerado com a última análise.",
+      "sample": "Gerado com um exemplo."
+    },
+    "headersHint": "Objeto JSON, por exemplo {\"X-Line\": \"1\"}.",
+    "action": {
+      "notify_ui": "Notificar no app",
+      "play_sound": "Tocar um som",
+      "email": "E-mail",
+      "webhook": "Webhook",
+      "mqtt_publish": "MQTT",
+      "write_file": "Gravar em arquivo"
+    },
+    "sound": {
+      "chime": "Sino",
+      "alarm": "Alarme",
+      "beep": "Bipe"
+    },
+    "cooldown": "Intervalo mínimo (s)",
+    "cooldownHint": "A regra não dispara de novo para a mesma chave dentro deste tempo.",
+    "dedupe": "Agrupar por",
+    "dedupeKey": {
+      "rule": "Regra",
+      "rule+class": "Regra e classe",
+      "rule+profile": "Regra e perfil"
+    },
+    "runMode": "Se disparar enquanto executa",
+    "mode": {
+      "single": "Ignorar o novo disparo",
+      "queued": "Enfileirar",
+      "parallel": "Executar em paralelo"
+    },
+    "dryRun": "Simular nas últimas 100 análises",
+    "dryResult": "Dispararia {fired} vezes em {evaluated} análises ({suppressed} suprimidas pelo intervalo mínimo).",
+    "sendTest": "Enviar teste",
+    "lastFired": "Último disparo {date}",
+    "neverFired": "Nunca disparou",
+    "fired24h": "{count} em 24 h",
+    "newTarget": "Novo destino",
+    "editTarget": "Editar destino",
+    "editTargetNamed": "Editar {name}",
+    "deleteTargetNamed": "Excluir {name}",
+    "deleteTargetConfirm": "Excluir o destino \"{name}\"? As ações que o usam deixam de funcionar.",
+    "noTargets": "Nenhum destino ainda. Um destino é para onde as ações enviam mensagens: um servidor SMTP, uma URL de webhook, um broker MQTT ou um arquivo.",
+    "targetSaved": "Destino salvo.",
+    "targetTypeLabel": "Tipo",
+    "targetType": {
+      "smtp": "SMTP (e-mail)",
+      "webhook": "Webhook",
+      "mqtt": "Broker MQTT",
+      "file": "Arquivo"
+    },
+    "secretsNote": "Senhas e segredos de assinatura ficam em webdata/secrets.toml, nunca no banco de dados, e não são mostrados de novo.",
+    "secretStored": "Há um valor salvo. Digite outro para substituí-lo.",
+    "cfg": {
+      "host": "Servidor",
+      "port": "Porta",
+      "security": "Segurança",
+      "username": "Usuário",
+      "from_address": "Remetente",
+      "timeout_s": "Tempo limite (s)",
+      "password": "Senha",
+      "base_url": "URL base",
+      "method": "Método padrão",
+      "headers": "Cabeçalhos padrão (JSON)",
+      "allow_private_ips": "Permitir endereços privados",
+      "signing_secret": "Segredo de assinatura (whsec_…)",
+      "tls": "TLS",
+      "ca_file": "Arquivo da CA",
+      "client_id": "Id do cliente",
+      "qos": "QoS padrão",
+      "retain": "Reter",
+      "directory": "Pasta (relativa a webdata)",
+      "format": "Formato",
+      "rotation": "Rotação",
+      "size_mb": "Tamanho máximo (MB)"
+    },
+    "test": "Testar",
+    "testRecipient": "Enviar o e-mail de teste para:",
+    "testOk": "Mensagem de teste enviada.",
+    "testFailed": "O teste falhou: {detail}",
+    "lastTestOk": "Último teste passou",
+    "lastTestFailed": "Último teste falhou",
+    "notTested": "Ainda não testado",
+    "rule": "Regra",
+    "allRules": "Todas as regras",
+    "allTargets": "Todos os destinos",
+    "statusLabel": "Situação",
+    "allStatuses": "Todas as situações",
+    "status": {
+      "success": "Enviado",
+      "failed": "Falhou",
+      "queued": "Na fila",
+      "running": "Executando",
+      "skipped_cooldown": "Suprimido (intervalo)",
+      "dropped_queue_full": "Descartado (fila cheia)"
+    },
+    "logCount": "{count, plural, one {# registro} other {# registros}}",
+    "noLog": "Nenhuma ação foi executada ainda.",
+    "col": {
+      "time": "Horário",
+      "action": "Ação",
+      "attempts": "Tentativas",
+      "duration": "Duração"
+    },
+    "details": "Mostrar detalhes",
+    "payload": "Enviado",
+    "response": "Resposta",
+    "testRun": "teste"
+  },
+  "alerts": {
+    "critical": "Regra crítica disparada: {rule}"
+  },
+  "keys": {
+    "space": "Espaço"
+  },
+  "debug": {
+    "chooseImage": "Escolher imagem",
+    "enlarge": "Ampliar imagem",
+    "groundTruth": "Rótulo real",
+    "preprocessing": "Pré-processamento",
+    "baseProfile": "com os parâmetros e o fundo de",
+    "baseProfileHelp": "As etapas abaixo não dependem do classificador. Perfis treinados na mesma execução compartilham estes parâmetros e este fundo, então o resultado é o mesmo para todos; um perfil diferente é sinalizado no seu painel.",
+    "empty": {
+      "title": "Escolha uma imagem para depurar",
+      "body": "Envie um arquivo, solte-o aqui ou escolha uma amostra da base. Todas as etapas são exibidas, da diferença para o fundo até a caixa da garrafa e as regiões; depois selecione os perfis para comparar. Escolher outra imagem recomeça do zero."
+    },
+    "adjust": {
+      "help": "Ajustes temporários: valem para as etapas abaixo e para todos os perfis selecionados, apenas nesta tela. Nenhum perfil é alterado.",
+      "reset": "Restaurar"
+    },
+    "original": {
+      "title": "Imagem original",
+      "summary": "A foto é uma matriz de números: linhas × colunas × 3 canais (azul, verde, vermelho), cada um de 0 a 255.",
+      "patch": "4×4 pixels em (x={x}, y={y})"
+    },
+    "background": {
+      "title": "Modelo de fundo",
+      "summary": "A cena vazia: mediana por pixel de 200 imagens de treinamento. Fica salvo dentro do modelo treinado.",
+      "caption": "Fundo usado na subtração"
+    },
+    "normalization": {
+      "title": "Normalização da iluminação",
+      "summary": "A região da parede é medida na imagem e no fundo; cada canal é multiplicado pelo ganho que as iguala.",
+      "disabled": "Desativada neste perfil: a imagem segue sem alteração.",
+      "before": "Antes, com a região de referência",
+      "after": "Depois: cada canal × ganho",
+      "patch": "região de referência",
+      "channel": "Canal",
+      "background": "Fundo",
+      "image": "Esta imagem",
+      "gain": "Ganho",
+      "patchAfter": "Os mesmos 4×4 pixels depois do ganho"
+    },
+    "difference": {
+      "title": "Diferença para o fundo",
+      "summary": "|imagem − fundo| somado em B, G e R para cada pixel; o método de Otsu escolhe o limiar desta imagem.",
+      "small": "Imagem normalizada reduzida para {size}",
+      "heatmap": "|imagem − fundo| (B+G+R)",
+      "max": "máximo {max}, exibido até {clip}",
+      "histogram": "Histograma das diferenças (escala log)",
+      "otsuLine": "linha vermelha: limiar de Otsu = {value}",
+      "otsu": "Limiar de Otsu",
+      "floor": "Piso de ruído",
+      "used": "Limiar usado"
+    },
+    "mask": {
+      "title": "Máscara de primeiro plano",
+      "summary": "Pixels acima do limiar; o fechamento junta os furos da garrafa transparente e a abertura remove linhas finas.",
+      "raw": "1) diferença > {threshold}",
+      "closed": "2) fechamento ({size} px)",
+      "opened": "3) abertura ({size} px): máscara final",
+      "fraction": "{percent} de brancos"
+    },
+    "locate": {
+      "title": "Caixa da garrafa",
+      "summary": "Colunas: brancos por coluna (suavizado); a caixa cobre o trecho em torno do pico que fica acima da fração. Linhas: dentro dessas colunas, da primeira à última linha acima da fração da linha mais densa.",
+      "empty": "A máscara está vazia: a caixa é a imagem inteira.",
+      "plot": "Máscara com o perfil de colunas acima, o perfil de linhas ao lado e a caixa medida",
+      "columns": "brancos por coluna (cinza: antes da suavização)",
+      "rows": "brancos por linha",
+      "ofPeak": "{percent}% do pico",
+      "ofMax": "{percent}% do máximo",
+      "topBottom": "topo {top}% · base {bottom}% do máximo",
+      "box": "Caixa detectada sobre a imagem",
+      "xRange": "Colunas da garrafa na máscara ({size})",
+      "centre": "Centro e caixa em x",
+      "yRange": "y na máscara ({size})",
+      "relative": "Caixa (relativa x0 y0 x1 y1)",
+      "pixels": "Caixa na imagem ({width}×{height})",
+      "boxSize": "Tamanho da caixa"
+    },
+    "regions": {
+      "title": "Regiões",
+      "summary": "Faixas da caixa detectada (0 = topo, 1 = base). Cada recorte é depois redimensionado para o seu tamanho fixo.",
+      "adhoc": "Caixa (tracejada) e as 3 ROIs ad hoc",
+      "auto": "Caixa (tracejada) e as regiões automáticas aprendidas no treinamento",
+      "noAuto": "Este perfil não tem regiões automáticas."
+    },
+    "profiles": {
+      "title": "Resultados por perfil",
+      "help": "Adicione, remova ou troque perfis à vontade: a imagem continua carregada e cada perfil é calculado uma única vez."
+    },
+    "compare": {
+      "vector": "Vetor · classificador",
+      "length": "Valores",
+      "failed": "Não foi possível calcular"
+    },
+    "profile": {
+      "differentPreprocessing": "Este perfil usa outro pré-processamento (parâmetros ou fundo), diferente das etapas exibidas acima.",
+      "showItsPreprocessing": "Mostrar as etapas deste perfil",
+      "vector": "Vetor de características",
+      "vectorHelp": "{n} valores, na ordem em que o classificador os recebe; as cores marcam {groups, plural, one {# grupo} other {os # grupos}}.",
+      "scaled": "Vetor padronizado",
+      "scaledHelp": "Depois do StandardScaler do modelo (o que o classificador compara): 0 é a média do treinamento.",
+      "scaledStats": "média |z| {mean} · máx |z| {max} · {outliers} acima de {z}",
+      "groups": "Grupos de características"
+    },
+    "group": {
+      "crop": "Recorte da região",
+      "canonical": "Tamanho fixo, em cinza",
+      "gradient": "Força do gradiente",
+      "hogRendering": "HOG: direção das bordas por célula",
+      "lbpCodes": "Código LBP de cada pixel, com as células",
+      "lbpHistogram": "Fração de cada um dos {n} códigos LBP na região",
+      "hue": "H (matiz)",
+      "saturation": "S (saturação)",
+      "value": "V (brilho)",
+      "cell": "Célula",
+      "cells": "Células",
+      "blocks": "Blocos",
+      "length": "Valores",
+      "vector": "{name}: {n} valores",
+      "bins": {
+        "h": "H: {n} faixas",
+        "s": "S: {n} faixas",
+        "v": "V: {n} faixas"
+      }
+    },
+    "vector": {
+      "show": "Ver os {n} valores",
+      "hide": "Ocultar os valores",
+      "copy": "Copiar",
+      "copied": "Copiado"
+    }
+  }
+}

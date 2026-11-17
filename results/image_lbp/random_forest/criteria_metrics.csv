@@ -1,0 +1,7 @@
+criterion,actual_rejects,accuracy,precision,recall,f1,false_passes,false_rejects
+fill_level,41,0.9900,1.0000,0.9268,0.9620,3,0
+cap,59,0.9767,0.8939,1.0000,0.9440,0,7
+label,21,0.9767,0.9375,0.7143,0.8108,6,1
+contamination,39,0.9933,0.9512,1.0000,0.9750,0,2
+brand,19,0.9967,1.0000,0.9474,0.9730,1,0
+pass_vs_reject,179,1.0000,1.0000,1.0000,1.0000,0,0

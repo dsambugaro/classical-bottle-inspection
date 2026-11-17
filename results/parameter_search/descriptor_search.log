@@ -1,0 +1,75 @@
+== Locating and cropping the training bottles
+== hog: cell = 8 px
+   mean CV F1-macro 0.9869
+== hog: cell = 16 px
+   mean CV F1-macro 0.9934
+{
+ "hog": {
+  "orientations": {
+   "reference": "6",
+   "scores": {
+    "6": 0.9943555350017979,
+    "9": 0.993167641972216,
+    "12": 0.9939416901226008,
+    "18": 0.9920801077604824
+   },
+   "best": "6",
+   "chosen": "6",
+   "changed": false
+  },
+  "cell": {
+   "reference": "8 px (cap), 16 px",
+   "scores": {
+    "8 px": 0.9868557187655941,
+    "8 px (cap), 16 px": 0.9943555350017979,
+    "16 px": 0.993446906177566
+   },
+   "best": "8 px (cap), 16 px",
+   "chosen": "8 px (cap), 16 px",
+   "changed": false
+  }
+ },
+ "lbp": {
+  "neighbourhood": {
+   "reference": "P=24, R=3",
+   "scores": {
+    "P=8, R=1": 0.9721636719777025,
+    "P=8, R=2": 0.9820165956778166,
+    "P=16, R=2": 0.9804784509090931,
+    "P=24, R=3": 0.9870654293078717,
+    "P=24, R=4": 0.987028079472688,
+    "P=32, R=4": 0.986227841984236
+   },
+   "best": "P=24, R=3",
+   "chosen": "P=24, R=3",
+   "changed": false
+  },
+  "cell": {
+   "reference": "16 px",
+   "scores": {
+    "8 px": 0.9764774356155463,
+    "16 px": 0.9870654293078717,
+    "32 px": 0.9743960504011162
+   },
+   "best": "16 px",
+   "chosen": "16 px",
+   "changed": false
+  }
+ },
+ "color": {
+  "hsv_bins": {
+   "reference": "36, 16, 16",
+   "scores": {
+    "9, 4, 4": 0.9940003494501182,
+    "18, 8, 8": 0.9990150999076116,
+    "36, 16, 16": 0.9994486299346649,
+    "72, 32, 32": 0.999184368735385
+   },
+   "best": "36, 16, 16",
+   "chosen": "36, 16, 16",
+   "changed": false
+  }
+ }
+}
+
+Results in results/parameter_search

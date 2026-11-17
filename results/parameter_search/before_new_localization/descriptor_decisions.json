@@ -1,0 +1,108 @@
+{
+  "selection": "mean 5-fold cross-validated macro F1 over the 9 (vector, classifier) pairs of the descriptor, training images only",
+  "rule": "a value replaces the reference only if its score exceeds the reference score by more than one standard error of the reference",
+  "training_images": 1200,
+  "auto_bands": [
+    [
+      0.0,
+      0.125
+    ],
+    [
+      0.125,
+      0.9166666666666666
+    ],
+    [
+      0.9166666666666666,
+      1.0
+    ]
+  ],
+  "descriptors": {
+    "hog": {
+      "reference_score": 0.99146497003942,
+      "reference_standard_error": 0.0018498696163265127,
+      "factors": {
+        "orientations": {
+          "reference": "9",
+          "scores": {
+            "6": 0.992107200715759,
+            "9": 0.99146497003942,
+            "12": 0.9906491046889442,
+            "18": 0.988365382661979
+          },
+          "best": "6",
+          "chosen": "9",
+          "changed": false
+        },
+        "cell": {
+          "reference": "8 px (cap), 16 px",
+          "scores": {
+            "8 px": 0.9807602320845299,
+            "8 px (cap), 16 px": 0.99146497003942,
+            "16 px": 0.9910936778979469
+          },
+          "best": "8 px (cap), 16 px",
+          "chosen": "8 px (cap), 16 px",
+          "changed": false
+        }
+      },
+      "adopted_change": {}
+    },
+    "lbp": {
+      "reference_score": 0.9693722165375944,
+      "reference_standard_error": 0.003262090039109184,
+      "factors": {
+        "neighbourhood": {
+          "reference": "P=8, R=1",
+          "scores": {
+            "P=8, R=1": 0.9693722165375944,
+            "P=8, R=2": 0.9757424008089488,
+            "P=16, R=2": 0.9732900555362952,
+            "P=24, R=3": 0.9801153111611808
+          },
+          "best": "P=24, R=3",
+          "chosen": "P=24, R=3",
+          "changed": true
+        },
+        "cell": {
+          "reference": "16 px",
+          "scores": {
+            "8 px": 0.9665539843524237,
+            "16 px": 0.9693722165375944,
+            "32 px": 0.9341332215226301
+          },
+          "best": "16 px",
+          "chosen": "16 px",
+          "changed": false
+        }
+      },
+      "adopted_change": {
+        "points": 24,
+        "radius": 3
+      }
+    },
+    "color": {
+      "reference_score": 0.9971979669877697,
+      "reference_standard_error": 0.0010523036549058432,
+      "factors": {
+        "hsv_bins": {
+          "reference": "18, 8, 8",
+          "scores": {
+            "9, 4, 4": 0.9923097137938076,
+            "18, 8, 8": 0.9971979669877697,
+            "36, 16, 16": 0.9991097671419271
+          },
+          "best": "36, 16, 16",
+          "chosen": "36, 16, 16",
+          "changed": true
+        }
+      },
+      "adopted_change": {
+        "hsv_bins": [
+          36,
+          16,
+          16
+        ]
+      }
+    }
+  }
+}

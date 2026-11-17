@@ -1,0 +1,98 @@
+== Locating and cropping the training bottles
+== hog: reference = reference
+   mean CV F1-macro 0.9915
+== hog: orientations = 6
+   mean CV F1-macro 0.9921
+== hog: orientations = 12
+   mean CV F1-macro 0.9906
+== hog: orientations = 18
+   mean CV F1-macro 0.9884
+== hog: cell = 8 px
+   mean CV F1-macro 0.9808
+== hog: cell = 16 px
+   mean CV F1-macro 0.9911
+== lbp: reference = reference
+   mean CV F1-macro 0.9694
+== lbp: neighbourhood = P=8, R=2
+   mean CV F1-macro 0.9757
+== lbp: neighbourhood = P=16, R=2
+   mean CV F1-macro 0.9733
+== lbp: neighbourhood = P=24, R=3
+   mean CV F1-macro 0.9801
+== lbp: cell = 8 px
+   mean CV F1-macro 0.9666
+== lbp: cell = 32 px
+   mean CV F1-macro 0.9341
+== color: reference = reference
+   mean CV F1-macro 0.9972
+== color: hsv_bins = 9, 4, 4
+   mean CV F1-macro 0.9923
+== color: hsv_bins = 36, 16, 16
+   mean CV F1-macro 0.9991
+{
+ "hog": {
+  "orientations": {
+   "reference": "9",
+   "scores": {
+    "6": 0.992107200715759,
+    "9": 0.99146497003942,
+    "12": 0.9906491046889442,
+    "18": 0.988365382661979
+   },
+   "best": "6",
+   "chosen": "9",
+   "changed": false
+  },
+  "cell": {
+   "reference": "8 px (cap), 16 px",
+   "scores": {
+    "8 px": 0.9807602320845299,
+    "8 px (cap), 16 px": 0.99146497003942,
+    "16 px": 0.9910936778979469
+   },
+   "best": "8 px (cap), 16 px",
+   "chosen": "8 px (cap), 16 px",
+   "changed": false
+  }
+ },
+ "lbp": {
+  "neighbourhood": {
+   "reference": "P=8, R=1",
+   "scores": {
+    "P=8, R=1": 0.9693722165375944,
+    "P=8, R=2": 0.9757424008089488,
+    "P=16, R=2": 0.9732900555362952,
+    "P=24, R=3": 0.9801153111611808
+   },
+   "best": "P=24, R=3",
+   "chosen": "P=24, R=3",
+   "changed": true
+  },
+  "cell": {
+   "reference": "16 px",
+   "scores": {
+    "8 px": 0.9665539843524237,
+    "16 px": 0.9693722165375944,
+    "32 px": 0.9341332215226301
+   },
+   "best": "16 px",
+   "chosen": "16 px",
+   "changed": false
+  }
+ },
+ "color": {
+  "hsv_bins": {
+   "reference": "18, 8, 8",
+   "scores": {
+    "9, 4, 4": 0.9923097137938076,
+    "18, 8, 8": 0.9971979669877697,
+    "36, 16, 16": 0.9991097671419271
+   },
+   "best": "36, 16, 16",
+   "chosen": "36, 16, 16",
+   "changed": true
+  }
+ }
+}
+
+Results in results/parameter_search

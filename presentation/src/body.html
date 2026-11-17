@@ -1,0 +1,487 @@
+<div class="slide active" data-slide="0">
+  <div class="glow-blob glow-blue" style="top:-120px;left:-120px;"></div>
+  <div class="glow-blob glow-purple" style="bottom:-140px;right:-100px;"></div>
+  <p class="slide-tag anim-1">TCC · Inspeção de garrafas · descritores classificados separadamente</p>
+  <h1 class="anim-2">Do pixel aos <span class="gradient-text">vetores</span></h1>
+  <p class="subtitle anim-3">Cada etapa, com "prints" reais de uma imagem da base: a garrafa é achada só pela subtração do fundo, e HOG, LBP e cor viram vetores separados, testados em cada classificador</p>
+  <div class="rainbow-line anim-4"></div>
+  <p class="subtitle anim-5" style="font-size:clamp(12px,1.1vw,14px);">Imagem de exemplo: <code>loose_cap_0001_20260210_152014.jpg</code> (validação, classe <code>defect_loose_cap</code>)</p>
+  <script type="application/json" class="slide-notes">
+  {"title": "Do pixel aos vetores", "script": "Vamos seguir uma única foto real da base, da leitura até os vetores que cada classificador recebe. A garrafa é encontrada pela subtração do fundo, e cada descritor gera o seu próprio vetor.", "notes": ["Uma imagem real de validação: defect_loose_cap", "Figuras geradas pelas funções reais do pacote", "Um vetor por descritor, nunca misturados"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="1">
+  <p class="slide-tag anim-1">Visão geral</p>
+  <h2 class="anim-2">Menos escolhas <span class="highlight-blue">feitas à mão</span></h2>
+  <div class="io-grid anim-3">
+    <div class="io-card"><h4>Detecção da garrafa</h4><p>Só <strong>subtração de fundo</strong>: limiar de Otsu; a posição e a altura da garrafa são medidas na máscara. Só a largura da caixa é um valor fixo, escolhido à mão</p></div>
+    <div class="io-card"><h4>Regiões: duas opções</h4><p><strong>ROIs ad hoc</strong> (tampa, rótulo, corpo), relativas à caixa detectada; ou <strong>regiões automáticas</strong>, aprendidas das garrafas de treino</p></div>
+    <div class="io-card"><h4>Descritores</h4><p><strong>HOG</strong>, <strong>LBP</strong> e <strong>cor HSV</strong>, sem medidas ad hoc de cor ou forma do produto</p></div>
+    <div class="io-card"><h4>O que é classificado</h4><p>Nunca uma ROI sozinha: o vetor das <strong>ROIs juntas</strong>, o das <strong>regiões automáticas</strong> ou o da <strong>garrafa inteira</strong>; sem localização, também uma <strong>área ampla</strong> fixa e a <strong>imagem inteira</strong>, sem localização. 15 vetores × 3 classificadores = <strong>45 modelos</strong></p></div>
+  </div>
+  <script type="application/json" class="slide-notes">
+  {"title": "Visão geral", "script": "A garrafa é encontrada apenas pela subtração do fundo, com a posição e a altura medidas na máscara; só a largura da caixa é informada à mão. Para as regiões há duas opções, que vamos comparar: as ROIs escolhidas à mão, relativas à caixa detectada, e regiões automáticas aprendidas das imagens de treino. Cada descritor forma o seu vetor, e nenhuma ROI é classificada sozinha. Sem localizar a garrafa, os mesmos descritores também são calculados numa área ampla fixa e na imagem inteira.", "notes": ["Posição e altura medidas na máscara", "ROIs ad hoc × regiões automáticas", "Sem localização: área ampla e imagem inteira", "HOG, LBP, cor HSV", "15 vetores × 3 classificadores"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="2">
+  <p class="slide-tag anim-1">O caminho</p>
+  <h2 class="anim-2">Dez passos, da foto à <span class="highlight-blue">matriz comparativa</span></h2>
+  <div class="flow-grid anim-3">
+    <div class="flow-step"><span>1</span>Ler a foto<small>matriz 720×1280×3</small></div>
+    <div class="flow-step"><span>2</span>Fundo<small>mediana de 200 fotos</small></div>
+    <div class="flow-step"><span>3</span>Corrigir a luz<small>ganho por canal</small></div>
+    <div class="flow-step"><span>4</span>Diferença ao fundo<small>matriz 360×640</small></div>
+    <div class="flow-step"><span>5</span>Máscara<small>limiar de Otsu + limpeza</small></div>
+    <div class="flow-step"><span>6</span>Caixa da garrafa<small>perfis da máscara</small></div>
+    <div class="flow-step"><span>7</span>Regiões<small>ROIs ad hoc | automáticas | garrafa | área ampla | imagem</small></div>
+    <div class="flow-step"><span>8</span>Descritores<small>HOG · LBP · cor</small></div>
+    <div class="flow-step"><span>9</span>15 vetores<small>um descritor por vetor</small></div>
+    <div class="flow-step"><span>10</span>45 modelos<small>matriz vetor × classificador</small></div>
+  </div>
+  <p class="subtitle anim-4 mt-16" style="font-size:clamp(12px,1.1vw,14px);">Passos 1–8 rodam para cada imagem (<code>prepare_image</code> + <code>extract_features</code>); o 9 monta cada vetor (<code>build_matrix</code>); o 10 treina e avalia (<code>pipeline.run</code>)</p>
+  <script type="application/json" class="slide-notes">
+  {"title": "O caminho", "script": "São dez passos. Os oito primeiros acontecem para cada foto. No nono, os grupos de atributos são organizados em 15 vetores. No décimo, cada classificador é treinado em cada vetor.", "notes": ["prepare_image: passos 2 a 7", "extract_features: passo 8", "build_matrix: passo 9", "45 treinos: passo 10"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="3">
+  <p class="slide-tag anim-1">Passo 1 · read_image()</p>
+  <h2 class="anim-2">A foto é uma <span class="highlight-blue">matriz de números</span></h2>
+  <div class="image-frame image-screenshot anim-3" style="margin-top:12px;max-width:1100px;">
+    <img src="assets/steps/s01_original.svg" alt="Imagem original e zoom de 4x4 pixels com valores BGR" class="slide-image" style="max-height:min(50vh,420px);">
+  </div>
+  <p class="subtitle anim-4" style="font-size:clamp(12px,1.1vw,14px);">OpenCV lê em <strong>BGR</strong> (não RGB). Ex.: o pixel (x=640, y=120), na tampa, vale <code>[B 189, G 110, R 59]</code></p>
+  <script type="application/json" class="slide-notes">
+  {"title": "A foto é uma matriz", "script": "Ao ler a foto, o OpenCV devolve uma matriz de 720 linhas, 1280 colunas e 3 canais, na ordem azul, verde, vermelho.", "notes": ["720 x 1280 x 3, uint8", "Ordem BGR"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="4">
+  <p class="slide-tag anim-1">Passo 2 · build_background() — feito uma vez</p>
+  <h2 class="anim-2">O <span class="highlight-blue">fundo</span>: mediana de 200 fotos</h2>
+  <div class="split anim-3">
+    <div class="image-frame image-screenshot" style="margin-top:0;">
+      <img src="assets/steps/s02_background.svg" alt="Modelo de fundo" class="slide-image">
+    </div>
+    <ul class="steps">
+      <li>Sorteia <strong>200 fotos de treino</strong> (semente 42) e reduz cada uma para <strong>640×360</strong></li>
+      <li>Para cada posição, a <strong>mediana</strong> dos 200 valores → matriz <code>360×640×3</code></li>
+      <li>O cenário fica nítido; a garrafa deixa só um "fantasma" borrado</li>
+      <li>É salvo junto com cada modelo em <code>model.joblib</code></li>
+    </ul>
+  </div>
+  <script type="application/json" class="slide-notes">
+  {"title": "O fundo", "script": "O fundo é calculado uma única vez, com 200 fotos de treino. Para cada pixel e canal, tiramos a mediana dos 200 valores.", "notes": ["200 fotos de treino", "Mediana por pixel e canal"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="5">
+  <p class="slide-tag anim-1">Passo 3a · reference_patch_mean()</p>
+  <h2 class="anim-2">Medir a luz num pedaço fixo da <span class="highlight-purple">parede</span></h2>
+  <div class="image-frame image-screenshot anim-3" style="margin-top:12px;max-width:1100px;">
+    <img src="assets/steps/s03_patch.svg" alt="Patch de referência e médias por canal" class="slide-image" style="max-height:min(46vh,380px);">
+  </div>
+  <p class="subtitle anim-4" style="font-size:clamp(12px,1.1vw,14px);">Patch = pixels x 1024–1241, y 14–180. Médias B,G,R: fundo <code>(80,1; 95,9; 88,2)</code>, foto <code>(79,1; 96,3; 89,0)</code> → ganho = fundo ÷ foto = <code>(1,013; 0,996; 0,991)</code></p>
+  <script type="application/json" class="slide-notes">
+  {"title": "Medir a luz", "script": "Um retângulo fixo da parede nunca tem garrafa. A média de cada canal nesse retângulo, na foto e no fundo, dá o ganho de cada canal.", "notes": ["REFERENCE_PATCH", "ganho = fundo / foto"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="6">
+  <p class="slide-tag anim-1">Passo 3b · normalize_lighting()</p>
+  <h2 class="anim-2">Multiplicar a foto inteira pelo <span class="highlight-purple">ganho</span></h2>
+  <div class="image-frame image-screenshot anim-3" style="margin-top:12px;max-width:1100px;">
+    <img src="assets/steps/s04_normalized.svg" alt="Antes e depois da normalização" class="slide-image" style="max-height:min(40vh,330px);">
+  </div>
+  <div class="formula anim-4">pixel'<sub>c</sub> = min(255, pixel<sub>c</sub> × ganho<sub>c</sub>)  para c ∈ {B, G, R}</div>
+  <p class="subtitle anim-4" style="font-size:clamp(12px,1.1vw,14px);">Ex.: o pixel da tampa <code>[189, 110, 59]</code> vira <code>[191, 109, 58]</code>. Se a luz caísse 10%, os ganhos seriam ≈1,11 e tudo voltaria ao normal</p>
+  <script type="application/json" class="slide-notes">
+  {"title": "Normalizar a luz", "script": "Cada canal da foto inteira é multiplicado pelo seu ganho e limitado a 255.", "notes": ["Operação elemento a elemento"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="7">
+  <p class="slide-tag anim-1">Passo 4 · background_difference() + otsu_threshold()</p>
+  <h2 class="anim-2">Diferença para o <span class="highlight-red">fundo</span> e limiar automático</h2>
+  <div class="image-frame image-screenshot anim-3" style="margin-top:12px;max-width:1150px;">
+    <img src="assets/steps/s05_diff.svg" alt="Imagem reduzida, mapa de diferença e histograma com o limiar de Otsu" class="slide-image" style="max-height:min(38vh,320px);">
+  </div>
+  <div class="formula anim-4">D(x,y) = |B − B<sub>fundo</sub>| + |G − G<sub>fundo</sub>| + |R − R<sub>fundo</sub>|</div>
+  <p class="subtitle anim-4" style="font-size:clamp(12px,1.1vw,14px);">O limiar não é fixo: o método de <strong>Otsu</strong> escolhe, para cada foto, o valor que melhor separa os pixels em dois grupos (fundo e garrafa). Nesta foto: <strong>60</strong></p>
+  <script type="application/json" class="slide-notes">
+  {"title": "Diferença e Otsu", "script": "Em cada pixel, somamos as diferenças absolutas dos três canais entre a foto e o fundo. Em vez de um limiar fixo, usamos o método de Otsu, que escolhe para cada foto o valor que melhor separa os pixels em dois grupos.", "notes": ["D = soma das diferenças absolutas", "Otsu: limiar por imagem", "Nesta foto: 60"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="8">
+  <p class="slide-tag anim-1">Passo 5 · foreground_mask()</p>
+  <h2 class="anim-2">Máscara: limiar, <span class="highlight-red">fechamento</span> e abertura</h2>
+  <div class="image-frame image-screenshot anim-3" style="margin-top:12px;max-width:1150px;">
+    <img src="assets/steps/s06_mask.svg" alt="Máscara após o limiar, o fechamento e a abertura" class="slide-image" style="max-height:min(36vh,300px);">
+  </div>
+  <p class="subtitle anim-4" style="font-size:clamp(12px,1.1vw,14px);">A garrafa é transparente, então a máscara bruta é "rendada" (2,7% dos pixels). O <strong>fechamento</strong> (15 px) junta os pedaços; a <strong>abertura</strong> (5 px) apaga linhas finas e pontos soltos, como a borda da mesa quando a cena se desloca 1 px</p>
+  <script type="application/json" class="slide-notes">
+  {"title": "Máscara", "script": "A máscara bruta é cheia de furos, porque a garrafa é transparente. Um fechamento morfológico junta os pedaços, e uma abertura remove linhas finas e pontos isolados.", "notes": ["Otsu → fechamento 15 px → abertura 5 px", "Só serve para achar a garrafa"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="9">
+  <p class="slide-tag anim-1">Passo 6 · locate_bottle()</p>
+  <h2 class="anim-2">A <span class="highlight-green">caixa da garrafa</span>, medida na máscara</h2>
+  <div class="image-frame image-screenshot anim-3" style="margin-top:12px;max-width:1000px;">
+    <img src="assets/steps/s07_locate.svg" alt="Perfil de colunas, perfil de linhas e a caixa detectada sobre a máscara" class="slide-image" style="max-height:min(50vh,420px);">
+  </div>
+  <p class="subtitle anim-4" style="font-size:clamp(12px,1.1vw,14px);"><strong>Colunas:</strong> o perfil de brancos por coluna (média móvel de 31 colunas) acha a garrafa no trecho em torno do pico acima de 40% dele (x 292–377); o centro é o meio desse trecho (x = 336) e a caixa tem <strong>largura fixa</strong> de 14,5% da imagem → x 290–382. <strong>Linhas:</strong> dentro dessas colunas, o topo é a primeira linha acima de 30% da mais cheia e a base, a última acima de 50% → y 30–315. A posição e a altura são medidas; só a largura é informada</p>
+  <script type="application/json" class="slide-notes">
+  {"title": "A caixa da garrafa", "script": "A caixa é medida na própria máscara. Contamos os pixels brancos em cada coluna; a garrafa está no trecho em torno do pico, e o centro dela é o meio desse trecho. A largura da caixa é o único valor fixo: as bordas laterais de uma garrafa transparente são a parte mais fraca da máscara. Dentro dessas colunas, contamos os brancos por linha; o topo e a base têm limiares diferentes, porque o gargalo é mais estreito que o corpo e a base tem a sombra.", "notes": ["Perfil de colunas: trecho ≥ 40% do pico; centro no meio", "Largura fixa: 14,5% da imagem", "Linhas: topo ≥ 30%, base ≥ 50% do máximo", "Caixa: x 0,453–0,598 · y 0,083–0,875"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="10">
+  <p class="slide-tag anim-1">Passo 6 · validação com as caixas anotadas da base (1500 imagens)</p>
+  <h2 class="anim-2">A caixa detectada, conferida com as <span class="highlight-green">caixas anotadas</span></h2>
+  <div class="split anim-3" style="grid-template-columns:1.5fr 1fr;">
+    <div class="image-frame image-screenshot" style="margin-top:0;">
+      <img src="assets/bottle_localization.svg" alt="Fundo e exemplos de garrafas com a caixa detectada" class="slide-image">
+    </div>
+    <div class="table-wrap table-compact" style="margin-top:0;">
+    <table>
+      <thead><tr><th></th><th>detecção automática</th></tr></thead>
+      <tbody>
+        <tr><td class="cell-highlight">erro médio do centro</td><td><strong>4,0 px</strong></td></tr>
+        <tr><td class="cell-highlight">erro do centro, p95</td><td>14,0 px</td></tr>
+        <tr><td class="cell-highlight">IoU médio com a anotação</td><td><strong>0,94</strong></td></tr>
+        <tr><td class="cell-highlight">IoU, 5% piores</td><td>0,85</td></tr>
+        <tr><td class="cell-highlight">erro p95 das bordas</td><td>1,1% a 2,5% da imagem</td></tr>
+      </tbody>
+    </table>
+      <p class="mini-note">As caixas anotadas são usadas <strong>só para conferir</strong>; o pipeline nunca as lê. A caixa acompanha garrafas mais altas (tampa solta) e mais baixas (sem tampa). Pior caso em 1500: IoU 0,64. Comparados três modos de tirar a caixa da mesma máscara (treino): tudo pelos limiares, IoU 0,92; largura e altura fixas, 0,92; <strong>largura fixa com centro e altura medidos, 0,94</strong>.</p>
+    </div>
+  </div>
+  <script type="application/json" class="slide-notes">
+  {"title": "Validação da detecção", "script": "Comparando com as caixas anotadas da base, que só usamos para conferir, a detecção erra o centro em média 4 pixels, e a sobreposição média com a caixa anotada é de 94 por cento. Testamos três formas de tirar a caixa da mesma máscara: todas as bordas pelos limiares, uma caixa de tamanho fixo, e a mistura que ficou: largura fixa, com o centro e a altura medidos.", "notes": ["Centro: 4,0 px em média", "IoU médio 0,94", "Largura fixa + centro e altura medidos venceu", "Anotações só para validar"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="11">
+  <p class="slide-tag anim-1">Passo 7a · crop_regions() — opção 1</p>
+  <h2 class="anim-2">ROIs <span class="highlight-blue">ad hoc</span>, relativas à caixa detectada</h2>
+  <div class="image-frame image-screenshot anim-3" style="margin-top:12px;max-width:1100px;">
+    <img src="assets/steps/s08_regions.svg" alt="Caixa detectada, as três ROIs ad hoc e a garrafa inteira" class="slide-image" style="max-height:min(46vh,380px);">
+  </div>
+  <p class="subtitle anim-4" style="font-size:clamp(12px,1.1vw,14px);">Faixas dentro da caixa (0 = topo, 1 = base): <code>cap</code> 0–0,12 · <code>label</code> 0,20–0,52 · <code>body</code> 0,12–1,00. São as <strong>únicas posições escolhidas à mão</strong>. A região <code>bottle</code> é a própria caixa (185×570 px nesta foto)</p>
+  <script type="application/json" class="slide-notes">
+  {"title": "ROIs ad hoc", "script": "Na primeira opção, as três ROIs são faixas escolhidas à mão, dentro da caixa detectada: a tampa nos primeiros 12 por cento, o rótulo de 20 a 52 por cento, e o corpo de 12 por cento até a base.", "notes": ["cap 0–0,12", "label 0,20–0,52", "body 0,12–1,00", "bottle = caixa inteira"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="12">
+  <p class="slide-tag anim-1">Passo 7b · regions.learn_auto_bands() — opção 2</p>
+  <h2 class="anim-2">Regiões <span class="highlight-orange">automáticas</span>, aprendidas do treino</h2>
+  <div class="image-frame image-screenshot anim-3" style="margin-top:12px;max-width:1100px;">
+    <img src="assets/steps/s08b_auto_regions.svg" alt="Garrafa média de treino, descritor de cada faixa e as três regiões automáticas" class="slide-image" style="max-height:min(50vh,420px);">
+  </div>
+  <p class="subtitle anim-4" style="font-size:clamp(12px,1.1vw,14px);">1) média das 1200 garrafas de treino (96×384) · 2) cores médias de cada faixa de 16 linhas · 3) divisão em 3 grupos <strong>contíguos</strong> com faixas o mais parecidas possível (ótimo exato por programação dinâmica). Só o número de regiões é informado. Resultado: <code>auto_1</code> 0–0,125 (tampa) · <code>auto_2</code> 0,125–0,917 · <code>auto_3</code> 0,917–1 (base)</p>
+  <script type="application/json" class="slide-notes">
+  {"title": "Regiões automáticas", "script": "Na segunda opção, nenhuma posição é escolhida à mão. Tiramos a média das garrafas de treino, descrevemos cada faixa de 16 linhas pelas suas cores médias e dividimos as faixas em três grupos contíguos, de modo que as faixas de um mesmo grupo sejam o mais parecidas possível. Não usa rótulos. O resultado separa a tampa, o meio da garrafa e a base. Note que a primeira região coincide quase exatamente com a ROI da tampa escolhida à mão.", "notes": ["Sem rótulos, só imagens de treino", "Só o número de regiões é dado", "auto_1 ≈ ROI da tampa", "O rótulo não foi separado do corpo"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="13">
+  <p class="slide-tag anim-1">Passo 7 · as duas opções nas 7 classes</p>
+  <h2 class="anim-2">ROIs ad hoc <span class="highlight-blue">×</span> regiões automáticas</h2>
+  <div class="anim-3" style="display:flex;flex-direction:column;gap:10px;max-width:1150px;width:100%;margin-top:10px;">
+    <div class="image-frame image-screenshot" style="margin-top:0;"><img src="assets/rois_per_class.svg" alt="ROIs ad hoc em uma garrafa de cada classe" class="slide-image" style="max-height:min(30vh,250px);"></div>
+    <div class="image-frame image-screenshot" style="margin-top:0;"><img src="assets/auto_rois_per_class.svg" alt="Regiões automáticas em uma garrafa de cada classe" class="slide-image" style="max-height:min(30vh,250px);"></div>
+  </div>
+  <p class="subtitle anim-4" style="font-size:clamp(12px,1.1vw,14px);">Acima: ROIs ad hoc (o corpo sobrepõe o rótulo). Abaixo: regiões automáticas (não se sobrepõem e cobrem a garrafa inteira). Como a caixa é detectada, as faixas acompanham a altura de cada garrafa</p>
+  <script type="application/json" class="slide-notes">
+  {"title": "As duas opções", "script": "Aqui estão as duas opções em uma garrafa de cada uma das 7 classes. As ROIs escolhidas à mão se sobrepõem; as regiões automáticas dividem a garrafa inteira sem sobreposição.", "notes": ["ROIs ad hoc: cap, label, body", "Automáticas: auto_1, auto_2, auto_3", "Ambas relativas à caixa detectada"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="0">
+  <p class="slide-tag anim-1">Passo 7 · sem localização</p>
+  <h2 class="anim-2">E sem achar a garrafa? <span class="highlight-orange">Área ampla</span> e <span class="highlight-orange">imagem inteira</span></h2>
+  <div class="image-frame image-screenshot anim-3" style="margin-top:12px;max-width:1200px;">
+    <img src="assets/steps/p02_sem_localizacao.svg" alt="Imagem inteira com a área ampla e a caixa da garrafa, a área ampla reduzida e a imagem inteira reduzida" class="slide-image" style="max-height:min(40vh,330px);">
+  </div>
+  <p class="subtitle anim-4" style="font-size:clamp(12px,1.1vw,14px);">Dois escopos sem caixa nem ROI: a <strong>área ampla</strong> (<code>wide</code>) é um retângulo fixo da foto, x de 0,20 a 0,78 e y de 0,02 a 0,97, com a largura de 3 a 4 garrafas e que contém todas as garrafas da base; a <strong>imagem inteira</strong> (<code>image</code>) é a foto toda. As duas são reduzidas na mesma escala (256×240 e 448×256), então a garrafa tem o mesmo tamanho nas duas e só muda a quantidade de fundo</p>
+  <script type="application/json" class="slide-notes">
+  {"title": "Sem localização", "script": "Para ver se os descritores dão conta sozinhos, sem localizar a garrafa, testamos dois escopos a mais: uma área fixa, grande, em volta de onde as garrafas ficam, e a foto inteira. Os descritores são exatamente os mesmos; só muda quanto fundo entra no vetor.", "notes": ["wide: retângulo fixo (0,20–0,78 × 0,02–0,97)", "image: a foto inteira", "Mesma escala: só muda o fundo", "Mesmos descritores, sem ajuste"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="14">
+  <p class="slide-tag anim-1">Passo 8a · preparação para HOG e LBP</p>
+  <h2 class="anim-2">Tamanho fixo e <span class="highlight-blue">tons de cinza</span></h2>
+  <div class="split anim-3">
+    <div class="image-frame image-screenshot" style="margin-top:0;">
+      <img src="assets/steps/s09_resized.svg" alt="Regiões redimensionadas em cinza" class="slide-image">
+    </div>
+    <ul class="steps">
+      <li>Cada região é <strong>redimensionada</strong>: cap 64×48 · label 64×96 · body 48×192 · bottle 96×384</li>
+      <li>As regiões automáticas são fatias da garrafa 96×384: 96×48, 96×304 e 96×32</li>
+      <li>Convertida para <strong>cinza</strong>: HOG e LBP não usam cor</li>
+      <li>A <strong>cor</strong> é calculada à parte, no recorte colorido</li>
+    </ul>
+  </div>
+  <script type="application/json" class="slide-notes">
+  {"title": "Tamanho fixo e cinza", "script": "Para o HOG e o LBP, cada recorte é redimensionado para um tamanho fixo e convertido para tons de cinza.", "notes": ["Tamanho fixo por região", "Cinza para HOG e LBP"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="15">
+  <p class="slide-tag anim-1">Passo 8b · HOG — uma célula</p>
+  <h2 class="anim-2">HOG: para onde apontam as <span class="highlight-orange">bordas</span>?</h2>
+  <div class="image-frame image-screenshot anim-3" style="margin-top:12px;max-width:1000px;">
+    <img src="assets/steps/s10_hog_cell.svg" alt="Célula 8x8 da tampa e seu histograma de 6 direções" class="slide-image" style="max-height:min(36vh,300px);">
+  </div>
+  <div class="formula anim-4">g<sub>x</sub> = I(x+1,y) − I(x−1,y) · g<sub>y</sub> = I(x,y+1) − I(x,y−1) · força = √(g<sub>x</sub>² + g<sub>y</sub>²) · direção = atan(g<sub>y</sub>/g<sub>x</sub>) mod 180°</div>
+  <p class="subtitle anim-4" style="font-size:clamp(12px,1.1vw,14px);">Cada um dos 64 pixels da célula vota na sua direção (6 caixas de 30°) com peso = força do gradiente. São 6 números por célula</p>
+  <script type="application/json" class="slide-notes">
+  {"title": "HOG: uma célula", "script": "Em cada pixel calculamos o gradiente: uma força e uma direção. Dentro de cada célula, os pixels votam na sua direção com peso igual à força.", "notes": ["Gradiente por diferenças centrais", "6 direções de 0 a 180 graus (30° cada)"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="16">
+  <p class="slide-tag anim-1">Passo 8c · hog_features()</p>
+  <h2 class="anim-2">HOG: células → blocos → <span class="highlight-orange">vetor por região</span></h2>
+  <div class="split anim-3" style="grid-template-columns:1fr 1fr;">
+    <div class="image-frame image-screenshot" style="margin-top:0;">
+      <img src="assets/steps/s11_hog.svg" alt="Força do gradiente e visualização do HOG por região" class="slide-image" style="max-height:min(52vh,430px);">
+    </div>
+    <div class="table-wrap table-compact" style="margin-top:0;">
+    <table>
+      <thead><tr><th>região</th><th>células</th><th>blocos 2×2</th><th>valores</th></tr></thead>
+      <tbody>
+        <tr><td class="cell-highlight">cap</td><td>8×6</td><td>35</td><td><strong>840</strong></td></tr>
+        <tr><td class="cell-highlight">label</td><td>4×6</td><td>15</td><td><strong>360</strong></td></tr>
+        <tr><td class="cell-highlight">body</td><td>3×12</td><td>22</td><td><strong>528</strong></td></tr>
+        <tr><td class="cell-highlight">auto_1 · auto_2 · auto_3</td><td>6×3 · 6×19 · 6×2</td><td>10 · 90 · 5</td><td><strong>240 · 2160 · 120</strong></td></tr>
+        <tr><td class="cell-highlight">bottle</td><td>6×24</td><td>115</td><td><strong>2760</strong></td></tr>
+      </tbody>
+    </table>
+      <p class="mini-note">Um bloco junta 2×2 células vizinhas (4 × 6 = 24 números) e é normalizado (<strong>L2-Hys</strong>). Células de 16×16 px (8×8 na tampa).</p>
+    </div>
+  </div>
+  <script type="application/json" class="slide-notes">
+  {"title": "HOG: blocos", "script": "As células são agrupadas em blocos de 2 por 2, com 24 números cada, normalizados. Cada região gera o seu vetor de HOG.", "notes": ["Bloco 2x2 = 24 números", "Normalização L2-Hys"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="17">
+  <p class="slide-tag anim-1">Passo 8d · LBP — um pixel</p>
+  <h2 class="anim-2">LBP: os vizinhos são mais <span class="highlight-green">claros ou escuros</span>?</h2>
+  <div class="image-frame image-screenshot anim-3" style="margin-top:12px;max-width:1100px;">
+    <img src="assets/steps/s12_lbp_pixel.svg" alt="Vizinhança 7x7 de um pixel da tampa e o padrão binário dos 24 vizinhos" class="slide-image" style="max-height:min(42vh,350px);">
+  </div>
+  <p class="subtitle anim-4" style="font-size:clamp(12px,1.1vw,14px);">24 vizinhos num círculo de raio 3 (valores interpolados entre os pixels). Vizinho ≥ centro → 1. Padrão <strong>uniforme</strong> (até 2 trocas 0↔1 no círculo): código = nº de uns (0 a 24); os demais recebem o código 25. Aqui: <code>111000000000000000011111</code> → 8 uns → código <strong>8</strong> (uma borda)</p>
+  <script type="application/json" class="slide-notes">
+  {"title": "LBP: um pixel", "script": "O LBP compara cada pixel com 24 vizinhos num círculo de raio 3. Se o vizinho é mais claro ou igual, anota 1; senão, 0. Se o padrão tem no máximo duas trocas ao redor do círculo, o código é o número de uns. Os outros padrões recebem o código 25. A vizinhança de 24 pontos e raio 3 foi a de melhor resultado na busca de parâmetros.", "notes": ["P = 24 vizinhos, R = 3", "Uniformes: códigos 0 a 24", "Não uniformes: código 25"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="18">
+  <p class="slide-tag anim-1">Passo 8e · lbp_features()</p>
+  <h2 class="anim-2">LBP: um histograma de códigos <span class="highlight-green">por célula</span></h2>
+  <div class="split anim-3" style="grid-template-columns:1.25fr 1fr;">
+    <div class="image-frame image-screenshot" style="margin-top:0;">
+      <img src="assets/steps/s13_lbp_map.svg" alt="Mapa de códigos LBP de cada região com a grade de células" class="slide-image" style="max-height:min(52vh,430px);">
+    </div>
+    <div class="table-wrap table-compact" style="margin-top:0;">
+    <table>
+      <thead><tr><th>região</th><th>células 16×16</th><th>× 26 códigos</th></tr></thead>
+      <tbody>
+        <tr><td class="cell-highlight">cap</td><td>12</td><td><strong>312</strong></td></tr>
+        <tr><td class="cell-highlight">label</td><td>24</td><td><strong>624</strong></td></tr>
+        <tr><td class="cell-highlight">body</td><td>36</td><td><strong>936</strong></td></tr>
+        <tr><td class="cell-highlight">auto_1 · auto_2 · auto_3</td><td>18 · 114 · 12</td><td><strong>468 · 2964 · 312</strong></td></tr>
+        <tr><td class="cell-highlight">bottle</td><td>144</td><td><strong>3744</strong></td></tr>
+      </tbody>
+    </table>
+      <div class="image-frame image-screenshot" style="margin-top:10px;">
+        <img src="assets/steps/s13b_lbp_cell.svg" alt="Histograma dos códigos LBP de uma célula" class="slide-image" style="max-height:min(18vh,150px);">
+      </div>
+      <p class="mini-note">Em cada célula, a <strong>fração</strong> de pixels com cada código (26 números). Um histograma por célula preserva <strong>onde</strong> está cada textura.</p>
+    </div>
+  </div>
+  <script type="application/json" class="slide-notes">
+  {"title": "LBP: histogramas por célula", "script": "A região é dividida em células de 16 por 16, e em cada célula contamos a fração de pixels com cada um dos 26 códigos.", "notes": ["26 códigos por célula", "Células de 16x16"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="19">
+  <p class="slide-tag anim-1">Passo 8f · hsv_color_features()</p>
+  <h2 class="anim-2">Cor: 74 números por <span class="highlight-blue">região</span></h2>
+  <div class="image-frame image-screenshot anim-3" style="margin-top:12px;max-width:1100px;">
+    <img src="assets/steps/s14_hsv.svg" alt="Canais H, S, V da tampa e seus histogramas" class="slide-image" style="max-height:min(46vh,380px);">
+  </div>
+  <p class="subtitle anim-4" style="font-size:clamp(12px,1.1vw,14px);">BGR → HSV · histograma de H (36), S (16) e V (16), cada um somando 1 · + média e desvio de H, S, V ÷ 255 · 36+16+16+3+3 = <strong>74</strong>. Nenhuma faixa de cor é escolhida à mão: o histograma cobre todos os matizes</p>
+  <script type="application/json" class="slide-notes">
+  {"title": "Cor HSV", "script": "A cor usa o recorte colorido, convertido para HSV. Para cada canal fazemos um histograma normalizado e somamos a média e o desvio. São 74 números por região.", "notes": ["36 + 16 + 16 + 3 + 3 = 74", "Sem faixa de cor ad hoc"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="20">
+  <p class="slide-tag anim-1">Passo 8 · extract_features()</p>
+  <h2 class="anim-2">Uma foto → <span class="highlight-green">27 grupos</span> de atributos</h2>
+  <div class="image-frame image-screenshot anim-3" style="margin-top:12px;max-width:1200px;">
+    <img src="assets/steps/s15_groups.svg" alt="Os 27 grupos de atributos da imagem de exemplo" class="slide-image" style="max-height:min(46vh,380px);">
+  </div>
+  <p class="subtitle anim-4" style="font-size:clamp(12px,1.1vw,14px);">3 descritores × 9 regiões (3 ROIs ad hoc, 3 automáticas, garrafa inteira, área ampla, imagem inteira) = 27 grupos, chamados <code>&lt;região&gt;_&lt;descritor&gt;</code>. Conferido: os grupos desta foto são idênticos, número por número, aos usados no treino</p>
+  <script type="application/json" class="slide-notes">
+  {"title": "Os 27 grupos", "script": "Cada foto gera 27 grupos de atributos: três descritores em nove regiões. Eles ficam guardados separados.", "notes": ["3 descritores × 9 regiões", "Idênticos ao cache do treino"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="21">
+  <p class="slide-tag anim-1">Passo 9 · FEATURE_VECTORS + build_matrix()</p>
+  <h2 class="anim-2"><span class="highlight-purple">15 vetores</span>, um descritor em cada</h2>
+  <div class="image-frame image-screenshot anim-3" style="margin-top:12px;max-width:1100px;">
+    <img src="assets/steps/s16_vectors.svg" alt="Tamanho e composição dos 15 vetores de atributos" class="slide-image" style="max-height:min(38vh,320px);">
+  </div>
+  <p class="subtitle anim-4" style="font-size:clamp(12px,1.1vw,14px);">Para cada descritor, 5 escopos: as três ROIs ad hoc concatenadas (<code>rois_*</code>), as três regiões automáticas (<code>auto_rois_*</code>), a garrafa inteira, sem região (<code>bottle_*</code>), e, sem localização, a área ampla (<code>wide_*</code>) e a imagem inteira (<code>image_*</code>). <strong>Nenhuma ROI é classificada sozinha</strong>, e HOG, LBP e cor nunca entram no mesmo vetor</p>
+  <script type="application/json" class="slide-notes">
+  {"title": "Os 15 vetores", "script": "Os grupos são organizados em 15 vetores. Para cada descritor há cinco escopos: as ROIs escolhidas à mão juntas, as regiões automáticas juntas, a garrafa inteira e, sem localizar a garrafa, a área ampla e a imagem inteira.", "notes": ["5 escopos × 3 descritores", "rois = cap + label + body", "auto_rois = auto_1 + auto_2 + auto_3", "bottle = garrafa inteira", "wide = área ampla fixa; image = imagem inteira"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="22">
+  <p class="slide-tag anim-1">Passo 9 · build_matrix()</p>
+  <h2 class="anim-2">Uma <span class="highlight-blue">matriz X</span> para cada vetor</h2>
+  <div class="image-frame image-screenshot anim-3" style="margin-top:12px;max-width:1150px;">
+    <img src="assets/steps/s17_matrices.svg" alt="Matrizes X padronizadas de rois_hog, rois_lbp e rois_color ordenadas por classe" class="slide-image" style="max-height:min(46vh,380px);">
+  </div>
+  <p class="subtitle anim-4" style="font-size:clamp(12px,1.1vw,14px);">Cada <strong>linha</strong> é uma foto (ordenadas pelas 7 classes), cada <strong>coluna</strong> um atributo. Treino = 1200 linhas, validação = 300. Ex.: <code>rois_hog</code> 1500×1728 · <code>rois_lbp</code> 1500×1872 · <code>rois_color</code> 1500×222</p>
+  <script type="application/json" class="slide-notes">
+  {"title": "As matrizes X", "script": "Para cada vetor, empilhamos as 1500 fotos numa matriz. Aqui estão três delas, padronizadas e ordenadas por classe.", "notes": ["Linhas = fotos, colunas = atributos", "Uma matriz por vetor"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="23">
+  <p class="slide-tag anim-1">Passo 10 · o que cada classificador recebe (exemplo: rois_hog)</p>
+  <h2 class="anim-2">Mesmo vetor, <span class="highlight-purple">três usos</span></h2>
+  <div class="table-wrap table-compact anim-3">
+    <table>
+      <thead><tr><th></th><th>SVM</th><th>KNN</th><th>Random Forest</th></tr></thead>
+      <tbody>
+        <tr><td class="cell-highlight">entrada de treino</td><td>Z 1200×1728 + y</td><td>Z 1200×1728 + y</td><td>X 1200×1728 + y</td></tr>
+        <tr><td class="cell-highlight">padronização (z = (x − μ)/σ do treino)</td><td>sim</td><td>sim</td><td>não</td></tr>
+        <tr><td class="cell-highlight">escolhido pelo grid search</td><td>kernel linear, C=0,01</td><td>k=3</td><td>300 árvores, √n colunas por nó</td></tr>
+        <tr><td class="cell-highlight">o que guarda</td><td>629 vetores de suporte</td><td>as 1200 linhas</td><td>300 árvores de perguntas</td></tr>
+        <tr><td class="cell-highlight">operação na predição</td><td>kernel linear + 21 votos de pares</td><td>1200 distâncias, os 3 mais próximos votam</td><td>média das árvores</td></tr>
+        <tr><td class="cell-highlight">esta foto</td><td><code>defect_loose_cap</code></td><td><code>defect_loose_cap</code> (mais próxima: d = 34,74)</td><td><code>defect_loose_cap</code> (p = 0,84)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="subtitle anim-4 mt-16" style="font-size:clamp(12px,1.1vw,14px);">O mesmo procedimento se repete para os 15 vetores: grid search com 5 dobras estratificadas só no treino (F1-macro), que no SVM também escolhe o kernel (linear, RBF ou polinomial): o linear venceu em 13 dos 15 vetores, o RBF em 1 e o polinomial em 1. Os <strong>45</strong> modelos acertam esta foto</p>
+  <script type="application/json" class="slide-notes">
+  {"title": "O que cada classificador recebe", "script": "Para cada vetor, os três classificadores recebem as mesmas colunas das mesmas fotos de treino. O SVM e o KNN usam a versão padronizada; o Random Forest, a bruta. Os 45 modelos acertam a foto de exemplo.", "notes": ["Mesmo X para os três", "Grid search só no treino", "45 de 45 acertam a foto de exemplo"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="0">
+  <p class="slide-tag anim-1">Passo 10 · busca dos parâmetros dos descritores (só nas imagens de treino)</p>
+  <h2 class="anim-2">Os parâmetros dos descritores foram <span class="highlight-purple">medidos</span>, não só escolhidos</h2>
+  <div class="image-frame image-screenshot anim-3" style="margin-top:12px;max-width:1250px;">
+    <img src="assets/steps/p01_descritores.svg" alt="F1-macro na validação cruzada para cada valor de cada parâmetro dos descritores" class="slide-image" style="max-height:min(44vh,370px);">
+  </div>
+  <p class="subtitle anim-4" style="font-size:clamp(12px,1.1vw,14px);">Um fator por vez; nota = F1-macro médio da validação cruzada (5 dobras, 1200 imagens de treino) nos 9 pares vetor × classificador. Um valor só substitui o de referência se ganhar por mais de 1 erro padrão. <strong>HOG</strong>: 9 → <strong>6 direções</strong> (0,993 → 0,994, com vetor um terço menor: a melhor nota e o vetor mais simples, a menos de 1 erro padrão de 9); células mantidas · <strong>LBP</strong>: <strong>(24, 3)</strong> confirmado (era (8, 1) antes da primeira busca) · <strong>cor</strong>: <strong>(36, 16, 16)</strong> confirmado (era (18, 8, 8)). A validação do Kaggle só é usada depois, uma vez</p>
+  <script type="application/json" class="slide-notes">
+  {"title": "Busca dos parâmetros", "script": "Os parâmetros dos descritores não foram só escolhidos à mão. Variamos um de cada vez e medimos cada valor apenas nas imagens de treino, por validação cruzada, com os três classificadores e os três escopos. O HOG passou de 9 para 6 direções: a nota ficou igual ou um pouco melhor, com um vetor um terço menor. O LBP melhorou com 24 vizinhos e raio 3, e a cor com histogramas mais finos; a busca repetida com a localização atual confirmou os dois. As 300 imagens de validação só entram depois, uma única vez.", "notes": ["Seleção só no treino (5 dobras)", "Troca só com ganho acima de 1 erro padrão", "LBP: (8,1) → (24,3)", "Cor: (18,8,8) → (36,16,16)", "HOG: 9 → 6 direções (vetor 1/3 menor)"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="24">
+  <p class="slide-tag anim-1">Resultado · validação do Kaggle (300 imagens)</p>
+  <h2 class="anim-2">A <span class="highlight-blue">matriz comparativa</span>: vetor × classificador</h2>
+  <div class="image-frame image-screenshot anim-3" style="margin-top:12px;max-width:950px;">
+    <img src="assets/steps/r01_matrix.svg" alt="Matriz de acurácia e F1-macro de cada vetor em cada classificador" class="slide-image" style="max-height:min(58vh,480px);">
+  </div>
+  <p class="subtitle anim-4" style="font-size:clamp(12px,1.1vw,14px);">Leitura: <code>rois_hog</code> no SVM = 1,000 · no KNN = 0,997 · no Random Forest = 1,000 (0, 1 e 0 erros em 300). O <strong>SVM acerta as 300 imagens em 13 dos 15 vetores</strong>; só erra na imagem inteira (HOG 0,997, LBP 0,990). Com 0 erros nos três classificadores: <code>rois_color</code> e <code>auto_rois_color</code>. Menores: KNN com o HOG da área ampla (0,960) e Random Forest com o LBP da imagem inteira (0,967)</p>
+  <script type="application/json" class="slide-notes">
+  {"title": "A matriz comparativa", "script": "Cada linha é um vetor, cada coluna um classificador. O SVM acerta as 300 imagens de validação em 13 dos 15 vetores; só erra com a imagem inteira. Com a garrafa localizada, o HOG e a cor ficam em 100 por cento em quase todos os pares e o LBP é o que mais depende do classificador. Sem localização, a área ampla e a imagem inteira derrubam o KNN e o Random Forest no HOG e no LBP; a cor quase não muda.", "notes": ["SVM: 1,000 em 13 dos 15 vetores", "Com localização: HOG 0,997–1,000, LBP 0,980–1,000, cor 0,997–1,000", "Sem localização: até 0,960 (HOG) e 0,963–0,967 (LBP)", "Cor: 0,997 a 1,000 em todos os escopos"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="25">
+  <p class="slide-tag anim-1">Resultado · ROIs ad hoc × regiões automáticas × garrafa inteira × área ampla × imagem inteira</p>
+  <h2 class="anim-2">Com a garrafa localizada, os recortes empatam; <span class="highlight-red">sem localização</span>, HOG e LBP caem</h2>
+  <div class="image-frame image-screenshot anim-3" style="margin-top:12px;max-width:1150px;">
+    <img src="assets/steps/r02_scopes.svg" alt="Acurácia por escopo para cada descritor e classificador" class="slide-image" style="max-height:min(48vh,400px);">
+  </div>
+  <p class="subtitle anim-4" style="font-size:clamp(12px,1.1vw,14px);">Com o SVM, os três escopos com a garrafa localizada empatam em 1,000 nos três descritores. Entre as regiões automáticas e as ROIs ad hoc há 8 empates e 1 par em que as automáticas perdem (LBP + KNN), por 0,7 ponto percentual (2 imagens). A garrafa inteira fica até 1,3 ponto abaixo com o KNN (LBP). <strong>Sem localização</strong>: a área ampla mantém o SVM em 1,000, mas o KNN cai para 0,960 (HOG) e 0,963 (LBP); na imagem inteira até o SVM erra (HOG 0,997, LBP 0,990) e o Random Forest com LBP cai para 0,967. A cor fica entre 0,997 e 1,000 em todos</p>
+  <script type="application/json" class="slide-notes">
+  {"title": "Efeito das regiões", "script": "Esta é a comparação pedida entre as duas opções. Com o SVM, as ROIs escolhidas à mão, as regiões automáticas e a garrafa inteira dão o mesmo resultado, sem erros. Nos outros classificadores as regiões automáticas e as ROIs à mão ficam empatadas ou a menos de um ponto uma da outra. Ou seja, nesta base, escolher as regiões à mão não traz ganho. Já tirar a localização e entregar uma área grande ou a foto inteira piora o HOG e o LBP, principalmente no KNN e no Random Forest: o fundo dilui a garrafa no vetor. A cor quase não muda, porque o fundo é igual em todas as fotos.", "notes": ["SVM: 1,000 nos três escopos localizados", "Automáticas × ad hoc: 8 empates, 1 derrota", "Garrafa inteira: até 1,3 ponto abaixo com KNN", "Área ampla: KNN 0,960 (HOG), 0,963 (LBP)", "Imagem inteira: SVM 0,997 (HOG), 0,990 (LBP)", "Cor: 0,997–1,000 em todos"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="26">
+  <p class="slide-tag anim-1">Resultado · as 7 classes</p>
+  <h2 class="anim-2">F1 de cada classe, <span class="highlight-orange">por vetor</span></h2>
+  <div class="image-frame image-screenshot anim-3" style="margin-top:12px;max-width:1050px;">
+    <img src="assets/steps/r03_per_class.svg" alt="F1 de cada uma das 7 classes para o SVM em cada vetor" class="slide-image" style="max-height:min(56vh,470px);">
+  </div>
+  <p class="subtitle anim-4" style="font-size:clamp(12px,1.1vw,14px);">Com o SVM, as 7 classes ficam com F1 = 1,00 em 13 dos 15 vetores. Só na imagem inteira o SVM erra: <code>defect_label_damage</code> cai para 0,98 (HOG) e 0,92 (LBP), confundido com <code>defect_loose_cap</code> e <code>defect_low_fill</code></p>
+  <script type="application/json" class="slide-notes">
+  {"title": "As 7 classes", "script": "Olhando o F1 de cada classe com o SVM, todas as classes ficam em 1 nos vetores com a garrafa localizada e na área ampla. Com a imagem inteira, o rótulo danificado passa a ser confundido. Nos outros classificadores, a garrafa sem tampa e o rótulo danificado são as classes que mais erram.", "notes": ["SVM: 1,00 em 13 dos 15 vetores", "Imagem inteira: defect_label_damage 0,98 (HOG) e 0,92 (LBP)", "defect_no_cap e defect_label_damage são as mais difíceis"]}
+  </script>
+</div>
+
+<!-- CONFUSION_SLIDES -->
+
+<div class="slide" data-slide="28">
+  <p class="slide-tag anim-1">Resultado · custo</p>
+  <h2 class="anim-2">Quantas <span class="highlight-green">garrafas por segundo</span> cada vetor processa</h2>
+  <div class="image-frame image-screenshot anim-3" style="margin-top:12px;max-width:1100px;">
+    <img src="assets/steps/r04_time.svg" alt="Tempo de cada grupo de atributos e vazão por vetor" class="slide-image" style="max-height:min(48vh,400px);">
+  </div>
+  <p class="subtitle anim-4" style="font-size:clamp(12px,1.1vw,14px);">O pré-processamento custa ~21 ms por imagem; cada grupo soma de 0,2 a 11 ms com a garrafa localizada, mas a área ampla e a imagem inteira custam até 27 e 48 ms (a cor é calculada na resolução original). Com localização, os pares processam entre <strong>29 e 40 garrafas/s</strong>; sem localização, de 14 a 34. Tamanho do vetor: cor 74–222 · HOG 1728–9720 · LBP 1872–11648</p>
+  <script type="application/json" class="slide-notes">
+  {"title": "Custo", "script": "Com a garrafa localizada, o tempo é dominado pelo pré-processamento, cerca de 21 milissegundos por imagem, e os pares ficam entre 29 e 40 garrafas por segundo. Sem localização, os recortes grandes custam mais: a imagem inteira cai para 14 a 28 garrafas por segundo.", "notes": ["Pré-processamento ~21 ms", "Com localização: 29 a 40 garrafas/s", "Sem localização: 14 a 34 garrafas/s"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="29">
+  <p class="slide-tag anim-1">Resumo dos resultados</p>
+  <h2 class="anim-2">O que os <span class="highlight-blue">45 modelos</span> mostram</h2>
+  <div class="table-wrap table-compact anim-3">
+    <table>
+      <thead><tr><th></th><th>HOG</th><th>LBP</th><th>cor HSV</th></tr></thead>
+      <tbody>
+        <tr><td class="cell-highlight">acurácia: ROIs ad hoc (SVM · KNN · RF)</td><td>1,000 · 0,997 · 1,000</td><td>1,000 · 0,993 · 0,990</td><td>1,000 · 1,000 · 1,000</td></tr>
+        <tr><td class="cell-highlight">acurácia: regiões automáticas</td><td>1,000 · 0,997 · 1,000</td><td>1,000 · 0,987 · 0,990</td><td>1,000 · 1,000 · 1,000</td></tr>
+        <tr><td class="cell-highlight">acurácia: garrafa inteira</td><td>1,000 · 0,997 · 1,000</td><td>1,000 · 0,980 · 0,990</td><td>1,000 · 1,000 · 0,997</td></tr>
+        <tr><td class="cell-highlight">acurácia: área ampla (sem localização)</td><td>1,000 · 0,960 · 1,000</td><td>1,000 · 0,963 · 0,977</td><td>1,000 · 0,997 · 0,997</td></tr>
+        <tr><td class="cell-highlight">acurácia: imagem inteira (sem localização)</td><td>0,997 · 0,987 · 0,997</td><td>0,990 · 0,993 · 0,967</td><td>1,000 · 0,997 · 1,000</td></tr>
+        <tr><td class="cell-highlight">tamanho (ROIs ad hoc)</td><td>1728</td><td>1872</td><td>222</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="subtitle anim-4 mt-16" style="font-size:clamp(12px,1.1vw,14px);"><strong>Detecção:</strong> a subtração do fundo acha a garrafa e mede a sua altura; com a largura da caixa fixa, a sobreposição com as anotações chega a 0,94. <strong>Regiões:</strong> as automáticas e as ROIs escolhidas à mão ficam empatadas ou a menos de 1 ponto; sem localização (área ampla, imagem inteira) o HOG e o LBP perdem até 4 pontos no KNN e no Random Forest. <strong>Descritores:</strong> com o SVM, HOG, LBP e cor acertam todas as imagens; com KNN e Random Forest o LBP é o que mais cai, e a cor chega ao mesmo nível com o menor vetor</p>
+  <script type="application/json" class="slide-notes">
+  {"title": "Resumo", "script": "Três conclusões. Primeiro, a subtração do fundo acha a garrafa e mede a sua altura; só a largura da caixa é informada. Segundo, as regiões automáticas dão resultados iguais ou muito próximos dos das ROIs escolhidas à mão. Terceiro, com o SVM os três descritores acertam todas as imagens de validação quando a garrafa é localizada; com os outros classificadores o HOG e a cor são os mais estáveis e o LBP é o que mais depende do classificador. Os escopos sem localização mostram que ela importa: com uma área grande ou a foto inteira, o HOG e o LBP pioram, e só a cor se mantém.", "notes": ["Posição e altura medidas; largura fixa", "ROIs à mão não trazem ganho", "SVM: sem erros nos 9 vetores localizados", "Sem localização: HOG e LBP pioram; cor se mantém"]}
+  </script>
+</div>
+
+<div class="slide" data-slide="30">
+  <div class="glow-blob glow-blue" style="top:30%;left:30%;"></div>
+  <div class="glow-blob glow-green" style="bottom:20%;right:20%;"></div>
+  <h2 class="anim-1" style="font-size:clamp(26px,3.5vw,44px);">Foto <span class="gradient-text">720×1280×3</span> → <span class="gradient-text">15 vetores</span> → 45 modelos</h2>
+  <p class="subtitle anim-2 mt-16">Fundo · luz · Otsu · caixa da garrafa · ROIs ad hoc | regiões automáticas | garrafa inteira | área ampla | imagem inteira · HOG | LBP | cor</p>
+  <div class="cta-box anim-3">
+    <p style="font-size:clamp(13px,1.3vw,16px);font-weight:600;color:var(--text-muted);">Onde está cada etapa no código</p>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px;font-size:clamp(12px,1.2vw,14px);text-align:left;">
+      <div style="display:flex;gap:8px;align-items:center;"><span style="color:var(--accent-blue);">&#9679;</span><span><code>preprocessing.py</code> — passos 2 a 7 (fundo, luz, máscara, caixa, recortes)</span></div>
+      <div style="display:flex;gap:8px;align-items:center;"><span style="color:var(--accent-orange);">&#9679;</span><span><code>regions.py</code> — regiões automáticas</span></div>
+      <div style="display:flex;gap:8px;align-items:center;"><span style="color:var(--accent-green);">&#9679;</span><span><code>features.py</code> — passo 8 (HOG, LBP, cor)</span></div>
+      <div style="display:flex;gap:8px;align-items:center;"><span style="color:var(--accent-purple);">&#9679;</span><span><code>config.py</code> + <code>pipeline.py</code> — <code>FEATURE_VECTORS</code>, 45 treinos; resultados em <code>results/</code></span></div>
+    </div>
+  </div>
+  <script type="application/json" class="slide-notes">
+  {"title": "Resumo final", "script": "Em resumo: a garrafa é achada pela subtração do fundo, recortada em regiões escolhidas à mão ou automáticas, e descrita por HOG, LBP e cor, separadamente. São 15 vetores e 45 modelos, comparados numa única matriz.", "notes": ["preprocessing.py: passos 2-7", "regions.py: regiões automáticas", "features.py: passo 8", "pipeline.py: treinos e matriz"]}
+  </script>
+</div>

@@ -1,0 +1,107 @@
+== Locating and cropping the training bottles
+== hog: reference = reference
+   mean CV F1-macro 0.9932
+== hog: orientations = 6
+   mean CV F1-macro 0.9944
+== hog: orientations = 12
+   mean CV F1-macro 0.9939
+== hog: orientations = 18
+   mean CV F1-macro 0.9921
+== hog: cell = 8 px
+   mean CV F1-macro 0.9861
+== hog: cell = 16 px
+   mean CV F1-macro 0.9928
+== lbp: reference = reference
+   mean CV F1-macro 0.9871
+== lbp: neighbourhood = P=8, R=1
+   mean CV F1-macro 0.9722
+== lbp: neighbourhood = P=8, R=2
+   mean CV F1-macro 0.9820
+== lbp: neighbourhood = P=16, R=2
+   mean CV F1-macro 0.9805
+== lbp: neighbourhood = P=24, R=4
+   mean CV F1-macro 0.9870
+== lbp: neighbourhood = P=32, R=4
+   mean CV F1-macro 0.9862
+== lbp: cell = 8 px
+   mean CV F1-macro 0.9765
+== lbp: cell = 32 px
+   mean CV F1-macro 0.9744
+== color: reference = reference
+   mean CV F1-macro 0.9994
+== color: hsv_bins = 9, 4, 4
+   mean CV F1-macro 0.9940
+== color: hsv_bins = 18, 8, 8
+   mean CV F1-macro 0.9990
+== color: hsv_bins = 72, 32, 32
+   mean CV F1-macro 0.9992
+{
+ "hog": {
+  "orientations": {
+   "reference": "9",
+   "scores": {
+    "6": 0.9943555350017979,
+    "9": 0.993167641972216,
+    "12": 0.9939416901226008,
+    "18": 0.9920801077604824
+   },
+   "best": "6",
+   "chosen": "9",
+   "changed": false
+  },
+  "cell": {
+   "reference": "8 px (cap), 16 px",
+   "scores": {
+    "8 px": 0.9861177520541702,
+    "8 px (cap), 16 px": 0.993167641972216,
+    "16 px": 0.992827051497478
+   },
+   "best": "8 px (cap), 16 px",
+   "chosen": "8 px (cap), 16 px",
+   "changed": false
+  }
+ },
+ "lbp": {
+  "neighbourhood": {
+   "reference": "P=24, R=3",
+   "scores": {
+    "P=8, R=1": 0.9721636719777025,
+    "P=8, R=2": 0.9820165956778166,
+    "P=16, R=2": 0.9804784509090931,
+    "P=24, R=3": 0.9870654293078717,
+    "P=24, R=4": 0.987028079472688,
+    "P=32, R=4": 0.986227841984236
+   },
+   "best": "P=24, R=3",
+   "chosen": "P=24, R=3",
+   "changed": false
+  },
+  "cell": {
+   "reference": "16 px",
+   "scores": {
+    "8 px": 0.9764774356155463,
+    "16 px": 0.9870654293078717,
+    "32 px": 0.9743960504011162
+   },
+   "best": "16 px",
+   "chosen": "16 px",
+   "changed": false
+  }
+ },
+ "color": {
+  "hsv_bins": {
+   "reference": "36, 16, 16",
+   "scores": {
+    "9, 4, 4": 0.9940003494501182,
+    "18, 8, 8": 0.9990150999076116,
+    "36, 16, 16": 0.9994486299346649,
+    "72, 32, 32": 0.999184368735385
+   },
+   "best": "36, 16, 16",
+   "chosen": "36, 16, 16",
+   "changed": false
+  }
+ }
+}
+
+Results in results/parameter_search

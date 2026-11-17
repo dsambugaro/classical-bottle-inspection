@@ -1,0 +1,51 @@
+.venv/bin/python -m bottle_inspection --data ../archive --models svm knn random_forest  --output results 
+== Loading dataset
+                     train  val
+bottle_no_defect       479  121
+bottle_other_brand      81   19
+defect_low_fill        209   41
+defect_no_cap          122   28
+defect_loose_cap       119   31
+defect_debris          111   39
+defect_label_damage     79   21
+== Feature cache is outdated; extracting again
+== Building the background model (training images only)
+== Detecting the bottles and extracting the features of the ROIs and of the bottle
+   200/1500
+   400/1500
+   600/1500
+   800/1500
+   1000/1500
+   1200/1500
+   1400/1500
+== Learning the automatic regions (training bottles only)
+   bands inside the bottle box: 0.000-0.125, 0.125-0.917, 0.917-1.000
+1200 train / 300 validation images
+== Training SVM on rois_hog (2592 values per image)
+Best parameters: {'svm__C': 0.01, 'svm__kernel': 'linear'} (CV F1-macro=0.9990)
+                     precision    recall  f1-score   support
+   bottle_no_defect     1.0000    1.0000    1.0000       121
+ bottle_other_brand     1.0000    1.0000    1.0000        19
+    defect_low_fill     1.0000    1.0000    1.0000        41
+      defect_no_cap     1.0000    1.0000    1.0000        28
+   defect_loose_cap     1.0000    1.0000    1.0000        31
+      defect_debris     1.0000    1.0000    1.0000        39
+defect_label_damage     1.0000    1.0000    1.0000        21
+           accuracy                         1.0000       300
+          macro avg     1.0000    1.0000    1.0000       300
+       weighted avg     1.0000    1.0000    1.0000       300
+== Training KNN on rois_hog (2592 values per image)
+Best parameters: {'knn__n_neighbors': 1, 'knn__weights': 'uniform'} (CV F1-macro=0.9946)
+                     precision    recall  f1-score   support
+   bottle_no_defect     1.0000    0.9917    0.9959       121
+ bottle_other_brand     1.0000    1.0000    1.0000        19
+    defect_low_fill     0.9762    1.0000    0.9880        41
+      defect_no_cap     1.0000    1.0000    1.0000        28
+   defect_loose_cap     1.0000    1.0000    1.0000        31
+      defect_debris     1.0000    1.0000    1.0000        39
+defect_label_damage     1.0000    1.0000    1.0000        21
+           accuracy                         0.9967       300
+          macro avg     0.9966    0.9988    0.9977       300
+       weighted avg     0.9967    0.9967    0.9967       300
+== Training Random Forest on rois_hog (2592 values per image)
+... (349 lines truncated)

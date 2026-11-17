@@ -1,0 +1,92 @@
+== Loading the training images
+   close_size = 1: IoU 0.841
+   close_size = 5: IoU 0.899
+   close_size = 9: IoU 0.925
+   close_size = 15: IoU 0.936
+   close_size = 21: IoU 0.933
+   close_size = 31: IoU 0.923
+   open_size = 1: IoU 0.934
+   open_size = 3: IoU 0.936
+   open_size = 5: IoU 0.936
+   open_size = 9: IoU 0.935
+   open_size = 13: IoU 0.933
+   profile_smoothing = 1: IoU 0.935
+   profile_smoothing = 5: IoU 0.937
+   profile_smoothing = 11: IoU 0.937
+   profile_smoothing = 21: IoU 0.936
+   profile_smoothing = 31: IoU 0.936
+   profile_smoothing = 41: IoU 0.935
+   profile_smoothing = 51: IoU 0.936
+   column_fraction = 0.2: IoU 0.911
+   column_fraction = 0.3: IoU 0.928
+   column_fraction = 0.4: IoU 0.936
+   column_fraction = 0.5: IoU 0.932
+   column_fraction = 0.6: IoU 0.909
+   bottle_width = 0.13: IoU 0.874
+   bottle_width = 0.135: IoU 0.903
+   bottle_width = 0.14: IoU 0.925
+   bottle_width = 0.145: IoU 0.936
+   bottle_width = 0.15: IoU 0.929
+   bottle_width = 0.155: IoU 0.910
+   bottle_width = 0.16: IoU 0.887
+   top_fraction = 0.1: IoU 0.937
+   top_fraction = 0.2: IoU 0.936
+   top_fraction = 0.25: IoU 0.936
+   top_fraction = 0.3: IoU 0.936
+   top_fraction = 0.35: IoU 0.936
+   top_fraction = 0.4: IoU 0.936
+   top_fraction = 0.45: IoU 0.936
+   top_fraction = 0.5: IoU 0.934
+   row_fraction = 0.3: IoU 0.933
+   row_fraction = 0.4: IoU 0.935
+   row_fraction = 0.5: IoU 0.936
+   row_fraction = 0.6: IoU 0.936
+   row_fraction = 0.7: IoU 0.934
+   row_fraction = 0.8: IoU 0.929
+        parameter  value  is_reference  mean_iou  p5_iou  min_iou  mean_center_error_px  p95_center_error_px  mean_left_inset_px  mean_right_inset_px  mean_top_inset_px  mean_bottom_inset_px  max_top_inset_px  top_cut_over_15px  top_past_over_15px  bottom_past_over_15px
+       close_size  1.000         False     0.841   0.654    0.329                13.950               36.771              -7.046                7.339              3.546                 8.847            184.41                 21                  48                      0
+       close_size  5.000         False     0.899   0.714    0.389                 7.894               27.039              -4.526                4.819              2.431                 4.792            157.70                 17                  58                      7
+       close_size  9.000         False     0.925   0.798    0.595                 5.453               19.768              -2.769                3.062              1.482                 1.621             91.59                  9                  58                     13
+       close_size 15.000          True     0.936   0.847    0.637                 4.003               14.421              -1.474                1.768              1.089                -1.748             13.10                  0                  58                    100
+       close_size 21.000         False     0.933   0.836    0.626                 4.062               14.959              -1.109                1.403              1.039                -4.729             11.59                  0                  58                    183
+       close_size 31.000         False     0.923   0.796    0.522                 4.901               19.985              -1.129                1.423              1.046                -6.836             11.10                  0                  58                    244
+        open_size  1.000         False     0.934   0.844    0.637                 3.913               14.501              -1.284                1.578              1.062                -3.371             11.10                  0                  58                    153
+        open_size  3.000         False     0.936   0.844    0.637                 3.920               14.272              -1.303                1.596              1.071                -2.529             11.59                  0                  58                    126
+        open_size  5.000          True     0.936   0.847    0.637                 4.003               14.421              -1.474                1.768              1.089                -1.748             13.10                  0                  58                    100
+        open_size  9.000         False     0.935   0.838    0.637                 4.223               15.530              -1.766                2.059              1.141                -1.156             15.70                  1                  58                     74
+        open_size 13.000         False     0.933   0.835    0.629                 4.470               15.820              -2.002                2.295              1.282                -1.009             33.24                  6                  58                     66
+profile_smoothing  1.000         False     0.935   0.841    0.597                 4.116               15.420              -1.359                1.652              1.021                -2.244             13.10                  0                  58                    101
+profile_smoothing  5.000         False     0.937   0.845    0.597                 3.919               14.676              -1.311                1.604              1.014                -2.208             13.10                  0                  58                    100
+profile_smoothing 11.000         False     0.937   0.851    0.597                 3.851               14.102              -1.426                1.719              1.017                -2.208             13.10                  0                  58                    102
+profile_smoothing 21.000         False     0.936   0.850    0.637                 3.977               14.155              -1.429                1.723              1.046                -1.996             13.10                  0                  58                    101
+profile_smoothing 31.000          True     0.936   0.847    0.637                 4.003               14.421              -1.474                1.768              1.089                -1.748             13.10                  0                  58                    100
+profile_smoothing 41.000         False     0.935   0.845    0.588                 4.056               14.797              -1.504                1.797              1.126                -1.513             13.10                  0                  58                     99
+profile_smoothing 51.000         False     0.936   0.842    0.609                 4.019               15.030              -1.453                1.746              1.174                -1.249             13.10                  0                  58                     94
+  column_fraction  0.200         False     0.911   0.734    0.531                 6.695               27.345              -1.759                2.052              1.444                -0.328             27.82                  3                  58                     81
+  column_fraction  0.300         False     0.928   0.790    0.574                 4.884               20.477              -1.393                1.686              1.267                -0.913             13.10                  0                  58                     88
+  column_fraction  0.400          True     0.936   0.847    0.637                 4.003               14.421              -1.474                1.768              1.089                -1.748             13.10                  0                  58                    100
+  column_fraction  0.500         False     0.932   0.844    0.622                 4.498               14.069              -2.164                2.457              0.949                -2.831             11.59                  0                  58                    118
+  column_fraction  0.600         False     0.909   0.746    0.635                 7.048               25.785              -3.968                4.261              0.796                -3.798             11.59                  0                  58                    136
+     bottle_width  0.130         False     0.874   0.814    0.620                 4.003               14.421               8.126               11.368              1.089                -1.748             13.10                  0                  58                    100
+     bottle_width  0.135         False     0.903   0.837    0.626                 4.003               14.421               4.926                8.168              1.089                -1.748             13.10                  0                  58                    100
+     bottle_width  0.140         False     0.925   0.845    0.631                 4.003               14.421               1.726                4.968              1.089                -1.748             13.10                  0                  58                    100
+     bottle_width  0.145          True     0.936   0.847    0.637                 4.003               14.421              -1.474                1.768              1.089                -1.748             13.10                  0                  58                    100
+     bottle_width  0.150         False     0.929   0.847    0.642                 4.003               14.421              -4.674               -1.432              1.089                -1.748             13.10                  0                  58                    100
+     bottle_width  0.155         False     0.910   0.836    0.647                 4.003               14.421              -7.874               -4.632              1.089                -1.748             13.10                  0                  58                    100
+     bottle_width  0.160         False     0.887   0.822    0.652                 4.003               14.421             -11.074               -7.832              1.089                -1.748             13.10                  0                  58                    100
+     top_fraction  0.100         False     0.937   0.848    0.637                 4.003               14.421              -1.474                1.768              0.109                -1.748              8.76                  0                  59                    100
+     top_fraction  0.200         False     0.936   0.847    0.637                 4.003               14.421              -1.474                1.768              0.462                -1.748             11.10                  0                  59                    100
+     top_fraction  0.250         False     0.936   0.847    0.637                 4.003               14.421              -1.474                1.768              0.779                -1.748             11.10                  0                  58                    100
+     top_fraction  0.300          True     0.936   0.847    0.637                 4.003               14.421              -1.474                1.768              1.089                -1.748             13.10                  0                  58                    100
+     top_fraction  0.350         False     0.936   0.847    0.637                 4.003               14.421              -1.474                1.768              1.544                -1.748             27.82                  1                  56                    100
+     top_fraction  0.400         False     0.936   0.847    0.635                 4.003               14.421              -1.474                1.768              2.709                -1.748             31.82                  3                   9                    100
+     top_fraction  0.450         False     0.936   0.842    0.635                 4.003               14.421              -1.474                1.768              3.609                -1.748             82.25                 12                   0                    100
+     top_fraction  0.500         False     0.934   0.842    0.635                 4.003               14.421              -1.474                1.768              4.666                -1.748            128.63                 18                   0                    100
+     row_fraction  0.300         False     0.933   0.842    0.635                 4.003               14.421              -1.474                1.768              1.089                -6.469             13.10                  0                  58                    216
+     row_fraction  0.400         False     0.935   0.847    0.637                 4.003               14.421              -1.474                1.768              1.089                -4.109             13.10                  0                  58                    142
+     row_fraction  0.500          True     0.936   0.847    0.637                 4.003               14.421              -1.474                1.768              1.089                -1.748             13.10                  0                  58                    100
+     row_fraction  0.600         False     0.936   0.847    0.639                 4.003               14.421              -1.474                1.768              1.089                 0.821             13.10                  0                  58                     60
+     row_fraction  0.700         False     0.934   0.844    0.639                 4.003               14.421              -1.474                1.768              1.089                 4.061             13.10                  0                  58                     26
+     row_fraction  0.800         False     0.929   0.839    0.636                 4.003               14.421              -1.474                1.768              1.089                 8.127             13.10                  0                  58                     13
+
+Results in results/parameter_search

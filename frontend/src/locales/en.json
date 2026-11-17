@@ -1,0 +1,1263 @@
+{
+  "app": {
+    "name": "Bottle inspection"
+  },
+  "nav": {
+    "inspect": "Inspect",
+    "profiles": "Profiles",
+    "reports": "Reports",
+    "integrations": "Integrations",
+    "system": "System",
+    "debug": "Debug"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "more": "More actions",
+    "on": "On",
+    "off": "Off",
+    "close": "Close"
+  },
+  "classes": {
+    "bottle_no_defect": "Good bottle",
+    "bottle_other_brand": "Bottle of another brand",
+    "defect_low_fill": "Liquid level too low",
+    "defect_no_cap": "Cap missing",
+    "defect_loose_cap": "Cap loose or raised",
+    "defect_debris": "Debris in the liquid",
+    "defect_label_damage": "Damaged label"
+  },
+  "verdict": {
+    "pass": "PASS",
+    "reject": "REJECT",
+    "review": "REVIEW"
+  },
+  "profileStatus": {
+    "ready": "Ready",
+    "modified": "Modified parameters",
+    "model_missing": "Model missing",
+    "incompatible": "Incompatible",
+    "reason": {
+      "ready": "Ready",
+      "modified": "Parameters differ from training",
+      "model_missing": "Its trained model was not found",
+      "incompatible": "Its trained model changed; re-link it in Profiles"
+    }
+  },
+  "profile": {
+    "reason": {
+      "model_missing": "The trained model of this profile was not found. Check the model folders in System or run make run.",
+      "model_error": "The trained model of this profile could not be loaded. Run make run to train it again.",
+      "incompatible": "The trained model was trained with other locked parameters. Re-link to copy its parameters."
+    }
+  },
+  "shell": {
+    "navigation": "Main navigation",
+    "language": "Language",
+    "notifications": "Notifications, {count} unread",
+    "notificationsTitle": "Notifications",
+    "markAllRead": "Mark all as read",
+    "noNotifications": "No notifications yet.",
+    "activeSessions": "{count, plural, one {# camera session} other {# camera sessions}}",
+    "queueBacklog": "{count} actions waiting",
+    "brokenProfiles": "{count, plural, one {# profile can't analyse} other {# profiles can't analyse}}"
+  },
+  "empty": {
+    "noModelsTitle": "No trained models found",
+    "noModelsBody1": "Run",
+    "noModelsBody2": "in code/ to train and validate them, then click Refresh.",
+    "refresh": "Refresh models",
+    "dropTitle": "Drop bottle images here",
+    "dropBody": "Or try images from the dataset's validation split.",
+    "connectCamera": "Connect a camera",
+    "cameraHint": "Server cameras are set up in"
+  },
+  "inspect": {
+    "sourceLabel": "Source",
+    "source": {
+      "upload": "Upload",
+      "dataset": "Dataset",
+      "browser": "Browser camera"
+    },
+    "profiles": "Profiles",
+    "addProfile": "Add profile",
+    "removeProfile": "Remove {name}",
+    "profileChip": "{name}, position {position}. Drag or press Alt and an arrow key to reorder.",
+    "maxProfiles": "Up to {max} profiles. Each one is analysed and shown separately.",
+    "selectProfileFirst": "Select at least one profile first.",
+    "chooseFiles": "Choose images",
+    "uploadHint": "JPEG, PNG, BMP or WebP, up to {mb} MB each and {n} per batch.",
+    "filterClass": "Class",
+    "allClasses": "All classes",
+    "randomSample": "Random sample",
+    "trySample": "Try dataset samples",
+    "browseDataset": "Browse",
+    "datasetCount": "{count, plural, one {# image} other {# images}} in the validation split",
+    "rerun": "Analyse again",
+    "batchStarted": "Analysing {total} images. Results appear as they finish.",
+    "batchDone": "Finished {total} images.",
+    "overlays": "Overlays",
+    "overlay": {
+      "rois": "Regions",
+      "bottle": "Bottle",
+      "patch": "Reference patch",
+      "mask": "Foreground mask"
+    },
+    "compareNormalized": "Compare raw | normalized",
+    "syncView": "Sync zoom and pan",
+    "comparison": "Comparison of the selected profiles",
+    "col": {
+      "profile": "Profile",
+      "verdict": "Verdict",
+      "class": "Class",
+      "confidence": "Confidence",
+      "total": "Total",
+      "params": "Parameters"
+    },
+    "paramsModified": "Modified",
+    "paramsTraining": "Training",
+    "noCombined": "Each profile is evaluated on its own. There is no combined verdict.",
+    "history": "History",
+    "historyItem": "{name}: {verdicts}",
+    "sessionCounters": "Counters of this session",
+    "shortcuts": "Keyboard shortcuts"
+  },
+  "shortcuts": {
+    "run": "Analyse or capture",
+    "history": "Previous or next in history",
+    "overlays": "Toggle all overlays",
+    "focus": "Focus the result of profile n",
+    "fit": "Fit image",
+    "stop": "Stop the session",
+    "sheet": "Show this sheet"
+  },
+  "viewer": {
+    "label": "Image with overlays",
+    "noImage": "No image",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "fit": "Fit",
+    "actualSize": "Actual size (1:1)",
+    "raw": "Raw",
+    "normalized": "Normalized",
+    "patch": "patch",
+    "dragEdge": "Drag to move the {roi} edge"
+  },
+  "result": {
+    "confidence": "Confidence",
+    "confidenceHelp": "How confidence is computed",
+    "scores": "Scores of the 7 classes",
+    "timings": "Timings",
+    "timingBreakdown": "Time of each step",
+    "lowerIsBetter": "Lower is better: the closest class wins.",
+    "svmVotes": "Votes of the 21 pairwise SVMs:",
+    "nearest": "Nearest training images (k = {k})",
+    "matchesTruth": "Matches the ground truth",
+    "expected": "Expected",
+    "modifiedHelp": "This profile uses parameters that differ from training. Its accuracy was validated only with the training values."
+  },
+  "confidence": {
+    "svm": "SVM: (score of the winner − score of the runner-up) ÷ max(1, |score of the winner|), clipped to 0–1.",
+    "knn": "KNN: 1 − distance of the winner ÷ distance of the runner-up (closest training image of each class).",
+    "random_forest": "Random Forest: the largest averaged tree probability.",
+    "generic": "Confidence of the winning class, from the model's decision values.",
+    "notComparable": "Confidences are not comparable across algorithms."
+  },
+  "scoreKind": {
+    "svm_ovr_score": "One-vs-rest score: votes plus confidence (largest wins).",
+    "knn_class_distance": "Distance to the closest training image of each class.",
+    "rf_probability": "Probability averaged over the trees (largest wins).",
+    "probability": "Class probability (largest wins).",
+    "decision": "Decision value (largest wins).",
+    "one_hot": "The model gives no per-class score."
+  },
+  "steps": {
+    "decode": "Decode",
+    "normalize": "Normalize lighting",
+    "foreground_mask": "Foreground mask",
+    "localize": "Locate bottle",
+    "crop_regions": "Crop regions",
+    "cap_hog": "Cap HOG",
+    "cap_lbp": "Cap LBP",
+    "cap_color": "Cap colour",
+    "label_hog": "Label HOG",
+    "label_lbp": "Label LBP",
+    "label_color": "Label colour",
+    "body_hog": "Body HOG",
+    "body_lbp": "Body LBP",
+    "body_color": "Body colour",
+    "auto_1_hog": "Auto 1 HOG",
+    "auto_1_lbp": "Auto 1 LBP",
+    "auto_1_color": "Auto 1 Colour",
+    "auto_2_hog": "Auto 2 HOG",
+    "auto_2_lbp": "Auto 2 LBP",
+    "auto_2_color": "Auto 2 Colour",
+    "auto_3_hog": "Auto 3 HOG",
+    "auto_3_lbp": "Auto 3 LBP",
+    "auto_3_color": "Auto 3 Colour",
+    "bottle_hog": "Bottle HOG",
+    "bottle_lbp": "Bottle LBP",
+    "bottle_color": "Bottle colour",
+    "predict": "Predict"
+  },
+  "warnings": {
+    "low_foreground": "Bottle possibly absent",
+    "resolution_mismatch": "Resolution differs from the background",
+    "modified_parameters": "Modified parameters, not validated",
+    "low_confidence": "Low confidence"
+  },
+  "groups": {
+    "localization": "Localization",
+    "normalization": "Photometric normalization",
+    "bottle": "Bottle crop",
+    "rois": "Regions of interest",
+    "auto_rois": "Automatic regions",
+    "hog": "HOG",
+    "lbp": "LBP",
+    "color": "Colour",
+    "features": "Feature groups",
+    "verdict": "Verdict"
+  },
+  "units": {
+    "px": "px",
+    "bins": "bins",
+    "cells": "cells",
+    "points": "points"
+  },
+  "params": {
+    "lockedShort": "Locked",
+    "definedByTraining": "Defined by training",
+    "lockedHelp": "Defined by training. Change it in config.py and run make run.",
+    "allLocked": "Defined by training",
+    "training": "training",
+    "resetField": "Reset to the training value",
+    "resetFieldNamed": "Reset {name} to the training value",
+    "help": "About {name}",
+    "start": "start",
+    "end": "end",
+    "enable": "Use {name}",
+    "off": "Off",
+    "option": {
+      "reject": "Reject",
+      "review": "Review"
+    },
+    "localization": {
+      "size": {
+        "label": "Localization size",
+        "help": "Resolution used to locate the bottle. It must match the stored background. The foreground threshold is found per image (Otsu's method)."
+      },
+      "close_size": {
+        "label": "Closing size",
+        "help": "Diameter of the morphological closing of the foreground mask. The bottle is transparent, so its mask has holes; closing joins them."
+      },
+      "open_size": {
+        "label": "Opening size",
+        "help": "Diameter of the morphological opening applied after the closing. It removes thin lines and specks."
+      },
+      "profile_smoothing": {
+        "label": "Profile smoothing",
+        "help": "Width of the moving average applied to the column profile of the mask before finding the bottle columns."
+      },
+      "column_fraction": {
+        "label": "Column fraction",
+        "help": "The bottle is searched in the columns around the peak of the column profile that stay above this fraction of the peak; its centre is the middle of that run."
+      },
+      "bottle_width": {
+        "label": "Bottle width",
+        "help": "Width of the bottle box, as a fraction of the image width, centred on the bottle found in the column profile."
+      },
+      "top_fraction": {
+        "label": "Top fraction",
+        "help": "Inside those columns, the top of the bottle is the first row that reaches this fraction of the densest row."
+      },
+      "row_fraction": {
+        "label": "Bottom fraction",
+        "help": "Inside those columns, the bottom of the bottle is the last row that reaches this fraction of the densest row."
+      }
+    },
+    "normalization": {
+      "enabled": {
+        "label": "Normalize lighting",
+        "help": "Rescale each channel so the reference patch matches the background."
+      },
+      "reference_patch": {
+        "label": "Reference patch",
+        "help": "Wall region never covered by a bottle. Drag it on the preview."
+      }
+    },
+    "bottle": {
+      "crop_size": {
+        "label": "Bottle resize",
+        "help": "Size the detected bottle box is resized to before HOG and LBP. The automatic regions are slices of it."
+      }
+    },
+    "rois": {
+      "cap": {
+        "label": "Cap band",
+        "help": "Vertical band of the cap ROI inside the detected bottle box (0% = top of the bottle, 100% = bottom). Drag its edges on the preview."
+      },
+      "label": {
+        "label": "Label band",
+        "help": "Vertical band of the label ROI inside the detected bottle box (0% = top of the bottle, 100% = bottom). Drag its edges on the preview."
+      },
+      "body": {
+        "label": "Body band",
+        "help": "Vertical band of the body ROI inside the detected bottle box (0% = top of the bottle, 100% = bottom). Drag its edges on the preview."
+      },
+      "cap_size": {
+        "label": "Cap resize",
+        "help": "Size the cap ROI is resized to before HOG."
+      },
+      "label_size": {
+        "label": "Label resize",
+        "help": "Size the label ROI is resized to before HOG."
+      },
+      "body_size": {
+        "label": "Body resize",
+        "help": "Size the body ROI is resized to before HOG."
+      }
+    },
+    "auto_rois": {
+      "bands": {
+        "label": "Learned bands",
+        "help": "Vertical bands of the three automatic regions inside the bottle box, learned from the training images. They are never edited: they come from training, like the background."
+      }
+    },
+    "hog": {
+      "orientations": {
+        "label": "Orientations",
+        "help": "Gradient orientation bins of HOG (0–180°)."
+      },
+      "cell_cap": {
+        "label": "Cap cell",
+        "help": "HOG cell size of the cap ROI."
+      },
+      "cell_label": {
+        "label": "Label cell",
+        "help": "HOG cell size of the label ROI."
+      },
+      "cell_body": {
+        "label": "Body cell",
+        "help": "HOG cell size of the body ROI."
+      },
+      "cell_auto": {
+        "label": "Automatic regions cell",
+        "help": "HOG cell size shared by the three automatic regions."
+      },
+      "cell_bottle": {
+        "label": "Bottle cell",
+        "help": "HOG cell size of the whole bottle."
+      },
+      "block": {
+        "label": "Block",
+        "help": "HOG block size, in cells."
+      }
+    },
+    "lbp": {
+      "points": {
+        "label": "LBP points",
+        "help": "Neighbors compared with each pixel by the LBP operator."
+      },
+      "radius": {
+        "label": "LBP radius",
+        "help": "Radius, in pixels, of the circle of LBP neighbors."
+      },
+      "cell_cap": {
+        "label": "Cap cell",
+        "help": "LBP cell size of the cap ROI."
+      },
+      "cell_label": {
+        "label": "Label cell",
+        "help": "LBP cell size of the label ROI."
+      },
+      "cell_body": {
+        "label": "Body cell",
+        "help": "LBP cell size of the body ROI."
+      },
+      "cell_auto": {
+        "label": "Automatic regions cell",
+        "help": "LBP cell size shared by the three automatic regions."
+      },
+      "cell_bottle": {
+        "label": "Bottle cell",
+        "help": "LBP cell size of the whole bottle."
+      }
+    },
+    "color": {
+      "hsv_bins": {
+        "label": "HSV histogram bins",
+        "help": "Histogram bins of the H, S and V channels."
+      }
+    },
+    "features": {
+      "groups": {
+        "label": "Feature groups",
+        "help": "Feature groups concatenated into the vector used by the model (one descriptor per model)."
+      }
+    },
+    "verdict": {
+      "reject_classes": {
+        "label": "Classes that reject",
+        "help": "A prediction of any of these classes gives REJECT."
+      },
+      "min_confidence": {
+        "label": "Minimum confidence",
+        "help": "Below this confidence the verdict becomes the low-confidence verdict."
+      },
+      "low_confidence_verdict": {
+        "label": "Low-confidence verdict",
+        "help": "Verdict used when the confidence is below the minimum. REVIEW is shown in amber."
+      }
+    }
+  },
+  "profiles": {
+    "new": "New",
+    "import": "Import",
+    "refreshModels": "Refresh models",
+    "refreshed": "{count, plural, =0 {Models refreshed.} one {Models refreshed. # profile created.} other {Models refreshed. # profiles created.}}",
+    "search": "Search profiles",
+    "builtin": "Built-in",
+    "tab": {
+      "overview": "Overview",
+      "parameters": "Parameters",
+      "model": "Model",
+      "history": "History"
+    },
+    "name": "Name",
+    "description": "Description",
+    "color": "Colour",
+    "trainedModel": "Trained model",
+    "modelHint": "The model fixes the algorithm and the locked parameters. Models are trained by make run.",
+    "modelUpdated": "Model updated on {date}.",
+    "background": "Background",
+    "bg": {
+      "model": "From the trained model",
+      "captured": "Captured from a camera",
+      "uploaded": "Uploaded image"
+    },
+    "uploadBackground": "Upload background",
+    "viewBackground": "View background",
+    "backgroundSaved": "Background saved.",
+    "backgroundHint": "Use an image of the empty scene. Another background makes the profile modified; the validated accuracy applies only to the training setup.",
+    "duplicate": "Duplicate",
+    "duplicated": "Profile duplicated.",
+    "export": "Export",
+    "delete": "Delete profile",
+    "deleted": "Profile deleted. Its analyses stay in the reports.",
+    "deleteConfirm": "Delete \"{name}\"? Its analyses stay in the reports.",
+    "builtinNoDelete": "Built-in profiles can't be deleted",
+    "relink": "Re-link to this model's parameters",
+    "relinked": "Profile re-linked to the model's parameters.",
+    "searchParams": "Search parameters",
+    "onlyChanged": "Only changed",
+    "resetAll": "Reset all to training",
+    "resetGroup": "Reset group",
+    "changedCount": "{count} changed",
+    "compareWith": "Compare with…",
+    "compareTitle": "Compare {name}",
+    "compareVersion": "Version {version} of this profile",
+    "compareHint": "Struck-through values are the other side; green values are this profile.",
+    "unsaved": "{count, plural, one {# unsaved change} other {# unsaved changes}}",
+    "fixErrors": "{count, plural, one {Fix # invalid value to save.} other {Fix # invalid values to save.}}",
+    "discard": "Discard",
+    "save": "Save",
+    "saved": "Saved as version {version}.",
+    "leaveConfirm": "You have unsaved changes. Leave and discard them?",
+    "newTitle": "New profile",
+    "newBody": "Choose a trained model. The parameters start from its training values.",
+    "create": "Create profile",
+    "created": "Profile \"{name}\" created.",
+    "importTitle": "Import profile",
+    "importBody": "Paste or choose an exported profile JSON. Check the preview before applying.",
+    "importFile": "Profile JSON file",
+    "importJson": "Profile JSON",
+    "importPreview": "Preview",
+    "importApply": "Import",
+    "importDiff": "{count, plural, =0 {Same values as training.} one {# value differs from training:} other {# values differ from training:}}",
+    "imported": "Profile \"{name}\" imported.",
+    "preview": "Preview",
+    "sampleImage": "Sample image",
+    "randomSample": "Random sample image",
+    "uploadSample": "Upload a sample image",
+    "dragHint": "Drag the ROI edges and the reference patch, or type the values.",
+    "maskOverlay": "Mask",
+    "mask": {
+      "none": "No mask",
+      "foreground": "Foreground mask"
+    },
+    "differFromTraining": "{count, plural, one {# value differs from training (not validated).} other {# values differ from training (not validated).}}",
+    "classifyDryRun": "Classify this image",
+    "dryRunNote": "A dry run with the unsaved values. Nothing is stored.",
+    "groundTruth": "ground truth",
+    "captureCamera": "Camera",
+    "captureBackground": "Capture background",
+    "captureHint": "Empty the scene first. The median of the configured number of frames is used."
+  },
+  "model": {
+    "notFound": "Trained model not found.",
+    "trainedByCli": "Models are trained and validated by",
+    "notHere": "This app only uses them; it never trains.",
+    "versionWarning": "This model was saved with other library versions. Retrain it with make run.",
+    "algorithm": "Algorithm",
+    "accuracy": "Accuracy",
+    "f1Macro": "Macro F1",
+    "cvScore": "CV F1 (macro)",
+    "trainedAt": "Trained",
+    "featureLength": "Feature length",
+    "extractTime": "Extraction per image",
+    "predictTime": "Prediction per image",
+    "bestParams": "Best hyperparameters",
+    "perClass": "Validation per class",
+    "class": "Class",
+    "precision": "Precision",
+    "recall": "Recall",
+    "support": "Images",
+    "confusion": "Confusion matrix",
+    "confusionCaption": "Validation split, rows are the true class and columns the predicted class (class ids 0–6).",
+    "trueLabel": "true",
+    "predictedLabel": "predicted",
+    "trainingParams": "Training parameters",
+    "libraries": "Library versions",
+    "noLibraries": "Not recorded.",
+    "featureVector": "Feature vector"
+  },
+  "history": {
+    "current": "Current",
+    "restore": "Restore this version",
+    "restored": "Version {version} restored as a new version.",
+    "created": "Profile created.",
+    "noChanges": "No parameter changes."
+  },
+  "system": {
+    "saved": "Settings saved.",
+    "models": "Trained models",
+    "modelsBody": "Models trained by make run are read from these folders, relative to code/: <folder>/<feature vector>/<algorithm>/model.joblib.",
+    "modelsRefreshed": "Models refreshed.",
+    "modelFolders": "Model folders",
+    "modelFoldersHint": "One folder per line.",
+    "modelRef": "Model",
+    "status": "Status",
+    "modelStatus": {
+      "ok": "Ready",
+      "missing": "Missing",
+      "error": "Can't load"
+    },
+    "retrain": "retrain with make run",
+    "noTraining": "Training and validation happen only in the command line (make run).",
+    "storage": "Storage",
+    "storageBody": "Camera images are stored according to the policy. Analyses are kept even after their images are deleted.",
+    "storagePolicy": "Camera image policy",
+    "storagePolicyHint": "Uploads and dataset samples are always stored.",
+    "policy": {
+      "all": "Keep all images",
+      "rejects_only": "Keep rejects and reviews only",
+      "none": "Keep no images"
+    },
+    "retention": "Keep images for",
+    "days": "days",
+    "imageFiles": "Image files",
+    "inspections": "Inspections",
+    "analyses": "Analyses",
+    "database": "Database",
+    "dataDir": "Data folder",
+    "deleteImages": "Delete all images",
+    "deleteImagesTitle": "Delete all images?",
+    "deleteImagesBody": "{count, plural, one {# file} other {# files}} ({size}) will be deleted. Analyses and reports are kept; only the pictures disappear.",
+    "imagesDeleted": "{count, plural, one {# file deleted} other {# files deleted}}, {size} freed.",
+    "deleteAnalyses": "Delete all analyses",
+    "deleteAnalysesTitle": "Delete all analyses?",
+    "deleteAnalysesBody": "{count, plural, one {# analysis} other {# analyses}} and their inspections will be deleted. Reports will be empty. This can't be undone.",
+    "typeDelete": "Type DELETE to confirm",
+    "analysesDeleted": "{count, plural, one {# analysis deleted.} other {# analyses deleted.}}",
+    "dataset": "Dataset",
+    "datasetBody": "Used for dataset samples, with the original Kaggle train/val split.",
+    "datasetPath": "Dataset path",
+    "check": "Check",
+    "datasetFound": "Found at {path}",
+    "datasetMissing": "Not found",
+    "defaults": "Defaults and limits",
+    "setting": {
+      "max_profiles": "Profiles at once",
+      "default_fps": "Default camera fps",
+      "min_fps": "Minimum fps",
+      "max_fps": "Maximum fps",
+      "max_upload_mb": "Upload limit (MB)",
+      "max_batch_files": "Files per batch",
+      "background_capture_frames": "Background capture frames",
+      "motion_threshold": "Motion trigger threshold"
+    },
+    "about": "About",
+    "apiDocs": "API documentation",
+    "exportSettings": "Export settings",
+    "importSettings": "Import settings"
+  },
+  "notifications": {
+    "action": {
+      "disabled_410": "An action was disabled: its target answered 410 Gone",
+      "failed": "An action failed",
+      "dropped": "Action queue full; an action was dropped"
+    },
+    "camera": {
+      "error": "Camera error"
+    },
+    "rule": {
+      "fired": "Rule fired: {rule}"
+    }
+  },
+  "errors": {
+    "unexpected": "Something went wrong. Check the server log in webdata/logs.",
+    "param": {
+      "required": "Required",
+      "invalid_type": "Invalid value",
+      "below_min": "Must be at least {min}",
+      "above_max": "Must be at most {max}",
+      "invalid_option": "Not an allowed option",
+      "duplicate_option": "Repeated option",
+      "invalid_length": "Wrong number of values",
+      "range_order": "Start must be below end",
+      "rect_order": "x0 must be below x1 and y0 below y1",
+      "unknown": "Unknown parameter",
+      "locked": "Defined by training",
+      "hog_block_fit": "HOG block does not fit the ROI"
+    },
+    "profile": {
+      "not_found": "Profile not found.",
+      "model_not_found": "That trained model was not found. Run make run or check the model folders.",
+      "name_taken": "A profile with this name already exists.",
+      "invalid_color": "Choose one of the preset colours.",
+      "invalid_params": "Some parameters are invalid.",
+      "builtin": "Built-in profiles can't be deleted.",
+      "background_missing": "Capture or upload a background first.",
+      "model_missing": "The trained model of this profile is missing.",
+      "incompatible": "This profile is incompatible with its trained model. Re-link it in Profiles.",
+      "import_format": "This file is not an exported profile.",
+      "version_not_found": "Version not found."
+    },
+    "inspection": {
+      "no_profiles": "Select at least one profile.",
+      "too_many_profiles": "Too many profiles selected (at most {max}).",
+      "no_images": "Choose at least one image.",
+      "not_found": "Inspection not found.",
+      "failed": "The analysis failed."
+    },
+    "upload": {
+      "unsupported_type": "Unsupported file type. Use JPEG, PNG, BMP or WebP.",
+      "too_large": "The file is larger than {max_mb} MB.",
+      "not_an_image": "The file is not a valid image.",
+      "too_many_files": "Too many files (at most {max})."
+    },
+    "dataset": {
+      "not_found": "Dataset not found. Set its path in System.",
+      "invalid_split": "Invalid split.",
+      "sample_not_found": "Dataset image not found."
+    },
+    "image": {
+      "not_found": "Image not found (it may have been deleted).",
+      "source_required": "Choose an image."
+    },
+    "analysis": {
+      "not_found": "Analysis not found."
+    },
+    "session": {
+      "not_found": "Session not found.",
+      "not_running": "The session is not running."
+    },
+    "notification": {
+      "not_found": "Notification not found."
+    },
+    "storage": {
+      "confirm_required": "Confirmation required."
+    },
+    "model": {
+      "not_found": "Trained model not found.",
+      "figure_not_found": "Figure not found."
+    },
+    "request": {
+      "invalid": "Invalid request.",
+      "invalid_json": "Invalid JSON."
+    },
+    "http": {
+      "not_found": "Not found.",
+      "method_not_allowed": "Not allowed.",
+      "error": "Request failed."
+    },
+    "server": {
+      "error": "Server error. Check the server log in webdata/logs."
+    },
+    "settings": {
+      "unknown": "Unknown setting.",
+      "invalid_option": "Not an allowed option.",
+      "invalid_type": "Invalid value.",
+      "fps_order": "Minimum fps ≤ default fps ≤ maximum fps."
+    },
+    "filters": {
+      "invalid_date": "Invalid date.",
+      "invalid_profile": "Invalid profile filter."
+    },
+    "camera": {
+      "unavailable": "Cameras are not available.",
+      "not_found": "Camera not found.",
+      "open_failed": "The camera could not be opened.",
+      "timeout": "The camera did not answer.",
+      "no_frames": "The camera stopped sending frames.",
+      "session_failed": "The camera session failed.",
+      "required": "Choose a camera.",
+      "busy": "This camera already has a running session.",
+      "index_required": "A USB camera needs a device index.",
+      "url_required": "Enter a URL that starts with rtsp:// or http://.",
+      "name_taken": "A camera with this name already exists."
+    },
+    "rule": {
+      "not_found": "Rule not found.",
+      "unknown_condition": "Unknown condition.",
+      "invalid_condition": "Invalid condition parameters.",
+      "unknown_action": "Unknown action.",
+      "invalid_action": "Invalid action parameters.",
+      "target_required": "Choose a target of the right type for this action.",
+      "invalid_scope": "Invalid profile scope."
+    },
+    "target": {
+      "not_found": "Target not found.",
+      "name_taken": "A target with this name already exists.",
+      "invalid_config": "Invalid target settings.",
+      "secret_in_config": "Secrets must be sent as secrets.",
+      "invalid_secret": "Unknown secret field."
+    },
+    "debug": {
+      "session_not_found": "The debug session ended. Choose the image again."
+    }
+  },
+  "camera": {
+    "title": "Cameras",
+    "body": "Cameras attached to the server (USB or RTSP/HTTP streams). The browser camera needs no setup.",
+    "add": "Add camera",
+    "addTitle": "Add camera",
+    "editTitle": "Edit camera",
+    "none": "No server cameras yet.",
+    "name": "Name",
+    "kind": "Type",
+    "kinds": {
+      "usb": "USB (device index)"
+    },
+    "deviceIndex": "Device index",
+    "urlHint": "Starts with {kind}://",
+    "width": "Width",
+    "height": "Height",
+    "fpsCap": "Max fps",
+    "test": "Test",
+    "testOk": "Snapshot received ({width}×{height}).",
+    "snapshot": "Snapshot of {name}",
+    "edit": "Edit {name}",
+    "delete": "Delete {name}",
+    "deleteConfirm": "Delete the camera \"{name}\"?",
+    "saved": "Camera saved.",
+    "inSession": "In a session",
+    "wslHint": "On WSL2, attach USB cameras with usbipd first.",
+    "device": "Camera",
+    "mode": "Mode",
+    "modes": {
+      "single": "Single",
+      "continuous": "Continuous",
+      "motion": "Motion"
+    },
+    "modeHelp": {
+      "single": "Press Space or Capture to analyse one frame.",
+      "continuous": "Analyses frames at the chosen rate.",
+      "motion": "Analyses when a bottle arrives in front of the camera."
+    },
+    "fps": "Frames per second",
+    "start": "Start",
+    "stop": "Stop",
+    "capture": "Capture",
+    "running": "{count, plural, one {# frame analysed} other {# frames analysed}}",
+    "livePreview": "Live camera",
+    "errors": {
+      "denied": "Camera permission denied. Allow camera access in the browser and try again.",
+      "notFound": "No camera found. Connect a camera and try again.",
+      "busy": "The camera is in use by another application. Close it and try again.",
+      "noAnswer": "Waiting for camera permission. Answer the browser prompt to continue.",
+      "unknown": "The camera could not be started."
+    }
+  },
+  "reports": {
+    "filters": "Report filters",
+    "range": "Date range",
+    "start": "From",
+    "end": "To",
+    "all": "all",
+    "noOptions": "Nothing to filter yet.",
+    "preset": {
+      "last_hour": "Last hour",
+      "today": "Today",
+      "7d": "Last 7 days",
+      "30d": "Last 30 days",
+      "all": "All time",
+      "custom": "Custom range"
+    },
+    "profiles": "Profiles",
+    "versions": "Versions",
+    "source": "Source",
+    "camera": "Camera",
+    "session": "Session",
+    "allSessions": "All sessions",
+    "sources": {
+      "upload": "Upload",
+      "dataset": "Dataset sample",
+      "browser_camera": "Browser camera",
+      "server_camera": "Server camera"
+    },
+    "verdict": "Verdict",
+    "class": "Class",
+    "clear": "Clear filters",
+    "exportCsv": "Export CSV",
+    "kpis": "Key figures",
+    "noChange": "no change",
+    "vsPrevious": "compared with the previous period",
+    "kpi": {
+      "inspected": "Bottles inspected",
+      "analyses": "{count, plural, one {# analysis} other {# analyses}}",
+      "pass": "Pass",
+      "reject": "Reject",
+      "review": "Review",
+      "fpy": "First-pass yield",
+      "time": "Mean analysis time",
+      "throughput": "Throughput",
+      "perMinute": "bottles per minute",
+      "rules": "Rules fired"
+    },
+    "emptyTitle": "No analyses in this period",
+    "emptyBody": "Inspect images or start a camera session, or choose a longer date range.",
+    "noData": "No analyses in this period.",
+    "exportPng": "Download as PNG",
+    "exportPngNamed": "Download {name} as PNG",
+    "viewTable": "View as table",
+    "viewChart": "View as chart",
+    "viewTableNamed": "Show {name} as a table",
+    "goodVsDefective": "Good vs defective over time",
+    "bucket": {
+      "minute": "Per minute",
+      "hour": "Per hour",
+      "day": "Per day"
+    },
+    "defective": "Defective",
+    "pareto": "Defect Pareto",
+    "paretoHint": "{count, plural, one {# reject} other {# rejects}}; bars are each class's share, the line is cumulative. Click a bar to filter.",
+    "rejects": "Rejects",
+    "share": "Share",
+    "shareOfRejects": "Share of rejects",
+    "cumulative": "Cumulative",
+    "count": "Count",
+    "time": "Time",
+    "classDistribution": "Class distribution",
+    "clickToFilter": "Click a bar to filter by its class.",
+    "rejectsByClass": "Rejects by class over time",
+    "profilesTable": "Profiles × classes",
+    "profile": "Profile",
+    "total": "Total",
+    "agreement": "Agreement between profiles (same inspections)",
+    "pair": "Profiles",
+    "sharedInspections": "Shared inspections",
+    "verdictAgreement": "Same verdict",
+    "classAgreement": "Same class",
+    "confidence": "Confidence per profile",
+    "minConfidence": "minimum",
+    "bin": "Confidence",
+    "timings": "Mean time of each step",
+    "step": "Step",
+    "totalTime": "Total",
+    "groundTruth": "Accuracy on dataset samples",
+    "groundTruthHint": "Only analyses of dataset images, which have a ground-truth label.",
+    "samples": "{count, plural, one {# image} other {# images}}",
+    "analyses": "Analyses",
+    "analysesCount": "{count, plural, one {# analysis} other {# analyses}}",
+    "col": {
+      "image": "Image",
+      "created_at": "Time",
+      "profile_id": "Profile",
+      "predicted_class": "Class",
+      "verdict": "Verdict",
+      "confidence": "Confidence",
+      "total_ms": "Time"
+    },
+    "previous": "Previous",
+    "next": "Next",
+    "analysisDetail": "Analysis",
+    "imageDeleted": "The image of this analysis was deleted; the result is kept."
+  },
+  "historyView": {
+    "title": "Inspection history",
+    "view": "View",
+    "viewTable": "Table",
+    "viewCards": "Cards",
+    "loaded": "{count, plural, one {# bottle loaded} other {# bottles loaded}}",
+    "truth": "Ground truth",
+    "onlyWrong": "Only wrong",
+    "onlyWrongHint": "Ground truth known and different from the predicted class.",
+    "disagree": "Profiles disagree",
+    "disagreeHint": "The profiles of the bottle did not all predict the same class.",
+    "search": "File name",
+    "emptyTitle": "No bottles match these filters",
+    "emptyBody": "Clear a filter, choose a longer date range or inspect more images.",
+    "error": "The history could not be loaded.",
+    "retry": "Try again",
+    "end": "End of the history."
+  },
+  "integrations": {
+    "tab": {
+      "rules": "Rules",
+      "targets": "Targets",
+      "log": "Log"
+    },
+    "newRule": "New rule",
+    "editRule": "Edit rule",
+    "editRuleNamed": "Edit {name}",
+    "deleteRuleNamed": "Delete {name}",
+    "deleteRuleConfirm": "Delete the rule \"{name}\"? Its log entries are kept.",
+    "enableRule": "Enable {name}",
+    "noRules": "No rules yet. A rule runs actions, such as an e-mail or a webhook, when its conditions are met.",
+    "ruleSaved": "Rule saved.",
+    "name": "Name",
+    "description": "Description",
+    "severityLabel": "Severity",
+    "severity": {
+      "info": "Info",
+      "warning": "Warning",
+      "critical": "Critical"
+    },
+    "when": "When",
+    "not": "not",
+    "noConditions": "(no conditions)",
+    "noActions": "(no actions)",
+    "anyDefect": "any defect",
+    "whenTitle": "When",
+    "trigger": "After each analysis (every image × profile is evaluated on its own).",
+    "allProfiles": "All profiles",
+    "ifTitle": "If",
+    "logicLabel": "Combine conditions",
+    "logic": {
+      "all": "All conditions are met",
+      "any": "Any condition is met",
+      "allJoin": "and",
+      "anyJoin": "or"
+    },
+    "conditionType": "Condition",
+    "negate": "Not (negate)",
+    "removeCondition": "Remove condition",
+    "addCondition": "Add condition",
+    "cond": {
+      "class_is": "Class is",
+      "verdict_is": "Verdict is",
+      "any_defect": "Any defect (reject)",
+      "repeated_class": "Defect repeated in the last bottles",
+      "consecutive_rejects": "Consecutive rejects",
+      "confidence_below": "Confidence below",
+      "processing_time_above": "Processing time above",
+      "reject_rate_above": "Reject rate above",
+      "warning_present": "Warning present",
+      "summary": {
+        "class_is": "the class is {classes}",
+        "verdict_is": "the verdict is {verdict}",
+        "any_defect": "a bottle is rejected",
+        "repeated_class": "{class} appears {n} times in the last {m} bottles",
+        "consecutive_rejects": "{n} bottles in a row are rejected",
+        "confidence_below": "confidence is below {value}",
+        "processing_time_above": "an analysis takes more than {ms} ms",
+        "reject_rate_above": "the reject rate is above {percent}% in {window_minutes} min",
+        "warning_present": "a warning ({codes}) appears"
+      }
+    },
+    "condHelp": {
+      "class_is": "Matches when the predicted class is one of the chosen classes.",
+      "verdict_is": "Matches the verdict of the profile.",
+      "any_defect": "Matches every REJECT.",
+      "repeated_class": "Counts the class in the last m analyses of the same profile (the command-line alert uses 4 in 10).",
+      "consecutive_rejects": "The last n analyses of the profile are all REJECT.",
+      "confidence_below": "Confidence is defined per algorithm and not comparable across them.",
+      "processing_time_above": "Total analysis time in milliseconds.",
+      "reject_rate_above": "Needs at least the minimum samples. After firing it re-arms only when the rate falls back below the threshold.",
+      "warning_present": "Matches when the analysis has one of the chosen warnings."
+    },
+    "param": {
+      "class": "Class",
+      "verdict": "Verdict",
+      "n": "n",
+      "m": "in the last",
+      "value": "Value",
+      "ms": "ms",
+      "percent": "%",
+      "window_minutes": "window (min)",
+      "min_samples": "min. samples",
+      "title": "Title",
+      "message": "Message",
+      "level": "Level",
+      "sound": "Sound",
+      "to": "To (comma-separated)",
+      "subject": "Subject",
+      "body": "Body",
+      "html": "HTML body (optional)",
+      "attach_image": "Attach the image",
+      "method": "Method",
+      "path": "Path",
+      "headers": "Headers (JSON)",
+      "topic": "Topic",
+      "payload": "Payload",
+      "qos": "QoS",
+      "retain": "Retain",
+      "fields": "Fields (comma-separated)"
+    },
+    "thenTitle": "Then",
+    "actionType": "Action",
+    "target": "Target",
+    "actionEnabled": "Enabled",
+    "removeAction": "Remove action",
+    "addAction": "Add action",
+    "createTargetFirst": "Create a {type} target first.",
+    "insertVariable": "Insert variable",
+    "preview": "Preview",
+    "previewSource": {
+      "analysis": "Rendered with the last analysis.",
+      "sample": "Rendered with a sample payload."
+    },
+    "headersHint": "JSON object, e.g. {\"X-Line\": \"1\"}.",
+    "action": {
+      "notify_ui": "Notify in the app",
+      "play_sound": "Play a sound",
+      "email": "E-mail",
+      "webhook": "Webhook",
+      "mqtt_publish": "MQTT",
+      "write_file": "Write to file"
+    },
+    "sound": {
+      "chime": "Chime",
+      "alarm": "Alarm",
+      "beep": "Beep"
+    },
+    "cooldown": "Cooldown (s)",
+    "cooldownHint": "The rule does not fire again for the same key within this time.",
+    "dedupe": "Deduplicate by",
+    "dedupeKey": {
+      "rule": "Rule",
+      "rule+class": "Rule and class",
+      "rule+profile": "Rule and profile"
+    },
+    "runMode": "If it fires while running",
+    "mode": {
+      "single": "Ignore the new firing",
+      "queued": "Queue it",
+      "parallel": "Run in parallel"
+    },
+    "dryRun": "Dry run on the last 100 analyses",
+    "dryResult": "Would fire {fired} times over {evaluated} analyses ({suppressed} suppressed by the cooldown).",
+    "sendTest": "Send test",
+    "lastFired": "Last fired {date}",
+    "neverFired": "Never fired",
+    "fired24h": "{count} in 24 h",
+    "newTarget": "New target",
+    "editTarget": "Edit target",
+    "editTargetNamed": "Edit {name}",
+    "deleteTargetNamed": "Delete {name}",
+    "deleteTargetConfirm": "Delete the target \"{name}\"? Actions that use it stop working.",
+    "noTargets": "No targets yet. A target is where actions send messages: an SMTP server, a webhook URL, an MQTT broker or a file.",
+    "targetSaved": "Target saved.",
+    "targetTypeLabel": "Type",
+    "targetType": {
+      "smtp": "SMTP (e-mail)",
+      "webhook": "Webhook",
+      "mqtt": "MQTT broker",
+      "file": "File"
+    },
+    "secretsNote": "Passwords and signing secrets are stored in webdata/secrets.toml, never in the database, and are never shown again.",
+    "secretStored": "A value is stored. Type a new one to replace it.",
+    "cfg": {
+      "host": "Host",
+      "port": "Port",
+      "security": "Security",
+      "username": "User name",
+      "from_address": "From address",
+      "timeout_s": "Timeout (s)",
+      "password": "Password",
+      "base_url": "Base URL",
+      "method": "Default method",
+      "headers": "Default headers (JSON)",
+      "allow_private_ips": "Allow private addresses",
+      "signing_secret": "Signing secret (whsec_…)",
+      "tls": "TLS",
+      "ca_file": "CA file",
+      "client_id": "Client id",
+      "qos": "Default QoS",
+      "retain": "Retain",
+      "directory": "Directory (relative to webdata)",
+      "format": "Format",
+      "rotation": "Rotation",
+      "size_mb": "Size limit (MB)"
+    },
+    "test": "Test",
+    "testRecipient": "Send the test e-mail to:",
+    "testOk": "Test message sent.",
+    "testFailed": "Test failed: {detail}",
+    "lastTestOk": "Last test passed",
+    "lastTestFailed": "Last test failed",
+    "notTested": "Not tested yet",
+    "rule": "Rule",
+    "allRules": "All rules",
+    "allTargets": "All targets",
+    "statusLabel": "Status",
+    "allStatuses": "All statuses",
+    "status": {
+      "success": "Sent",
+      "failed": "Failed",
+      "queued": "Queued",
+      "running": "Running",
+      "skipped_cooldown": "Suppressed (cooldown)",
+      "dropped_queue_full": "Dropped (queue full)"
+    },
+    "logCount": "{count, plural, one {# entry} other {# entries}}",
+    "noLog": "No action has run yet.",
+    "col": {
+      "time": "Time",
+      "action": "Action",
+      "attempts": "Attempts",
+      "duration": "Duration"
+    },
+    "details": "Show details",
+    "payload": "Sent",
+    "response": "Response",
+    "testRun": "test"
+  },
+  "alerts": {
+    "critical": "Critical rule fired: {rule}"
+  },
+  "keys": {
+    "space": "Space"
+  },
+  "debug": {
+    "chooseImage": "Choose image",
+    "enlarge": "Enlarge image",
+    "groundTruth": "Ground truth",
+    "preprocessing": "Preprocessing",
+    "baseProfile": "with the parameters and background of",
+    "baseProfileHelp": "The steps below do not depend on the classifier. Profiles trained in the same run share these parameters and this background, so the result is the same for all of them; a profile that differs is flagged in its panel.",
+    "empty": {
+      "title": "Choose an image to debug",
+      "body": "Upload a file, drop it here or pick a dataset sample. Every step is shown, from the background difference to the bottle box and the regions; then select the profiles to compare. Choosing another image starts over."
+    },
+    "adjust": {
+      "help": "Temporary adjustments: they apply to the steps below and to every selected profile, only on this screen. No profile is changed.",
+      "reset": "Reset"
+    },
+    "original": {
+      "title": "Original image",
+      "summary": "The photo is a matrix of numbers: rows × columns × 3 channels (blue, green, red), each from 0 to 255.",
+      "patch": "4×4 pixels at (x={x}, y={y})"
+    },
+    "background": {
+      "title": "Background model",
+      "summary": "The empty scene: per-pixel median of 200 training images. It is saved inside the trained model.",
+      "caption": "Background used for the subtraction"
+    },
+    "normalization": {
+      "title": "Lighting normalization",
+      "summary": "The wall patch is measured in the image and in the background; each channel is multiplied by the gain that makes them equal.",
+      "disabled": "Disabled for this profile: the image goes on unchanged.",
+      "before": "Before, with the reference patch",
+      "after": "After: each channel × gain",
+      "patch": "reference patch",
+      "channel": "Channel",
+      "background": "Background",
+      "image": "This image",
+      "gain": "Gain",
+      "patchAfter": "The same 4×4 pixels after the gain"
+    },
+    "difference": {
+      "title": "Difference to the background",
+      "summary": "|image − background| added over B, G and R for each pixel; Otsu's method chooses the threshold of this image.",
+      "small": "Normalized image reduced to {size}",
+      "heatmap": "|image − background| (B+G+R)",
+      "max": "maximum {max}, shown up to {clip}",
+      "histogram": "Histogram of the differences (log scale)",
+      "otsuLine": "red line: Otsu threshold = {value}",
+      "otsu": "Otsu threshold",
+      "floor": "Noise floor",
+      "used": "Threshold used"
+    },
+    "mask": {
+      "title": "Foreground mask",
+      "summary": "Pixels above the threshold; the closing joins the holes of the transparent bottle and the opening removes thin lines.",
+      "raw": "1) difference > {threshold}",
+      "closed": "2) closing ({size} px)",
+      "opened": "3) opening ({size} px): final mask",
+      "fraction": "{percent} white"
+    },
+    "locate": {
+      "title": "Bottle box",
+      "summary": "Columns: white pixels per column (smoothed); the box spans the run around the peak that stays above the fraction. Rows: inside those columns, from the first to the last row above the fraction of the densest row.",
+      "empty": "The mask is empty: the box is the whole image.",
+      "plot": "Mask with the column profile above, the row profile beside it and the measured box",
+      "columns": "white pixels per column (gray: before smoothing)",
+      "rows": "white pixels per row",
+      "ofPeak": "{percent}% of the peak",
+      "ofMax": "{percent}% of the maximum",
+      "topBottom": "top {top}% · bottom {bottom}% of the maximum",
+      "box": "Detected box on the image",
+      "xRange": "Columns of the bottle in the mask ({size})",
+      "centre": "Centre and box in x",
+      "yRange": "y in the mask ({size})",
+      "relative": "Box (relative x0 y0 x1 y1)",
+      "pixels": "Box in the image ({width}×{height})",
+      "boxSize": "Box size"
+    },
+    "regions": {
+      "title": "Regions",
+      "summary": "Bands of the detected box (0 = top, 1 = bottom). Each crop is later resized to its fixed size.",
+      "adhoc": "Box (dashed) and the 3 ad hoc ROIs",
+      "auto": "Box (dashed) and the automatic regions learned in training",
+      "noAuto": "This profile has no automatic regions."
+    },
+    "profiles": {
+      "title": "Results per profile",
+      "help": "Add, remove or swap profiles at any time: the image stays loaded and each profile is computed once."
+    },
+    "compare": {
+      "vector": "Vector · classifier",
+      "length": "Values",
+      "failed": "Could not be computed"
+    },
+    "profile": {
+      "differentPreprocessing": "This profile uses another preprocessing (parameters or background) than the steps shown above.",
+      "showItsPreprocessing": "Show the steps of this profile",
+      "vector": "Feature vector",
+      "vectorHelp": "{n} values, in the order the classifier receives them; the colours mark the {groups, plural, one {# group} other {# groups}}.",
+      "scaled": "Standardized vector",
+      "scaledHelp": "After the model's StandardScaler (what the classifier compares): 0 is the training mean.",
+      "scaledStats": "mean |z| {mean} · max |z| {max} · {outliers} beyond {z}",
+      "groups": "Feature groups"
+    },
+    "group": {
+      "crop": "Region crop",
+      "canonical": "Fixed size, gray",
+      "gradient": "Gradient strength",
+      "hogRendering": "HOG: edge directions per cell",
+      "lbpCodes": "LBP code of each pixel, with the cells",
+      "lbpHistogram": "Share of each of the {n} LBP codes in the region",
+      "hue": "H (hue)",
+      "saturation": "S (saturation)",
+      "value": "V (brightness)",
+      "cell": "Cell",
+      "cells": "Cells",
+      "blocks": "Blocks",
+      "length": "Values",
+      "vector": "{name}: {n} values",
+      "bins": {
+        "h": "H: {n} bins",
+        "s": "S: {n} bins",
+        "v": "V: {n} bins"
+      }
+    },
+    "vector": {
+      "show": "Show the {n} values",
+      "hide": "Hide the values",
+      "copy": "Copy",
+      "copied": "Copied"
+    }
+  }
+}

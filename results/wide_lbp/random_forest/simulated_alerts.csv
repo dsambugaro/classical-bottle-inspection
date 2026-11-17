@@ -1,0 +1,7 @@
+position,image,defect,occurrences_in_window
+4,damaged_label_0024_20260210_151234.jpg,defect_label_damage,4
+24,debris_0013_20260210_150156.jpg,defect_debris,4
+184,loose_cap_0026_20260210_152132.jpg,defect_loose_cap,4
+215,no_cap_0014_20260210_145119.jpg,defect_no_cap,4
+243,underfilled_0010_20260210_143800.jpg,defect_low_fill,4
+284,wrong_bottle_0019_20260210_153108.jpg,bottle_other_brand,4

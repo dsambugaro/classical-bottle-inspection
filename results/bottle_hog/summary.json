@@ -1,0 +1,377 @@
+{
+  "feature_vector": "bottle_hog",
+  "feature_groups": {
+    "bottle_hog": 2760
+  },
+  "dataset": {
+    "train_images": 1200,
+    "validation_images": 300,
+    "distribution": {
+      "train": {
+        "bottle_no_defect": 479,
+        "bottle_other_brand": 81,
+        "defect_low_fill": 209,
+        "defect_no_cap": 122,
+        "defect_loose_cap": 119,
+        "defect_debris": 111,
+        "defect_label_damage": 79
+      },
+      "val": {
+        "bottle_no_defect": 121,
+        "bottle_other_brand": 19,
+        "defect_low_fill": 41,
+        "defect_no_cap": 28,
+        "defect_loose_cap": 31,
+        "defect_debris": 39,
+        "defect_label_damage": 21
+      }
+    },
+    "train_val_identical_images": 0
+  },
+  "photometric_normalization": true,
+  "n_features": 2760,
+  "extract_ms_per_image": 26.708891788487865,
+  "models": {
+    "svm": {
+      "display_name": "SVM",
+      "best_params": {
+        "svm__C": 0.01,
+        "svm__kernel": "linear"
+      },
+      "cv_f1_macro": 1.0,
+      "n_support_vectors": 683,
+      "validation": {
+        "accuracy": 1.0,
+        "f1_macro": 1.0,
+        "f1_per_class": {
+          "bottle_no_defect": 1.0,
+          "bottle_other_brand": 1.0,
+          "defect_low_fill": 1.0,
+          "defect_no_cap": 1.0,
+          "defect_loose_cap": 1.0,
+          "defect_debris": 1.0,
+          "defect_label_damage": 1.0
+        }
+      },
+      "inspection_criteria": [
+        {
+          "criterion": "fill_level",
+          "actual_rejects": 41,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_passes": 0,
+          "false_rejects": 0
+        },
+        {
+          "criterion": "cap",
+          "actual_rejects": 59,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_passes": 0,
+          "false_rejects": 0
+        },
+        {
+          "criterion": "label",
+          "actual_rejects": 21,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_passes": 0,
+          "false_rejects": 0
+        },
+        {
+          "criterion": "contamination",
+          "actual_rejects": 39,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_passes": 0,
+          "false_rejects": 0
+        },
+        {
+          "criterion": "brand",
+          "actual_rejects": 19,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_passes": 0,
+          "false_rejects": 0
+        },
+        {
+          "criterion": "pass_vs_reject",
+          "actual_rejects": 179,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_passes": 0,
+          "false_rejects": 0
+        }
+      ],
+      "train_seconds": 60.910851658001775,
+      "predict_ms_per_image": 0.2665236900308325,
+      "feature_importance_by_group": {}
+    },
+    "knn": {
+      "display_name": "KNN",
+      "best_params": {
+        "knn__n_neighbors": 1,
+        "knn__weights": "uniform"
+      },
+      "cv_f1_macro": 0.9847005292170319,
+      "validation": {
+        "accuracy": 0.9966666666666667,
+        "f1_macro": 0.9968147079258189,
+        "f1_per_class": {
+          "bottle_no_defect": 0.9958847736625515,
+          "bottle_other_brand": 1.0,
+          "defect_low_fill": 1.0,
+          "defect_no_cap": 0.9818181818181818,
+          "defect_loose_cap": 1.0,
+          "defect_debris": 1.0,
+          "defect_label_damage": 1.0
+        }
+      },
+      "inspection_criteria": [
+        {
+          "criterion": "fill_level",
+          "actual_rejects": 41,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_passes": 0,
+          "false_rejects": 0
+        },
+        {
+          "criterion": "cap",
+          "actual_rejects": 59,
+          "accuracy": 0.9966666666666667,
+          "precision": 1.0,
+          "recall": 0.9830508474576272,
+          "f1": 0.9914529914529915,
+          "false_passes": 1,
+          "false_rejects": 0
+        },
+        {
+          "criterion": "label",
+          "actual_rejects": 21,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_passes": 0,
+          "false_rejects": 0
+        },
+        {
+          "criterion": "contamination",
+          "actual_rejects": 39,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_passes": 0,
+          "false_rejects": 0
+        },
+        {
+          "criterion": "brand",
+          "actual_rejects": 19,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_passes": 0,
+          "false_rejects": 0
+        },
+        {
+          "criterion": "pass_vs_reject",
+          "actual_rejects": 179,
+          "accuracy": 0.9966666666666667,
+          "precision": 1.0,
+          "recall": 0.994413407821229,
+          "f1": 0.9971988795518207,
+          "false_passes": 1,
+          "false_rejects": 0
+        }
+      ],
+      "train_seconds": 2.0122239799966337,
+      "predict_ms_per_image": 0.07279729334792744,
+      "feature_importance_by_group": {}
+    },
+    "random_forest": {
+      "display_name": "Random Forest",
+      "best_params": {
+        "forest__max_depth": null,
+        "forest__max_features": "sqrt",
+        "forest__n_estimators": 300
+      },
+      "cv_f1_macro": 0.9939843279995408,
+      "n_trees": 300,
+      "mean_tree_depth": 12.133333333333333,
+      "validation": {
+        "accuracy": 1.0,
+        "f1_macro": 1.0,
+        "f1_per_class": {
+          "bottle_no_defect": 1.0,
+          "bottle_other_brand": 1.0,
+          "defect_low_fill": 1.0,
+          "defect_no_cap": 1.0,
+          "defect_loose_cap": 1.0,
+          "defect_debris": 1.0,
+          "defect_label_damage": 1.0
+        }
+      },
+      "inspection_criteria": [
+        {
+          "criterion": "fill_level",
+          "actual_rejects": 41,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_passes": 0,
+          "false_rejects": 0
+        },
+        {
+          "criterion": "cap",
+          "actual_rejects": 59,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_passes": 0,
+          "false_rejects": 0
+        },
+        {
+          "criterion": "label",
+          "actual_rejects": 21,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_passes": 0,
+          "false_rejects": 0
+        },
+        {
+          "criterion": "contamination",
+          "actual_rejects": 39,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_passes": 0,
+          "false_rejects": 0
+        },
+        {
+          "criterion": "brand",
+          "actual_rejects": 19,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_passes": 0,
+          "false_rejects": 0
+        },
+        {
+          "criterion": "pass_vs_reject",
+          "actual_rejects": 179,
+          "accuracy": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "false_passes": 0,
+          "false_rejects": 0
+        }
+      ],
+      "train_seconds": 45.4817131650052,
+      "predict_ms_per_image": 0.06741987332740489,
+      "feature_importance_by_group": {
+        "bottle_hog": 1.0
+      }
+    }
+  },
+  "comparison": [
+    {
+      "feature": "bottle_hog",
+      "descriptor": "hog",
+      "scope": "bottle",
+      "model": "svm",
+      "display_name": "SVM",
+      "n_features": 2760,
+      "accuracy": 1.0,
+      "f1_macro": 1.0,
+      "pass_vs_reject_accuracy": 1.0,
+      "n_errors": 0,
+      "cv_f1_macro": 1.0,
+      "f1_bottle_no_defect": 1.0,
+      "f1_bottle_other_brand": 1.0,
+      "f1_defect_low_fill": 1.0,
+      "f1_defect_no_cap": 1.0,
+      "f1_defect_loose_cap": 1.0,
+      "f1_defect_debris": 1.0,
+      "f1_defect_label_damage": 1.0,
+      "train_seconds": 60.910851658001775,
+      "extract_ms_per_image": 26.708891788487865,
+      "predict_ms_per_image": 0.2665236900308325,
+      "bottles_per_second": 37.0707913950882,
+      "best_params": "{\"svm__C\": 0.01, \"svm__kernel\": \"linear\"}"
+    },
+    {
+      "feature": "bottle_hog",
+      "descriptor": "hog",
+      "scope": "bottle",
+      "model": "knn",
+      "display_name": "KNN",
+      "n_features": 2760,
+      "accuracy": 0.9966666666666667,
+      "f1_macro": 0.9968147079258189,
+      "pass_vs_reject_accuracy": 0.9966666666666667,
+      "n_errors": 1,
+      "cv_f1_macro": 0.9847005292170319,
+      "f1_bottle_no_defect": 0.9958847736625515,
+      "f1_bottle_other_brand": 1.0,
+      "f1_defect_low_fill": 1.0,
+      "f1_defect_no_cap": 0.9818181818181818,
+      "f1_defect_loose_cap": 1.0,
+      "f1_defect_debris": 1.0,
+      "f1_defect_label_damage": 1.0,
+      "train_seconds": 2.0122239799966337,
+      "extract_ms_per_image": 26.708891788487865,
+      "predict_ms_per_image": 0.07279729334792744,
+      "bottles_per_second": 37.338944416251636,
+      "best_params": "{\"knn__n_neighbors\": 1, \"knn__weights\": \"uniform\"}"
+    },
+    {
+      "feature": "bottle_hog",
+      "descriptor": "hog",
+      "scope": "bottle",
+      "model": "random_forest",
+      "display_name": "Random Forest",
+      "n_features": 2760,
+      "accuracy": 1.0,
+      "f1_macro": 1.0,
+      "pass_vs_reject_accuracy": 1.0,
+      "n_errors": 0,
+      "cv_f1_macro": 0.9939843279995408,
+      "f1_bottle_no_defect": 1.0,
+      "f1_bottle_other_brand": 1.0,
+      "f1_defect_low_fill": 1.0,
+      "f1_defect_no_cap": 1.0,
+      "f1_defect_loose_cap": 1.0,
+      "f1_defect_debris": 1.0,
+      "f1_defect_label_damage": 1.0,
+      "train_seconds": 45.4817131650052,
+      "extract_ms_per_image": 26.708891788487865,
+      "predict_ms_per_image": 0.06741987332740489,
+      "bottles_per_second": 37.34644310351615,
+      "best_params": "{\"forest__max_depth\": null, \"forest__max_features\": \"sqrt\", \"forest__n_estimators\": 300}"
+    }
+  ]
+}

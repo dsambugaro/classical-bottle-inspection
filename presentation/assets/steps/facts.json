@@ -1,0 +1,1707 @@
+{
+ "image": "loose_cap_0001_20260210_152014.jpg",
+ "true_class": "defect_loose_cap",
+ "image_shape": [
+  720,
+  1280,
+  3
+ ],
+ "pixel_example": [
+  189,
+  110,
+  59
+ ],
+ "patch_mean_background_bgr": [
+  80.1,
+  95.9,
+  88.2
+ ],
+ "patch_mean_image_bgr": [
+  79.1,
+  96.3,
+  89.0
+ ],
+ "gain_bgr": [
+  1.013,
+  0.996,
+  0.991
+ ],
+ "patch_pixels": [
+  1024,
+  14,
+  1241,
+  180
+ ],
+ "pixel_example_normalized": [
+  191,
+  109,
+  58
+ ],
+ "otsu_threshold": 60.0,
+ "mask_fraction_raw": 0.0274,
+ "mask_fraction": 0.058,
+ "box": [
+  0.4525,
+  0.0833,
+  0.5975,
+  0.875
+ ],
+ "box_px_640": [
+  289.6,
+  30,
+  382.4,
+  315
+ ],
+ "bottle_run_640": [
+  292,
+  377
+ ],
+ "bottle_centre_640": 336.0,
+ "box_px_1280": [
+  579,
+  60,
+  764,
+  630
+ ],
+ "region_shapes": {
+  "cap": [
+   68,
+   185,
+   3
+  ],
+  "label": [
+   183,
+   185,
+   3
+  ],
+  "body": [
+   502,
+   185,
+   3
+  ],
+  "auto_1": [
+   48,
+   96,
+   3
+  ],
+  "auto_2": [
+   304,
+   96,
+   3
+  ],
+  "auto_3": [
+   32,
+   96,
+   3
+  ],
+  "bottle": [
+   570,
+   185,
+   3
+  ],
+  "wide": [
+   684,
+   742,
+   3
+  ],
+  "image": [
+   720,
+   1280,
+   3
+  ]
+ },
+ "roi_bands": {
+  "cap": [
+   0.0,
+   0.12
+  ],
+  "label": [
+   0.2,
+   0.52
+  ],
+  "body": [
+   0.12,
+   1.0
+  ]
+ },
+ "auto_bands": {
+  "auto_1": [
+   0.0,
+   0.125
+  ],
+  "auto_2": [
+   0.125,
+   0.9167
+  ],
+  "auto_3": [
+   0.9167,
+   1.0
+  ]
+ },
+ "region_sizes": {
+  "cap": [
+   64,
+   48
+  ],
+  "label": [
+   64,
+   96
+  ],
+  "body": [
+   48,
+   192
+  ],
+  "auto_1": [
+   96,
+   48
+  ],
+  "auto_2": [
+   96,
+   304
+  ],
+  "auto_3": [
+   96,
+   32
+  ],
+  "bottle": [
+   96,
+   384
+  ],
+  "wide": [
+   256,
+   240
+  ],
+  "image": [
+   448,
+   256
+  ]
+ },
+ "hog_cell_hist": [
+  200.3,
+  111.7,
+  190.3,
+  131.4,
+  76.0,
+  76.3
+ ],
+ "hog": {
+  "cap": {
+   "cell": [
+    8,
+    8
+   ],
+   "cells": [
+    8,
+    6
+   ],
+   "blocks": [
+    7,
+    5
+   ],
+   "length": 840
+  },
+  "label": {
+   "cell": [
+    16,
+    16
+   ],
+   "cells": [
+    4,
+    6
+   ],
+   "blocks": [
+    3,
+    5
+   ],
+   "length": 360
+  },
+  "body": {
+   "cell": [
+    16,
+    16
+   ],
+   "cells": [
+    3,
+    12
+   ],
+   "blocks": [
+    2,
+    11
+   ],
+   "length": 528
+  },
+  "auto_1": {
+   "cell": [
+    16,
+    16
+   ],
+   "cells": [
+    6,
+    3
+   ],
+   "blocks": [
+    5,
+    2
+   ],
+   "length": 240
+  },
+  "auto_2": {
+   "cell": [
+    16,
+    16
+   ],
+   "cells": [
+    6,
+    19
+   ],
+   "blocks": [
+    5,
+    18
+   ],
+   "length": 2160
+  },
+  "auto_3": {
+   "cell": [
+    16,
+    16
+   ],
+   "cells": [
+    6,
+    2
+   ],
+   "blocks": [
+    5,
+    1
+   ],
+   "length": 120
+  },
+  "bottle": {
+   "cell": [
+    16,
+    16
+   ],
+   "cells": [
+    6,
+    24
+   ],
+   "blocks": [
+    5,
+    23
+   ],
+   "length": 2760
+  },
+  "wide": {
+   "cell": [
+    16,
+    16
+   ],
+   "cells": [
+    16,
+    15
+   ],
+   "blocks": [
+    15,
+    14
+   ],
+   "length": 5040
+  },
+  "image": {
+   "cell": [
+    16,
+    16
+   ],
+   "cells": [
+    28,
+    16
+   ],
+   "blocks": [
+    27,
+    15
+   ],
+   "length": 9720
+  }
+ },
+ "lbp_pixel": {
+  "row": 4,
+  "col": 13,
+  "center": 102,
+  "neighbors": [
+   135.0,
+   134.7,
+   118.2,
+   99.9,
+   97.5,
+   95.8,
+   94.0,
+   92.5,
+   93.0,
+   93.3,
+   93.8,
+   93.7,
+   96.0,
+   96.5,
+   96.0,
+   97.4,
+   95.3,
+   93.7,
+   96.0,
+   117.4,
+   124.4,
+   125.1,
+   127.0,
+   130.9
+  ],
+  "bits": [
+   1,
+   1,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   1,
+   1,
+   1,
+   1
+  ],
+  "transitions": 2,
+  "code": 8
+ },
+ "lbp": {
+  "cap": {
+   "cell": [
+    16,
+    16
+   ],
+   "cells": [
+    4,
+    3
+   ],
+   "length": 312
+  },
+  "label": {
+   "cell": [
+    16,
+    16
+   ],
+   "cells": [
+    4,
+    6
+   ],
+   "length": 624
+  },
+  "body": {
+   "cell": [
+    16,
+    16
+   ],
+   "cells": [
+    3,
+    12
+   ],
+   "length": 936
+  },
+  "auto_1": {
+   "cell": [
+    16,
+    16
+   ],
+   "cells": [
+    6,
+    3
+   ],
+   "length": 468
+  },
+  "auto_2": {
+   "cell": [
+    16,
+    16
+   ],
+   "cells": [
+    6,
+    19
+   ],
+   "length": 2964
+  },
+  "auto_3": {
+   "cell": [
+    16,
+    16
+   ],
+   "cells": [
+    6,
+    2
+   ],
+   "length": 312
+  },
+  "bottle": {
+   "cell": [
+    16,
+    16
+   ],
+   "cells": [
+    6,
+    24
+   ],
+   "length": 3744
+  },
+  "wide": {
+   "cell": [
+    16,
+    16
+   ],
+   "cells": [
+    16,
+    15
+   ],
+   "length": 6240
+  },
+  "image": {
+   "cell": [
+    16,
+    16
+   ],
+   "cells": [
+    28,
+    16
+   ],
+   "length": 11648
+  }
+ },
+ "lbp_cell_hist": [
+  0.07,
+  0.043,
+  0.02,
+  0.023,
+  0.023,
+  0.016,
+  0.004,
+  0.008,
+  0.027,
+  0.023,
+  0.016,
+  0.012,
+  0.02,
+  0.031,
+  0.008,
+  0.008,
+  0.004,
+  0.012,
+  0.004,
+  0.004,
+  0.004,
+  0.02,
+  0.012,
+  0.031,
+  0.047,
+  0.512
+ ],
+ "cap_hue_hist": [
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.025,
+  0.099,
+  0.191,
+  0.033,
+  0.012,
+  0.008,
+  0.007,
+  0.007,
+  0.006,
+  0.004,
+  0.009,
+  0.01,
+  0.022,
+  0.447,
+  0.12,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0,
+  0.0
+ ],
+ "groups_equal_cache": true,
+ "group_sizes": {
+  "cap_hog": 840,
+  "cap_lbp": 312,
+  "cap_color": 74,
+  "label_hog": 360,
+  "label_lbp": 624,
+  "label_color": 74,
+  "body_hog": 528,
+  "body_lbp": 936,
+  "body_color": 74,
+  "auto_1_hog": 240,
+  "auto_1_lbp": 468,
+  "auto_1_color": 74,
+  "auto_2_hog": 2160,
+  "auto_2_lbp": 2964,
+  "auto_2_color": 74,
+  "auto_3_hog": 120,
+  "auto_3_lbp": 312,
+  "auto_3_color": 74,
+  "bottle_hog": 2760,
+  "bottle_lbp": 3744,
+  "bottle_color": 74,
+  "wide_hog": 5040,
+  "wide_lbp": 6240,
+  "wide_color": 74,
+  "image_hog": 9720,
+  "image_lbp": 11648,
+  "image_color": 74
+ },
+ "vector_sizes": {
+  "rois_hog": 1728,
+  "auto_rois_hog": 2520,
+  "bottle_hog": 2760,
+  "wide_hog": 5040,
+  "image_hog": 9720,
+  "rois_lbp": 1872,
+  "auto_rois_lbp": 3744,
+  "bottle_lbp": 3744,
+  "wide_lbp": 6240,
+  "image_lbp": 11648,
+  "rois_color": 222,
+  "auto_rois_color": 222,
+  "bottle_color": 74,
+  "wide_color": 74,
+  "image_color": 74
+ },
+ "X_shapes": {
+  "rois_hog": [
+   1500,
+   1728
+  ],
+  "auto_rois_hog": [
+   1500,
+   2520
+  ],
+  "bottle_hog": [
+   1500,
+   2760
+  ],
+  "wide_hog": [
+   1500,
+   5040
+  ],
+  "image_hog": [
+   1500,
+   9720
+  ],
+  "rois_lbp": [
+   1500,
+   1872
+  ],
+  "auto_rois_lbp": [
+   1500,
+   3744
+  ],
+  "bottle_lbp": [
+   1500,
+   3744
+  ],
+  "wide_lbp": [
+   1500,
+   6240
+  ],
+  "image_lbp": [
+   1500,
+   11648
+  ],
+  "rois_color": [
+   1500,
+   222
+  ],
+  "auto_rois_color": [
+   1500,
+   222
+  ],
+  "bottle_color": [
+   1500,
+   74
+  ],
+  "wide_color": [
+   1500,
+   74
+  ],
+  "image_color": [
+   1500,
+   74
+  ]
+ },
+ "example_vector": "rois_hog",
+ "inputs": [
+  {
+   "feature": "cap_hog[0]",
+   "raw": 0.1472,
+   "mean": 0.2183,
+   "std": 0.0495,
+   "scaled": -1.44
+  },
+  {
+   "feature": "cap_hog[1]",
+   "raw": 0.1794,
+   "mean": 0.137,
+   "std": 0.0681,
+   "scaled": 0.62
+  },
+  {
+   "feature": "label_hog[0]",
+   "raw": 0.2547,
+   "mean": 0.2084,
+   "std": 0.0536,
+   "scaled": 0.86
+  },
+  {
+   "feature": "body_hog[0]",
+   "raw": 0.251,
+   "mean": 0.227,
+   "std": 0.0434,
+   "scaled": 0.55
+  },
+  {
+   "feature": "body_hog[527]",
+   "raw": 0.1038,
+   "mean": 0.1231,
+   "std": 0.0507,
+   "scaled": -0.38
+  }
+ ],
+ "svm_support_vectors": [
+  629,
+  1728
+ ],
+ "svm_gamma": 0.0005787037037037037,
+ "svm_kernel": "linear",
+ "svm_best": {
+  "C": 0.01
+ },
+ "knn": {
+  "k": 3,
+  "weights": "uniform",
+  "fit_shape": [
+   1200,
+   1728
+  ],
+  "nearest_distance": 34.74,
+  "nearest_class": "defect_loose_cap"
+ },
+ "rf": {
+  "trees": 300,
+  "max_features": "sqrt",
+  "proba_max": 0.84,
+  "proba_class": "defect_loose_cap"
+ },
+ "predictions": {
+  "rois_hog": {
+   "svm": "defect_loose_cap",
+   "knn": "defect_loose_cap",
+   "random_forest": "defect_loose_cap"
+  },
+  "auto_rois_hog": {
+   "svm": "defect_loose_cap",
+   "knn": "defect_loose_cap",
+   "random_forest": "defect_loose_cap"
+  },
+  "bottle_hog": {
+   "svm": "defect_loose_cap",
+   "knn": "defect_loose_cap",
+   "random_forest": "defect_loose_cap"
+  },
+  "wide_hog": {
+   "svm": "defect_loose_cap",
+   "knn": "defect_loose_cap",
+   "random_forest": "defect_loose_cap"
+  },
+  "image_hog": {
+   "svm": "defect_loose_cap",
+   "knn": "defect_loose_cap",
+   "random_forest": "defect_loose_cap"
+  },
+  "rois_lbp": {
+   "svm": "defect_loose_cap",
+   "knn": "defect_loose_cap",
+   "random_forest": "defect_loose_cap"
+  },
+  "auto_rois_lbp": {
+   "svm": "defect_loose_cap",
+   "knn": "defect_loose_cap",
+   "random_forest": "defect_loose_cap"
+  },
+  "bottle_lbp": {
+   "svm": "defect_loose_cap",
+   "knn": "defect_loose_cap",
+   "random_forest": "defect_loose_cap"
+  },
+  "wide_lbp": {
+   "svm": "defect_loose_cap",
+   "knn": "defect_loose_cap",
+   "random_forest": "defect_loose_cap"
+  },
+  "image_lbp": {
+   "svm": "defect_loose_cap",
+   "knn": "defect_loose_cap",
+   "random_forest": "defect_loose_cap"
+  },
+  "rois_color": {
+   "svm": "defect_loose_cap",
+   "knn": "defect_loose_cap",
+   "random_forest": "defect_loose_cap"
+  },
+  "auto_rois_color": {
+   "svm": "defect_loose_cap",
+   "knn": "defect_loose_cap",
+   "random_forest": "defect_loose_cap"
+  },
+  "bottle_color": {
+   "svm": "defect_loose_cap",
+   "knn": "defect_loose_cap",
+   "random_forest": "defect_loose_cap"
+  },
+  "wide_color": {
+   "svm": "defect_loose_cap",
+   "knn": "defect_loose_cap",
+   "random_forest": "defect_loose_cap"
+  },
+  "image_color": {
+   "svm": "defect_loose_cap",
+   "knn": "defect_loose_cap",
+   "random_forest": "defect_loose_cap"
+  }
+ },
+ "predictions_correct": 45,
+ "accuracy": {
+  "rois_hog": {
+   "svm": 1.0,
+   "knn": 0.9967,
+   "random_forest": 1.0
+  },
+  "auto_rois_hog": {
+   "svm": 1.0,
+   "knn": 0.9967,
+   "random_forest": 1.0
+  },
+  "bottle_hog": {
+   "svm": 1.0,
+   "knn": 0.9967,
+   "random_forest": 1.0
+  },
+  "wide_hog": {
+   "svm": 1.0,
+   "knn": 0.96,
+   "random_forest": 1.0
+  },
+  "image_hog": {
+   "svm": 0.9967,
+   "knn": 0.9867,
+   "random_forest": 0.9967
+  },
+  "rois_lbp": {
+   "svm": 1.0,
+   "knn": 0.9933,
+   "random_forest": 0.99
+  },
+  "auto_rois_lbp": {
+   "svm": 1.0,
+   "knn": 0.9867,
+   "random_forest": 0.99
+  },
+  "bottle_lbp": {
+   "svm": 1.0,
+   "knn": 0.98,
+   "random_forest": 0.99
+  },
+  "wide_lbp": {
+   "svm": 1.0,
+   "knn": 0.9633,
+   "random_forest": 0.9767
+  },
+  "image_lbp": {
+   "svm": 0.99,
+   "knn": 0.9933,
+   "random_forest": 0.9667
+  },
+  "rois_color": {
+   "svm": 1.0,
+   "knn": 1.0,
+   "random_forest": 1.0
+  },
+  "auto_rois_color": {
+   "svm": 1.0,
+   "knn": 1.0,
+   "random_forest": 1.0
+  },
+  "bottle_color": {
+   "svm": 1.0,
+   "knn": 1.0,
+   "random_forest": 0.9967
+  },
+  "wide_color": {
+   "svm": 1.0,
+   "knn": 0.9967,
+   "random_forest": 0.9967
+  },
+  "image_color": {
+   "svm": 1.0,
+   "knn": 0.9967,
+   "random_forest": 1.0
+  }
+ },
+ "f1_per_class_svm": {
+  "rois_hog": {
+   "bottle_no_defect": 1.0,
+   "bottle_other_brand": 1.0,
+   "defect_low_fill": 1.0,
+   "defect_no_cap": 1.0,
+   "defect_loose_cap": 1.0,
+   "defect_debris": 1.0,
+   "defect_label_damage": 1.0
+  },
+  "auto_rois_hog": {
+   "bottle_no_defect": 1.0,
+   "bottle_other_brand": 1.0,
+   "defect_low_fill": 1.0,
+   "defect_no_cap": 1.0,
+   "defect_loose_cap": 1.0,
+   "defect_debris": 1.0,
+   "defect_label_damage": 1.0
+  },
+  "bottle_hog": {
+   "bottle_no_defect": 1.0,
+   "bottle_other_brand": 1.0,
+   "defect_low_fill": 1.0,
+   "defect_no_cap": 1.0,
+   "defect_loose_cap": 1.0,
+   "defect_debris": 1.0,
+   "defect_label_damage": 1.0
+  },
+  "wide_hog": {
+   "bottle_no_defect": 1.0,
+   "bottle_other_brand": 1.0,
+   "defect_low_fill": 1.0,
+   "defect_no_cap": 1.0,
+   "defect_loose_cap": 1.0,
+   "defect_debris": 1.0,
+   "defect_label_damage": 1.0
+  },
+  "image_hog": {
+   "bottle_no_defect": 1.0,
+   "bottle_other_brand": 1.0,
+   "defect_low_fill": 1.0,
+   "defect_no_cap": 1.0,
+   "defect_loose_cap": 0.984,
+   "defect_debris": 1.0,
+   "defect_label_damage": 0.976
+  },
+  "rois_lbp": {
+   "bottle_no_defect": 1.0,
+   "bottle_other_brand": 1.0,
+   "defect_low_fill": 1.0,
+   "defect_no_cap": 1.0,
+   "defect_loose_cap": 1.0,
+   "defect_debris": 1.0,
+   "defect_label_damage": 1.0
+  },
+  "auto_rois_lbp": {
+   "bottle_no_defect": 1.0,
+   "bottle_other_brand": 1.0,
+   "defect_low_fill": 1.0,
+   "defect_no_cap": 1.0,
+   "defect_loose_cap": 1.0,
+   "defect_debris": 1.0,
+   "defect_label_damage": 1.0
+  },
+  "bottle_lbp": {
+   "bottle_no_defect": 1.0,
+   "bottle_other_brand": 1.0,
+   "defect_low_fill": 1.0,
+   "defect_no_cap": 1.0,
+   "defect_loose_cap": 1.0,
+   "defect_debris": 1.0,
+   "defect_label_damage": 1.0
+  },
+  "wide_lbp": {
+   "bottle_no_defect": 1.0,
+   "bottle_other_brand": 1.0,
+   "defect_low_fill": 1.0,
+   "defect_no_cap": 1.0,
+   "defect_loose_cap": 1.0,
+   "defect_debris": 1.0,
+   "defect_label_damage": 1.0
+  },
+  "image_lbp": {
+   "bottle_no_defect": 1.0,
+   "bottle_other_brand": 1.0,
+   "defect_low_fill": 0.988,
+   "defect_no_cap": 1.0,
+   "defect_loose_cap": 0.969,
+   "defect_debris": 1.0,
+   "defect_label_damage": 0.923
+  },
+  "rois_color": {
+   "bottle_no_defect": 1.0,
+   "bottle_other_brand": 1.0,
+   "defect_low_fill": 1.0,
+   "defect_no_cap": 1.0,
+   "defect_loose_cap": 1.0,
+   "defect_debris": 1.0,
+   "defect_label_damage": 1.0
+  },
+  "auto_rois_color": {
+   "bottle_no_defect": 1.0,
+   "bottle_other_brand": 1.0,
+   "defect_low_fill": 1.0,
+   "defect_no_cap": 1.0,
+   "defect_loose_cap": 1.0,
+   "defect_debris": 1.0,
+   "defect_label_damage": 1.0
+  },
+  "bottle_color": {
+   "bottle_no_defect": 1.0,
+   "bottle_other_brand": 1.0,
+   "defect_low_fill": 1.0,
+   "defect_no_cap": 1.0,
+   "defect_loose_cap": 1.0,
+   "defect_debris": 1.0,
+   "defect_label_damage": 1.0
+  },
+  "wide_color": {
+   "bottle_no_defect": 1.0,
+   "bottle_other_brand": 1.0,
+   "defect_low_fill": 1.0,
+   "defect_no_cap": 1.0,
+   "defect_loose_cap": 1.0,
+   "defect_debris": 1.0,
+   "defect_label_damage": 1.0
+  },
+  "image_color": {
+   "bottle_no_defect": 1.0,
+   "bottle_other_brand": 1.0,
+   "defect_low_fill": 1.0,
+   "defect_no_cap": 1.0,
+   "defect_loose_cap": 1.0,
+   "defect_debris": 1.0,
+   "defect_label_damage": 1.0
+  }
+ },
+ "confusions": {
+  "rois_hog": {
+   "svm": [],
+   "knn": [
+    {
+     "true": "bottle_no_defect",
+     "predicted": "defect_low_fill",
+     "count": 1
+    }
+   ],
+   "random_forest": []
+  },
+  "auto_rois_hog": {
+   "svm": [],
+   "knn": [
+    {
+     "true": "defect_no_cap",
+     "predicted": "bottle_no_defect",
+     "count": 1
+    }
+   ],
+   "random_forest": []
+  },
+  "bottle_hog": {
+   "svm": [],
+   "knn": [
+    {
+     "true": "defect_no_cap",
+     "predicted": "bottle_no_defect",
+     "count": 1
+    }
+   ],
+   "random_forest": []
+  },
+  "wide_hog": {
+   "svm": [],
+   "knn": [
+    {
+     "true": "bottle_no_defect",
+     "predicted": "defect_no_cap",
+     "count": 6
+    },
+    {
+     "true": "defect_low_fill",
+     "predicted": "defect_loose_cap",
+     "count": 2
+    },
+    {
+     "true": "defect_low_fill",
+     "predicted": "defect_label_damage",
+     "count": 1
+    },
+    {
+     "true": "defect_no_cap",
+     "predicted": "bottle_no_defect",
+     "count": 2
+    },
+    {
+     "true": "defect_no_cap",
+     "predicted": "defect_label_damage",
+     "count": 1
+    }
+   ],
+   "random_forest": []
+  },
+  "image_hog": {
+   "svm": [
+    {
+     "true": "defect_label_damage",
+     "predicted": "defect_loose_cap",
+     "count": 1
+    }
+   ],
+   "knn": [
+    {
+     "true": "defect_low_fill",
+     "predicted": "defect_loose_cap",
+     "count": 2
+    },
+    {
+     "true": "defect_no_cap",
+     "predicted": "defect_loose_cap",
+     "count": 1
+    },
+    {
+     "true": "defect_debris",
+     "predicted": "defect_low_fill",
+     "count": 1
+    }
+   ],
+   "random_forest": [
+    {
+     "true": "defect_low_fill",
+     "predicted": "defect_loose_cap",
+     "count": 1
+    }
+   ]
+  },
+  "rois_lbp": {
+   "svm": [],
+   "knn": [
+    {
+     "true": "bottle_no_defect",
+     "predicted": "defect_label_damage",
+     "count": 1
+    },
+    {
+     "true": "defect_no_cap",
+     "predicted": "bottle_no_defect",
+     "count": 1
+    }
+   ],
+   "random_forest": [
+    {
+     "true": "bottle_no_defect",
+     "predicted": "defect_loose_cap",
+     "count": 1
+    },
+    {
+     "true": "defect_loose_cap",
+     "predicted": "defect_low_fill",
+     "count": 1
+    },
+    {
+     "true": "defect_label_damage",
+     "predicted": "bottle_no_defect",
+     "count": 1
+    }
+   ]
+  },
+  "auto_rois_lbp": {
+   "svm": [],
+   "knn": [
+    {
+     "true": "bottle_no_defect",
+     "predicted": "defect_no_cap",
+     "count": 1
+    },
+    {
+     "true": "bottle_no_defect",
+     "predicted": "defect_label_damage",
+     "count": 1
+    },
+    {
+     "true": "defect_no_cap",
+     "predicted": "bottle_no_defect",
+     "count": 2
+    }
+   ],
+   "random_forest": [
+    {
+     "true": "bottle_no_defect",
+     "predicted": "defect_no_cap",
+     "count": 1
+    },
+    {
+     "true": "bottle_no_defect",
+     "predicted": "defect_label_damage",
+     "count": 1
+    },
+    {
+     "true": "defect_low_fill",
+     "predicted": "bottle_no_defect",
+     "count": 1
+    }
+   ]
+  },
+  "bottle_lbp": {
+   "svm": [],
+   "knn": [
+    {
+     "true": "bottle_no_defect",
+     "predicted": "defect_no_cap",
+     "count": 2
+    },
+    {
+     "true": "bottle_no_defect",
+     "predicted": "defect_label_damage",
+     "count": 1
+    },
+    {
+     "true": "defect_no_cap",
+     "predicted": "bottle_no_defect",
+     "count": 3
+    }
+   ],
+   "random_forest": [
+    {
+     "true": "bottle_no_defect",
+     "predicted": "defect_label_damage",
+     "count": 2
+    },
+    {
+     "true": "defect_label_damage",
+     "predicted": "bottle_no_defect",
+     "count": 1
+    }
+   ]
+  },
+  "wide_lbp": {
+   "svm": [],
+   "knn": [
+    {
+     "true": "bottle_no_defect",
+     "predicted": "defect_no_cap",
+     "count": 1
+    },
+    {
+     "true": "defect_no_cap",
+     "predicted": "bottle_no_defect",
+     "count": 3
+    },
+    {
+     "true": "defect_loose_cap",
+     "predicted": "defect_no_cap",
+     "count": 1
+    },
+    {
+     "true": "defect_debris",
+     "predicted": "defect_low_fill",
+     "count": 1
+    },
+    {
+     "true": "defect_label_damage",
+     "predicted": "bottle_no_defect",
+     "count": 1
+    },
+    {
+     "true": "defect_label_damage",
+     "predicted": "defect_low_fill",
+     "count": 3
+    },
+    {
+     "true": "defect_label_damage",
+     "predicted": "defect_loose_cap",
+     "count": 1
+    }
+   ],
+   "random_forest": [
+    {
+     "true": "defect_low_fill",
+     "predicted": "defect_no_cap",
+     "count": 1
+    },
+    {
+     "true": "defect_low_fill",
+     "predicted": "defect_debris",
+     "count": 1
+    },
+    {
+     "true": "defect_debris",
+     "predicted": "defect_low_fill",
+     "count": 1
+    },
+    {
+     "true": "defect_label_damage",
+     "predicted": "defect_low_fill",
+     "count": 2
+    },
+    {
+     "true": "defect_label_damage",
+     "predicted": "defect_loose_cap",
+     "count": 2
+    }
+   ]
+  },
+  "image_lbp": {
+   "svm": [
+    {
+     "true": "defect_label_damage",
+     "predicted": "defect_low_fill",
+     "count": 1
+    },
+    {
+     "true": "defect_label_damage",
+     "predicted": "defect_loose_cap",
+     "count": 2
+    }
+   ],
+   "knn": [
+    {
+     "true": "defect_loose_cap",
+     "predicted": "defect_no_cap",
+     "count": 1
+    },
+    {
+     "true": "defect_label_damage",
+     "predicted": "defect_loose_cap",
+     "count": 1
+    }
+   ],
+   "random_forest": [
+    {
+     "true": "bottle_other_brand",
+     "predicted": "defect_no_cap",
+     "count": 1
+    },
+    {
+     "true": "defect_low_fill",
+     "predicted": "defect_debris",
+     "count": 2
+    },
+    {
+     "true": "defect_low_fill",
+     "predicted": "defect_label_damage",
+     "count": 1
+    },
+    {
+     "true": "defect_label_damage",
+     "predicted": "defect_loose_cap",
+     "count": 6
+    }
+   ]
+  },
+  "rois_color": {
+   "svm": [],
+   "knn": [],
+   "random_forest": []
+  },
+  "auto_rois_color": {
+   "svm": [],
+   "knn": [],
+   "random_forest": []
+  },
+  "bottle_color": {
+   "svm": [],
+   "knn": [],
+   "random_forest": [
+    {
+     "true": "defect_label_damage",
+     "predicted": "bottle_no_defect",
+     "count": 1
+    }
+   ]
+  },
+  "wide_color": {
+   "svm": [],
+   "knn": [
+    {
+     "true": "bottle_no_defect",
+     "predicted": "defect_loose_cap",
+     "count": 1
+    }
+   ],
+   "random_forest": [
+    {
+     "true": "bottle_no_defect",
+     "predicted": "defect_low_fill",
+     "count": 1
+    }
+   ]
+  },
+  "image_color": {
+   "svm": [],
+   "knn": [
+    {
+     "true": "bottle_no_defect",
+     "predicted": "defect_loose_cap",
+     "count": 1
+    }
+   ],
+   "random_forest": []
+  }
+ },
+ "prepare_ms": 23.2,
+ "localization": {
+  "mean_error_relative": 0.003095758166666668,
+  "p95_error_relative": 0.010963250000000035,
+  "max_error_relative": 0.030894250000000012,
+  "mean_error_px": 3.962570453333335,
+  "p95_error_px": 14.032960000000045,
+  "mean_iou": 0.9365041834699259,
+  "p5_iou": 0.8503404648191595,
+  "min_iou": 0.6366398621261684,
+  "mean_left_error_relative": 0.003516945833333334,
+  "p95_left_error_relative": 0.011417537500000028,
+  "mean_top_error_relative": 0.005213674703703702,
+  "p95_top_error_relative": 0.01620162222222214,
+  "mean_right_error_relative": 0.003731200499999999,
+  "p95_right_error_relative": 0.011646837500000007,
+  "mean_bottom_error_relative": 0.0079825555925926,
+  "p95_bottom_error_relative": 0.02475300277777776
+ },
+ "group_ms": {
+  "cap_hog": 0.64,
+  "cap_lbp": 1.04,
+  "cap_color": 0.72,
+  "label_hog": 0.64,
+  "label_lbp": 1.94,
+  "label_color": 1.76,
+  "body_hog": 0.92,
+  "body_lbp": 2.85,
+  "body_color": 4.74,
+  "auto_1_hog": 0.44,
+  "auto_1_lbp": 1.4,
+  "auto_1_color": 0.29,
+  "auto_2_hog": 2.66,
+  "auto_2_lbp": 8.45,
+  "auto_2_color": 1.49,
+  "auto_3_hog": 0.3,
+  "auto_3_lbp": 0.97,
+  "auto_3_color": 0.21,
+  "bottle_hog": 3.52,
+  "bottle_lbp": 11.09,
+  "bottle_color": 5.31,
+  "wide_hog": 6.29,
+  "wide_lbp": 18.1,
+  "wide_color": 26.88,
+  "image_hog": 11.7,
+  "image_lbp": 33.85,
+  "image_color": 48.27
+ },
+ "bottles_per_second_range": [
+  14.0,
+  39.7
+ ],
+ "n_errors": {
+  "rois_hog": {
+   "svm": 0,
+   "knn": 1,
+   "random_forest": 0
+  },
+  "auto_rois_hog": {
+   "svm": 0,
+   "knn": 1,
+   "random_forest": 0
+  },
+  "bottle_hog": {
+   "svm": 0,
+   "knn": 1,
+   "random_forest": 0
+  },
+  "wide_hog": {
+   "svm": 0,
+   "knn": 12,
+   "random_forest": 0
+  },
+  "image_hog": {
+   "svm": 1,
+   "knn": 4,
+   "random_forest": 1
+  },
+  "rois_lbp": {
+   "svm": 0,
+   "knn": 2,
+   "random_forest": 3
+  },
+  "auto_rois_lbp": {
+   "svm": 0,
+   "knn": 4,
+   "random_forest": 3
+  },
+  "bottle_lbp": {
+   "svm": 0,
+   "knn": 6,
+   "random_forest": 3
+  },
+  "wide_lbp": {
+   "svm": 0,
+   "knn": 11,
+   "random_forest": 7
+  },
+  "image_lbp": {
+   "svm": 3,
+   "knn": 2,
+   "random_forest": 10
+  },
+  "rois_color": {
+   "svm": 0,
+   "knn": 0,
+   "random_forest": 0
+  },
+  "auto_rois_color": {
+   "svm": 0,
+   "knn": 0,
+   "random_forest": 0
+  },
+  "bottle_color": {
+   "svm": 0,
+   "knn": 0,
+   "random_forest": 1
+  },
+  "wide_color": {
+   "svm": 0,
+   "knn": 1,
+   "random_forest": 1
+  },
+  "image_color": {
+   "svm": 0,
+   "knn": 1,
+   "random_forest": 0
+  }
+ },
+ "best_params": {
+  "rois_hog/svm": {
+   "svm__C": 0.01,
+   "svm__kernel": "linear"
+  },
+  "rois_hog/knn": {
+   "knn__n_neighbors": 3,
+   "knn__weights": "uniform"
+  },
+  "rois_hog/random_forest": {
+   "forest__max_depth": null,
+   "forest__max_features": "sqrt",
+   "forest__n_estimators": 300
+  },
+  "auto_rois_hog/svm": {
+   "svm__C": 0.01,
+   "svm__kernel": "linear"
+  },
+  "auto_rois_hog/knn": {
+   "knn__n_neighbors": 1,
+   "knn__weights": "uniform"
+  },
+  "auto_rois_hog/random_forest": {
+   "forest__max_depth": null,
+   "forest__max_features": "sqrt",
+   "forest__n_estimators": 300
+  },
+  "bottle_hog/svm": {
+   "svm__C": 0.01,
+   "svm__kernel": "linear"
+  },
+  "bottle_hog/knn": {
+   "knn__n_neighbors": 1,
+   "knn__weights": "uniform"
+  },
+  "bottle_hog/random_forest": {
+   "forest__max_depth": null,
+   "forest__max_features": "sqrt",
+   "forest__n_estimators": 300
+  },
+  "wide_hog/svm": {
+   "svm__C": 0.01,
+   "svm__kernel": "linear"
+  },
+  "wide_hog/knn": {
+   "knn__n_neighbors": 1,
+   "knn__weights": "uniform"
+  },
+  "wide_hog/random_forest": {
+   "forest__max_depth": null,
+   "forest__max_features": "sqrt",
+   "forest__n_estimators": 300
+  },
+  "image_hog/svm": {
+   "svm__C": 0.01,
+   "svm__kernel": "linear"
+  },
+  "image_hog/knn": {
+   "knn__n_neighbors": 3,
+   "knn__weights": "distance"
+  },
+  "image_hog/random_forest": {
+   "forest__max_depth": null,
+   "forest__max_features": 0.1,
+   "forest__n_estimators": 300
+  },
+  "rois_lbp/svm": {
+   "svm__C": 10,
+   "svm__gamma": 0.0001,
+   "svm__kernel": "rbf"
+  },
+  "rois_lbp/knn": {
+   "knn__n_neighbors": 3,
+   "knn__weights": "distance"
+  },
+  "rois_lbp/random_forest": {
+   "forest__max_depth": null,
+   "forest__max_features": 0.1,
+   "forest__n_estimators": 300
+  },
+  "auto_rois_lbp/svm": {
+   "svm__C": 0.01,
+   "svm__kernel": "linear"
+  },
+  "auto_rois_lbp/knn": {
+   "knn__n_neighbors": 1,
+   "knn__weights": "uniform"
+  },
+  "auto_rois_lbp/random_forest": {
+   "forest__max_depth": null,
+   "forest__max_features": 0.1,
+   "forest__n_estimators": 100
+  },
+  "bottle_lbp/svm": {
+   "svm__C": 0.01,
+   "svm__kernel": "linear"
+  },
+  "bottle_lbp/knn": {
+   "knn__n_neighbors": 1,
+   "knn__weights": "uniform"
+  },
+  "bottle_lbp/random_forest": {
+   "forest__max_depth": null,
+   "forest__max_features": 0.1,
+   "forest__n_estimators": 300
+  },
+  "wide_lbp/svm": {
+   "svm__C": 0.01,
+   "svm__kernel": "linear"
+  },
+  "wide_lbp/knn": {
+   "knn__n_neighbors": 3,
+   "knn__weights": "distance"
+  },
+  "wide_lbp/random_forest": {
+   "forest__max_depth": null,
+   "forest__max_features": 0.1,
+   "forest__n_estimators": 100
+  },
+  "image_lbp/svm": {
+   "svm__C": 0.01,
+   "svm__kernel": "linear"
+  },
+  "image_lbp/knn": {
+   "knn__n_neighbors": 5,
+   "knn__weights": "distance"
+  },
+  "image_lbp/random_forest": {
+   "forest__max_depth": null,
+   "forest__max_features": 0.1,
+   "forest__n_estimators": 300
+  },
+  "rois_color/svm": {
+   "svm__C": 0.01,
+   "svm__kernel": "linear"
+  },
+  "rois_color/knn": {
+   "knn__n_neighbors": 1,
+   "knn__weights": "uniform"
+  },
+  "rois_color/random_forest": {
+   "forest__max_depth": null,
+   "forest__max_features": "sqrt",
+   "forest__n_estimators": 100
+  },
+  "auto_rois_color/svm": {
+   "svm__C": 100,
+   "svm__degree": 2,
+   "svm__gamma": "scale",
+   "svm__kernel": "poly"
+  },
+  "auto_rois_color/knn": {
+   "knn__n_neighbors": 1,
+   "knn__weights": "uniform"
+  },
+  "auto_rois_color/random_forest": {
+   "forest__max_depth": null,
+   "forest__max_features": "sqrt",
+   "forest__n_estimators": 100
+  },
+  "bottle_color/svm": {
+   "svm__C": 1,
+   "svm__kernel": "linear"
+  },
+  "bottle_color/knn": {
+   "knn__n_neighbors": 1,
+   "knn__weights": "uniform"
+  },
+  "bottle_color/random_forest": {
+   "forest__max_depth": null,
+   "forest__max_features": "sqrt",
+   "forest__n_estimators": 300
+  },
+  "wide_color/svm": {
+   "svm__C": 1,
+   "svm__kernel": "linear"
+  },
+  "wide_color/knn": {
+   "knn__n_neighbors": 3,
+   "knn__weights": "uniform"
+  },
+  "wide_color/random_forest": {
+   "forest__max_depth": null,
+   "forest__max_features": 0.1,
+   "forest__n_estimators": 100
+  },
+  "image_color/svm": {
+   "svm__C": 0.1,
+   "svm__kernel": "linear"
+  },
+  "image_color/knn": {
+   "knn__n_neighbors": 1,
+   "knn__weights": "uniform"
+  },
+  "image_color/random_forest": {
+   "forest__max_depth": null,
+   "forest__max_features": 0.1,
+   "forest__n_estimators": 300
+  }
+ }
+}

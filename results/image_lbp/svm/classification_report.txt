@@ -1,0 +1,13 @@
+                     precision    recall  f1-score   support
+
+   bottle_no_defect     1.0000    1.0000    1.0000       121
+ bottle_other_brand     1.0000    1.0000    1.0000        19
+    defect_low_fill     0.9762    1.0000    0.9880        41
+      defect_no_cap     1.0000    1.0000    1.0000        28
+   defect_loose_cap     0.9394    1.0000    0.9688        31
+      defect_debris     1.0000    1.0000    1.0000        39
+defect_label_damage     1.0000    0.8571    0.9231        21
+
+           accuracy                         0.9900       300
+          macro avg     0.9879    0.9796    0.9828       300
+       weighted avg     0.9905    0.9900    0.9897       300

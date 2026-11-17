@@ -1,0 +1,334 @@
+{
+  "imagem_digital": {
+    "imagem": "loose_cap_0001_20260210_152014.jpg",
+    "tamanho_pixels_altura_largura": [
+      720,
+      1280
+    ],
+    "regiao_canto_superior_esquerdo_xy": [
+      613,
+      70
+    ],
+    "regiao_tamanho": 8,
+    "cinza_min": 91,
+    "cinza_max": 127,
+    "pixel_destacado_linha_coluna": [
+      3,
+      4
+    ],
+    "pixel_destacado_RGB": [
+      76,
+      107,
+      138
+    ]
+  },
+  "subtracao_fundo": {
+    "tamanho_pixels": [
+      120,
+      160
+    ],
+    "diferenca_media_fundo": 5.51,
+    "diferenca_media_objeto": 104.08
+  },
+  "otsu": {
+    "limiar_skimage": 53,
+    "limiar_maximo_variancia_entre_classes": 53,
+    "variancia_entre_classes_maxima": 1209.997,
+    "fracao_pixels_objeto": 0.1647
+  },
+  "morfologia": {
+    "elemento_estruturante": "disco de raio 3 (7x7)",
+    "pixels_mascara_com_furos_e_ruido": 2608,
+    "pixels_apos_fechamento": 2741,
+    "pixels_apos_fechamento_e_abertura": 2593,
+    "pixels_silhueta_ideal": 2611,
+    "diferenca_para_silhueta_ideal": 30
+  },
+  "validacao_cruzada": {
+    "dobras": 5,
+    "imagens_treino": 1200,
+    "imagens_por_dobra": 240,
+    "imagens_validacao_projeto": 300
+  },
+  "busca_grade": {
+    "C": [
+      0.01,
+      0.1,
+      1,
+      10,
+      100
+    ],
+    "gamma": [
+      0.0001,
+      0.001,
+      0.01,
+      0.1
+    ],
+    "melhor_C": 10,
+    "melhor_gamma": 0.001,
+    "melhor_F1_medio": 0.968,
+    "n_combinacoes": 20,
+    "n_ajustes_com_5_dobras": 100
+  },
+  "um_erro_padrao": {
+    "candidatos": [
+      "6",
+      "9",
+      "12",
+      "18"
+    ],
+    "F1_medio": [
+      0.962,
+      0.965,
+      0.964,
+      0.958
+    ],
+    "erro_padrao": [
+      0.004,
+      0.004,
+      0.0035,
+      0.005
+    ],
+    "melhor": "9",
+    "limite_melhor_menos_1EP": 0.961,
+    "escolhido": "6"
+  },
+  "hog_passos": {
+    "imagem": "32x32, celulas 8x8",
+    "celula_destacada_linha_coluna": [
+      1,
+      1
+    ],
+    "histograma_6_bins_30graus": [
+      283.9,
+      481.7,
+      283.9,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "bin_dominante": "30-60 graus",
+    "magnitude_maxima": 136.1
+  },
+  "lbp_passos": {
+    "centro": 50,
+    "vizinhos_horario_a_partir_do_canto_superior_esquerdo": [
+      62,
+      70,
+      41,
+      38,
+      55,
+      90,
+      47,
+      51
+    ],
+    "bits": "11001101",
+    "pesos": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64,
+      128
+    ],
+    "codigo_decimal": 179,
+    "transicoes_do_codigo": 4,
+    "exemplo_uniforme": {
+      "padrao": "00011110",
+      "transicoes": 2
+    },
+    "exemplo_nao_uniforme": {
+      "padrao": "01010010",
+      "transicoes": 6
+    }
+  },
+  "lbp_vizinhanca": {
+    "vizinhancas_P_R": [
+      [
+        8,
+        1
+      ],
+      [
+        16,
+        2
+      ],
+      [
+        24,
+        3
+      ]
+    ],
+    "codigos_distintos_sem_uniformidade": [
+      256,
+      65536,
+      16777216
+    ]
+  },
+  "lbp_texturas": {
+    "smooth": {
+      "histograma_10_codigos": [
+        0.0,
+        0.012,
+        0.013,
+        0.025,
+        0.694,
+        0.237,
+        0.015,
+        0.0,
+        0.0,
+        0.004
+      ],
+      "fracao_nao_uniformes": 0.004
+    },
+    "rough": {
+      "histograma_10_codigos": [
+        0.103,
+        0.103,
+        0.085,
+        0.083,
+        0.08,
+        0.099,
+        0.077,
+        0.096,
+        0.095,
+        0.178
+      ],
+      "fracao_nao_uniformes": 0.178
+    }
+  },
+  "hsv": {
+    "bins": 36,
+    "largura_bin_graus": 10,
+    "criterio": "pixels com saturacao > 40/255",
+    "bins_mais_cheios": [
+      {
+        "intervalo_graus": [
+          220,
+          230
+        ],
+        "fracao": 0.494
+      },
+      {
+        "intervalo_graus": [
+          0,
+          10
+        ],
+        "fracao": 0.237
+      },
+      {
+        "intervalo_graus": [
+          350,
+          360
+        ],
+        "fracao": 0.093
+      }
+    ]
+  },
+  "knn_k": {
+    "k=1": {
+      "acuracia_treino": 1.0
+    },
+    "k=7": {
+      "acuracia_treino": 0.905
+    },
+    "k=31": {
+      "acuracia_treino": 0.92
+    }
+  },
+  "svm_margem": {
+    "margem_dados_separaveis": 2.719,
+    "vetores_suporte_separavel": 2,
+    "C=0.01": {
+      "largura_margem": 3.862,
+      "vetores_suporte": 58,
+      "erros_treino": 10
+    },
+    "C=100": {
+      "largura_margem": 1.5,
+      "vetores_suporte": 21,
+      "erros_treino": 10
+    }
+  },
+  "arvore_floresta": {
+    "arvore_profundidade": 3,
+    "arvore_acuracia_treino": 0.933,
+    "arvore_folhas": 7,
+    "floresta_arvores": 100,
+    "floresta_acuracia_treino": 0.95
+  },
+  "matriz_confusao": {
+    "matriz_linhas_real_colunas_prevista": [
+      [
+        45,
+        3,
+        2
+      ],
+      [
+        4,
+        38,
+        8
+      ],
+      [
+        1,
+        5,
+        44
+      ]
+    ],
+    "acuracia": 0.8467,
+    "precisao": {
+      "Classe A": 0.9,
+      "Classe B": 0.8261,
+      "Classe C": 0.8148
+    },
+    "revocacao": {
+      "Classe A": 0.9,
+      "Classe B": 0.76,
+      "Classe C": 0.88
+    },
+    "F1": {
+      "Classe A": 0.9,
+      "Classe B": 0.7917,
+      "Classe C": 0.8462
+    },
+    "macro_precisao": 0.847,
+    "macro_revocacao": 0.8467,
+    "macro_F1": 0.8459
+  },
+  "iou": {
+    "principal": {
+      "area_intersecao": 12,
+      "area_uniao": 36,
+      "iou": 0.3333
+    },
+    "casos": {
+      "b": 0.3,
+      "c": 0.6,
+      "d": 0.9
+    }
+  },
+  "carta_controle": {
+    "n_por_lote": 200,
+    "lotes": 30,
+    "p_barra": 0.03,
+    "LSC": 0.0662,
+    "LIC": 0.0,
+    "LIC_calculado_antes_do_max": -0.0062,
+    "semente": 51,
+    "lotes_acima_do_LSC": [
+      26,
+      29
+    ],
+    "p_nos_lotes_acima": [
+      0.07,
+      0.075
+    ]
+  },
+  "janela_alerta": {
+    "garrafas": 20,
+    "janela": 10,
+    "limiar": 4,
+    "alerta_na_garrafa": 20,
+    "contagem_sem_tampa_na_janela": 4
+  }
+}
